@@ -1,3 +1,3 @@
 public class Minigame {
-  
+  //Minigame
 }

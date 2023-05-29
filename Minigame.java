@@ -2,11 +2,11 @@ import DLibX.DConsole;
 
 public class Minigame {
 
-  private int ID;
+  private int id;
   private DConsole dc;
 
-  public Minigame(int ID, DConsole dc) {
-    this.ID = ID;
+  public Minigame(int id, DConsole dc) {
+    this.id = id;
     this.dc = dc;
   }
 
@@ -15,7 +15,7 @@ public class Minigame {
   }
 // This stuff is not yet implemented.
   /*
-  public awardPoints(player player, points points){
+  public awardPoints(Player player, int points){
 
     
   }

@@ -1,3 +1,6 @@
+import DLibX.DConsole;
+import java.awt.Color;
+
 public class Minigame {
 
   private int ID;

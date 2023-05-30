@@ -1,3 +1,5 @@
+import DLibX.*;
+
 public class Minigame {
 
   private int ID;

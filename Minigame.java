@@ -1,4 +1,5 @@
-import DLibX.DConsole;
+import DLibX.*;
+import java.awt.Color;
 
 public class Minigame {
 

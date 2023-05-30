@@ -28,10 +28,9 @@ public class Main {
 
     Main m = new Main();
     
-    m.DInit(600, 600);
+    m.DInit(800, 550); //Make Screen Size
     while(true) {
       m.run();
     }
   }
-	
 }

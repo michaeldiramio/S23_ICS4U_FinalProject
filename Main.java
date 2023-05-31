@@ -36,13 +36,13 @@ public class Main {
       for(int i = 0; i < playerList.size(); i++) {
       boolean[] tempControl = controlList.get(i).getPlayerKeysPressed();
       if(tempControl[0] == true && playerList.get(i).getY() >= 10) {
-        playerList.get(i).move(0, -10);
+        playerList.get(i).moveY(-10);
       } else if(tempControl[1] == true && playerList.get(i).getX() >= 10) {
-        playerList.get(i).move(-10, 0);
+        playerList.get(i).moveX(-10);
       } else if(tempControl[2] == true && playerList.get(i).getY() <= 590) {
-        playerList.get(i).move(0, 10);
+        playerList.get(i).moveY(10);
       } else if(tempControl[3] == true && playerList.get(i).getX() <= 590) {
-        playerList.get(i).move(10, 0);
+        playerList.get(i).moveX(10);
       } 
       System.out.println(tempControl[i]);
       playerList.get(i).draw();

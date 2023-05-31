@@ -39,11 +39,13 @@ public class Player {
   }
 
   //Move (Will be called in minigame, could be overridden for gravity or only up and down) 
-  public void move(int xChange, int yChange) {
-    
+  public void moveX(int xChange) {
     this.xPOS += xChange;
+  }
+
+  //move y
+  public void moveY(int yChange) {
     this.yPOS += yChange;
-    
   }
 
   //Get score

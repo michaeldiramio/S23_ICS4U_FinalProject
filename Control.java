@@ -42,14 +42,21 @@ public class Control {
   */
   
   // gets current keys pressed
-  private int[] getCurrentKeycodesActive() {
-    return this.dc.getKeys();
+  private int[] getCurrentKeycodesPressed() {
+    int[] tempKeycodes = this.dc.getKeys();
+    int[] blankArray = new int[4];
+    if(tempKeycodes.length > 0) {
+      Arrays.sort(tempKeycodes);
+      return tempKeycodes;
+    } else {
+      return blankArray;
+    }
   }
 
   
   // returns a boolean array of the player's current keypresses
   public boolean[] getPlayerKeysPressed() {
-    int[] tempKeys = this.getCurrentKeycodesActive();
+    int[] tempKeys = this.getCurrentKeycodesPressed();
     int[] tempKeycodes = playerKeycodes.get(this.playerNum);
     boolean[] tempKeysActive = new boolean[tempKeycodes.length];
 
@@ -79,10 +86,5 @@ public class Control {
     }
     return false;
   }
-
-  
-  
-  
-
   
 }

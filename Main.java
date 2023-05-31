@@ -33,9 +33,15 @@ public class Main {
       this.dc.clear();
       for(int i = 0; i < playerList.size(); i++) {
       boolean[] tempControl = controlList.get(i).getPlayerKeysPressed();
-      if(tempControl[0] == true) {
-        playerList.get(i).move(0, 5);
-      }
+      if(tempControl[0] == true && playerList.get(i).getY() >= 10) {
+        playerList.get(i).move(0, -10);
+      } else if(tempControl[1] == true && playerList.get(i).getX() >= 10) {
+        playerList.get(i).move(-10, 0);
+      } else if(tempControl[2] == true && playerList.get(i).getY() <= 590) {
+        playerList.get(i).move(0, 10);
+      } else if(tempControl[3] == true && playerList.get(i).getX() <= 590) {
+        playerList.get(i).move(10, 0);
+      } 
       System.out.println(tempControl[i]);
       playerList.get(i).draw();
     }
@@ -50,17 +56,11 @@ public class Main {
     
   }
 
-  public void firstCycle() {
-    
-    
-  }
-
   // main
   public static void main(String[] args) {
 
     Main m = new Main();
     m.DInit(600, 600);
-    m.firstCycle();
     while(true) {
       m.run();
     }

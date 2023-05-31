@@ -23,11 +23,13 @@ public class Main {
     playerList.add(new Player(3,Color.GREEN,400,400,this.dc));
     playerList.add(new Player(4,Color.BLACK,500,500,this.dc));
 
+
     ArrayList<Control> controlList = new ArrayList<>();
     controlList.add(new Control(0, this.dc));
     controlList.add(new Control(1, this.dc));
     controlList.add(new Control(2, this.dc));
     controlList.add(new Control(3, this.dc));
+
 
     while(true) {
       this.dc.clear();
@@ -60,7 +62,7 @@ public class Main {
   public static void main(String[] args) {
 
     Main m = new Main();
-    m.DInit(600, 600);
+    m.DInit(800, 550); //should be 800 by 550 px -Kieran
     while(true) {
       m.run();
     }

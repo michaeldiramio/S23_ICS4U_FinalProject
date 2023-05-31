@@ -32,10 +32,13 @@ public class Player {
 
   //Draw
   public void draw() {
+    dc.setPaint(this.color);
+    dc.setOrigin(DConsole.ORIGIN_CENTER);
     dc.fillRect(this.xPOS, this.yPOS, 20, 20);
+    dc.setPaint(new Color(0,0,0));
   }
 
-  //Move (Will be called in minigame, could be overridden for gravity or only up and down) (leave this to abeer)
+  //Move (Will be called in minigame, could be overridden for gravity or only up and down) 
   public void move(int xChange, int yChange) {
     
     this.xPOS += xChange;

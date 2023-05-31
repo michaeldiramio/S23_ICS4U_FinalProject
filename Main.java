@@ -16,8 +16,7 @@ public class Main {
   public void run() {
     this.dc.clear();
 
-    this.dc.setPaint(Color.RED);
-    this.dc.fillEllipse(300, 300, 60, 40);
+    GameScreen.join(this.dc);
 
     this.dc.redraw();
     this.dc.pause(100);

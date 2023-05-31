@@ -32,21 +32,17 @@ public class Player {
 
   //Draw
   public void draw() {
-    dc.fillRect(10, 10, this.xPOS, this.yPOS);
+    dc.setPaint(this.color);
+    dc.setOrigin(DConsole.ORIGIN_CENTER);
+    dc.fillRect(this.xPOS, this.yPOS, 20, 20);
+    dc.setPaint(new Color(0,0,0));
   }
 
-  //Move (Will be called in minigame, could be overridden for gravity or only up and down) (leave this to abeer)
+  //Move (Will be called in minigame, could be overridden for gravity or only up and down) 
   public void move(int xChange, int yChange) {
     
-    if (this.xPOS <= 795 ) { //move right // &&control[c].isPressed
-      
-    } else if (this.xPOS >= 5) { //move left
-      
-    } else if (this.yPOS <= 545) { //move down
-      
-    } else if (this.yPOS >= 5) { //move up
-      
-    }
+    this.xPOS += xChange;
+    this.yPOS += yChange;
     
   }
 

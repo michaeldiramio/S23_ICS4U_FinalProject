@@ -61,13 +61,15 @@ public class Player {
     return this.id;
   }
 
-  //Add controls 
-  /*
-  public void addControl(Control c) {
-    controls.add(c);
+  //get xPosition
+  public double getX() {
+    return this.xPOS;
   }
 
-  */
+  //get yPosition
+  public double getY() {
+    return this.yPOS;
+  }
 
 
 

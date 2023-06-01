@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
   // data
-  private DConsole dc;
+  public DConsole dc;
 
   // initializes DConsole
   public void DInit(int width, int height) {
@@ -15,45 +15,24 @@ public class Main {
 
   // runs methods from other classes
   public void run() {
-    
-
+    //Players
     ArrayList<Player> playerList = new ArrayList<>();
-    playerList.add(new Player(1,Color.RED,300,300,this.dc));
-    playerList.add(new Player(2,Color.BLUE,200,200,this.dc));
-    playerList.add(new Player(3,Color.GREEN,400,400,this.dc));
-    playerList.add(new Player(4,Color.BLACK,500,500,this.dc));
-
-
+    playerList.add(new Player(1,Color.RED,300,300,dc));
+    playerList.add(new Player(2,Color.BLUE,200,200,dc));
+    playerList.add(new Player(3,Color.GREEN,400,400,dc));
+    playerList.add(new Player(4,Color.BLACK,500,500,dc));
+    //Controls
     ArrayList<Control> controlList = new ArrayList<>();
-    controlList.add(new Control(0, this.dc));
-    controlList.add(new Control(1, this.dc));
-    controlList.add(new Control(2, this.dc));
-    controlList.add(new Control(3, this.dc));
+    controlList.add(new Control(0, dc));
+    controlList.add(new Control(1, dc));
+    controlList.add(new Control(2, dc));
+    controlList.add(new Control(3, dc));
 
+    //-----------------------Testing Chamber---------------------
+    Minigame test = new TestGame(0, dc, playerList, controlList);
 
-    while(true) {
-      this.dc.clear();
-      for(int i = 0; i < playerList.size(); i++) {
-      boolean[] tempControl = controlList.get(i).getPlayerKeysPressed();
-      if(tempControl[0] == true && playerList.get(i).getY() >= 10) {
-        playerList.get(i).moveY(-10);
-      } else if(tempControl[1] == true && playerList.get(i).getX() >= 10) {
-        playerList.get(i).moveX(-10);
-      } else if(tempControl[2] == true && playerList.get(i).getY() <= 590) {
-        playerList.get(i).moveY(10);
-      } else if(tempControl[3] == true && playerList.get(i).getX() <= 590) {
-        playerList.get(i).moveX(10);
-      } 
-      System.out.println(tempControl[i]);
-      playerList.get(i).draw();
-    }
-      this.dc.redraw();
-    this.dc.pause(100);
-    }
-    
-
-
-    
+    test.play();
+    //---------------------------------------------------------
 
     
   }
@@ -62,7 +41,7 @@ public class Main {
   public static void main(String[] args) {
 
     Main m = new Main();
-    m.DInit(800, 550); //should be 800 by 550 px -Kieran
+    m.DInit(600, 600); 
     while(true) {
       m.run();
     }

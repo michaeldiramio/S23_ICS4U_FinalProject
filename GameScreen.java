@@ -21,6 +21,31 @@ public class GameScreen {
       }
       trans += change;
 
+      //key press
+      if (dc.isKeyPressed('w') && !p1) {
+        p1 = true;
+      } else if (dc.isKeyPressed('s') && p1) {
+        p1 = false;
+      }
+      
+      if (dc.isKeyPressed('i') && !p2) {
+        p2 = true;
+      } else if (dc.isKeyPressed('k') && p2) {
+        p2 = false;
+      }
+      
+      if (dc.isKeyPressed('t') && !p3) {
+        p3 = true;
+      } else if (dc.isKeyPressed('g') && p3) {
+        p3 = false;
+      }
+      
+      if (dc.isKeyPressed('b') && !p4) {
+        p4 = true;
+      } else if (dc.isKeyPressed('n') && p4) {
+        p4 = false;
+      }
+
       if (!p1) { //not joined
         dc.setPaint(new Color(255,255,255)); //white
         dc.fillRect(200, 200, 290, 90);
@@ -33,7 +58,19 @@ public class GameScreen {
         dc.drawString("Player 1", 60, 10);
         
       } else {
+        dc.setPaint(new Color(255,255,255)); //white
+        dc.fillRect(200, 200, 290, 90);
+        dc.fillRect(200, 105, 90, 90);
+        dc.drawImage("Images/Keys/5.png", 400, 275);
+
+        //draw character avatar
         
+        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.drawString("Press 'S' To Leave!", 200, 35);
+        dc.setPaint(new Color(0,0,0));
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.drawString("Player 1", 60, 10);
       }
 
       if (!p2) {
@@ -45,10 +82,22 @@ public class GameScreen {
         dc.drawString("Press 'I' To Join!", 600, 35);
         dc.setPaint(new Color(0,0,0));
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Player 2", 465, 10);
+        dc.drawString("Player 2", 460, 10);
         
       } else {
+        dc.setPaint(new Color(255,255,255)); //white
+        dc.fillRect(600, 200, 290, 90);
+        dc.fillRect(600, 105, 90, 90);
+        dc.drawImage("Images/Keys/6.png", 400, 275);
+
+        //draw character avatar
         
+        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.drawString("Press 'K' To Leave!", 600, 35);
+        dc.setPaint(new Color(0,0,0));
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.drawString("Player 2", 460, 10);
       }
 
       if (!p3) {
@@ -64,7 +113,19 @@ public class GameScreen {
         
         
       } else {
+        dc.setPaint(new Color(255,255,255)); //white
+        dc.fillRect(200, 350, 90, 90);
+        dc.fillRect(200, 445, 290, 90);
+        dc.drawImage("Images/Keys/7.png", 400, 275);
         
+        //draw character avatar
+        
+        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.drawString("Press 'G' To Leave!", 200, 280);
+        dc.setPaint(new Color(0,0,0));
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.drawString("Player 3", 60, 260);
       }
 
       if (!p4) {
@@ -75,11 +136,23 @@ public class GameScreen {
         dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
         dc.drawString("Press '↑' To Join!", 600, 280);
         dc.setPaint(new Color(0,0,0));
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        dc.drawString("Player 4", 465, 260);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.drawString("Player 4", 460, 260);
         
       } else {
+        dc.setPaint(new Color(255,255,255)); //white
+        dc.fillRect(600, 350, 90, 90);
+        dc.fillRect(600, 445, 290, 90);
+        dc.drawImage("Images/Keys/8.png", 400, 275);
         
+        //draw character avatar
+        
+        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.drawString("Press '↓' To Leave!", 600, 280);
+        dc.setPaint(new Color(0,0,0));
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.drawString("Player 4", 460, 260);
       }
       
       dc.redraw();
@@ -93,7 +166,7 @@ public class GameScreen {
     Scene.background(dc);
     dc.setOrigin(DConsole.ORIGIN_CENTER);
 
-    
+    //FOR LATER
   }
 
   public static void select(DConsole dc) {

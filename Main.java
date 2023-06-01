@@ -15,47 +15,7 @@ public class Main {
 
   // runs methods from other classes
   public void run() {
-    
-
-    ArrayList<Player> playerList = new ArrayList<>();
-    playerList.add(new Player(1,Color.RED,300,300,this.dc));
-    playerList.add(new Player(2,Color.BLUE,200,200,this.dc));
-    playerList.add(new Player(3,Color.GREEN,400,400,this.dc));
-    playerList.add(new Player(4,Color.BLACK,500,500,this.dc));
-
-
-    ArrayList<Control> controlList = new ArrayList<>();
-    controlList.add(new Control(0, this.dc));
-    controlList.add(new Control(1, this.dc));
-    controlList.add(new Control(2, this.dc));
-    controlList.add(new Control(3, this.dc));
-
-
-    while(true) {
-      this.dc.clear();
-      for(int i = 0; i < playerList.size(); i++) {
-      boolean[] tempControl = controlList.get(i).getPlayerKeysPressed();
-      if(tempControl[0] == true && playerList.get(i).getY() >= 10) {
-        playerList.get(i).move(0, -10);
-      } else if(tempControl[1] == true && playerList.get(i).getX() >= 10) {
-        playerList.get(i).move(-10, 0);
-      } else if(tempControl[2] == true && playerList.get(i).getY() <= 590) {
-        playerList.get(i).move(0, 10);
-      } else if(tempControl[3] == true && playerList.get(i).getX() <= 590) {
-        playerList.get(i).move(10, 0);
-      } 
-      System.out.println(tempControl[i]);
-      playerList.get(i).draw();
-    }
-      this.dc.redraw();
-    this.dc.pause(100);
-    }
-    
-
-
-    
-
-    
+    GameScreen.join(dc);
   }
 
   // main

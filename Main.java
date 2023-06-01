@@ -28,7 +28,6 @@ public class Main {
     controlList.add(new Control(2, dc));
     controlList.add(new Control(3, dc));
 
-
     //-----------------------Testing Chamber---------------------
     Minigame test = new TestGame(0, dc, playerList, controlList);
 
@@ -42,7 +41,7 @@ public class Main {
   public static void main(String[] args) {
 
     Main m = new Main();
-    m.DInit(600, 600);
+    m.DInit(600, 600); 
     while(true) {
       m.run();
     }

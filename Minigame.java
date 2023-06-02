@@ -31,11 +31,14 @@ public abstract class Minigame {
       boolean[] tempControl = controlList.get(i).getPlayerKeysPressed(); //get all the current keys pressed
       if(tempControl[0] == true && playerList.get(i).getY() >= 10) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
         playerList.get(i).moveY(-5);
-      } else if(tempControl[1] == true && playerList.get(i).getX() >= 10) { //left
+      }
+      if(tempControl[1] == true && playerList.get(i).getX() >= 10) { //left
         playerList.get(i).moveX(-5);
-      } else if(tempControl[2] == true && playerList.get(i).getY() <= 590) { //down
+      }
+      if(tempControl[2] == true && playerList.get(i).getY() <= 590) { //down
         playerList.get(i).moveY(5);
-      } else if(tempControl[3] == true && playerList.get(i).getX() <= 590) { //right
+      }
+      if(tempControl[3] == true && playerList.get(i).getX() <= 590) { //right
         playerList.get(i).moveX(5);
       } 
       playerList.get(i).draw(); //draw the players with their new position

@@ -3,14 +3,21 @@ import java.awt.*;
 
 public class GameScreen {
 
-  public static void join(DConsole dc) {
-    boolean joined = false;
-    int trans = 3;
-    int change = 3;
-    boolean p1 = false; //player
-    boolean p2 = false;
-    boolean p3 = false;
-    boolean p4 = false;
+  private boolean joined = false;
+  private int trans = 3;
+  private int change = 3;
+  private boolean p1 = false; //player
+  private boolean p2 = false;
+  private boolean p3 = false;
+  private boolean p4 = false;
+  private DConsole dc;
+
+  //Constructor
+  public GameScreen(DConsole dc) {
+    this.dc = dc;
+  }
+
+  public void join() {
 
     while (!joined) {
       Scene.background(dc);
@@ -156,7 +163,7 @@ public class GameScreen {
       }
       
       dc.redraw();
-      dc.pause(30);
+      dc.pause(20);
     }
 
     
@@ -194,9 +201,15 @@ public class GameScreen {
       dc.fillRect(500, 425, 160, 160);
       
       dc.redraw();
-      dc.pause(30);
+      dc.pause(20);
     }
     
+  }
+
+  //Return which players are playing, and which are not
+  public boolean[] playerInit() {
+    boolean[] players = {p1, p2, p3, p4};
+    return players;
   }
   
 }

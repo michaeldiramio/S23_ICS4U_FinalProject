@@ -39,7 +39,6 @@ public abstract class Minigame {
         playerList.get(i).moveX(5);
       } 
       playerList.get(i).draw(); //draw the players with their new position
-      displayUsername(i);
     }
   }
 
@@ -50,12 +49,6 @@ public abstract class Minigame {
 
   //Play game
   public abstract void play(); //note to everyone else: use @override in your minigame, and code the play method 
-
-
-  public void displayUsername(int id) {
-    Player tempPlayer = this.playerList.get(id);
-    dc.drawString(tempPlayer.getUsername(), tempPlayer.getX(), tempPlayer.getY() - 30);
-  }
 
   //This is just for testing 
   public void printTime(int s) {

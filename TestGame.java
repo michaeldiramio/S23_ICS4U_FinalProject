@@ -5,8 +5,8 @@ import java.util.*;
 public class TestGame extends Minigame {
 
   //Constructor
-  public TestGame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Control> controls) {
-    super(0, dc, players, controls);
+  public TestGame(int id, DConsole dc, ArrayList<Player> players) {
+    super(0, dc, players);
   }
 
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second

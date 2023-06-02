@@ -60,7 +60,7 @@ public class Control {
   public boolean[] getPlayerKeysPressed() {
     int[] tempKeys = this.getCurrentKeycodesPressed(); // gets the player's current keycodes (integer value)
     
-    int[] tempKeycodes = playerKeycodes.get(this.playerNum); // gets the desired player's assigned keycodes: 
+    int[] tempKeycodes = playerKeycodes.get(this.playerNum - 1); // gets the desired player's assigned keycodes: 
                                                     // ex. player 1 will be designated 87,65,83,68 (w,a,s,d)
     
     boolean[] tempKeysActive = new boolean[tempKeycodes.length]; // creating boolean array to later store which 

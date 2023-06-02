@@ -13,17 +13,21 @@ public class Player {
   private Color color;
   private double xPOS;
   private double yPOS;
+  private Control control;
+  private String username;
   private DConsole dc;
 
   //Controls
   //private ArrayList<Control> controls = new Arraylist<>();
 
-  //Constructor
+  // undefined username constructor
   public Player(int id, Color color, double x, double y, DConsole dc) {
     this.id = id;
     this.color = color;
     this.xPOS = x;
     this.yPOS = y;
+    this.control = new Control(id, dc);
+    this.username = "Player " + id;
     this.dc = dc;
     this.score = 0; //score counter
   }
@@ -73,9 +77,18 @@ public class Player {
     return this.yPOS;
   }
 
+  // get control
+  public Control getControl() {
+    return this.control;
+  }
 
+  // get username
+  public String getUsername() {
+    return this.username;
+  }
 
-
-
-  
+  // set username
+  public void setUsername(String username) {
+    this.username = username;
+  }
 }

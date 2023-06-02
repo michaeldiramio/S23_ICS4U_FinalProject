@@ -11,26 +11,19 @@ public class Main {
   public void DInit(int width, int height) {
     this.dc = new DConsole(width, height);
     this.dc.setOrigin(this.dc.ORIGIN_CENTER);
-    this.wordInput = new WordInput(10, this.dc);
   }
 
   // runs methods from other classes
   public void run() {
     //Players
     ArrayList<Player> playerList = new ArrayList<>();
-    playerList.add(new Player(1,Color.RED,300,300,dc));
-    playerList.add(new Player(2,Color.BLUE,200,200,dc));
-    playerList.add(new Player(3,Color.GREEN,400,400,dc));
-    playerList.add(new Player(4,Color.BLACK,500,500,dc));
-    //Controls
-    ArrayList<Control> controlList = new ArrayList<>();
-    controlList.add(new Control(0, dc));
-    controlList.add(new Control(1, dc));
-    controlList.add(new Control(2, dc));
-    controlList.add(new Control(3, dc));
+    playerList.add(new Player(1,Color.RED,300,300,this.dc));
+    playerList.add(new Player(2,Color.BLUE,200,200,this.dc));
+    playerList.add(new Player(3,Color.GREEN,400,400,this.dc));
+    playerList.add(new Player(4,Color.BLACK,500,500,this.dc));
 
     //-----------------------Testing Chamber---------------------
-    Minigame test = new TestGame(0, dc, playerList, controlList);
+    Minigame test = new TestGame(0, dc, playerList);
 
     test.play();
     //---------------------------------------------------------

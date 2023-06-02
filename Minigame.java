@@ -6,7 +6,7 @@ public abstract class Minigame {
 
   //Instance variables
   private int id;
-  public DConsole dc;
+  public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
   private ArrayList<Player> playerList;
 
   //Constructor

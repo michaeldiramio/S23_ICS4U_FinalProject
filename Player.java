@@ -13,12 +13,11 @@ public class Player {
   private Color color;
   private double xPOS;
   private double yPOS;
+  private int xSize; //Default is 20x20
+  private int ySize;
   private Control control;
   private String username;
   private DConsole dc;
-
-  //Controls
-  //private ArrayList<Control> controls = new Arraylist<>();
 
   // undefined username constructor
   public Player(int id, Color color, double x, double y, DConsole dc) {
@@ -26,6 +25,8 @@ public class Player {
     this.color = color;
     this.xPOS = x;
     this.yPOS = y;
+    this.xSize = 20;
+    this.ySize = 20;
     this.control = new Control(id, dc);
     this.username = "Player " + id;
     this.dc = dc;
@@ -43,12 +44,12 @@ public class Player {
     this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 
-  //Move (Will be called in minigame, could be overridden for gravity or only up and down) 
+  //Move X
   public void moveX(int xChange) {
     this.xPOS += xChange;
   }
 
-  //move y
+  //move Y
   public void moveY(int yChange) {
     this.yPOS += yChange;
   }
@@ -92,4 +93,21 @@ public class Player {
   public void setUsername(String username) {
     this.username = username;
   }
+
+  //Set size
+  public void setSize(int length, int height) {
+    this.xSize = length;
+    this.ySize = height;
+  }
+
+  //Get size x
+  public int getSizeX() {
+    return xSize;
+  }
+
+  //Get size y
+  public int getSizeY() {
+    return ySize; 
+  }
+  
 }

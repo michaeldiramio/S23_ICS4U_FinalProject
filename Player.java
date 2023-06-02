@@ -36,10 +36,11 @@ public class Player {
 
   //Draw
   public void draw() {
-    dc.setPaint(this.color);
-    dc.setOrigin(DConsole.ORIGIN_CENTER);
-    dc.fillRect(this.xPOS, this.yPOS, 20, 20);
-    dc.setPaint(new Color(0,0,0));
+    this.dc.setPaint(this.color);
+    this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+    this.dc.fillRect(this.xPOS, this.yPOS, 20, 20);
+    this.dc.setPaint(new Color(0,0,0));
+    this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 
   //Move (Will be called in minigame, could be overridden for gravity or only up and down) 

@@ -107,7 +107,7 @@ public class Player {
 
   //Get size y
   public int getSizeY() {
-    return ySize;
+    return ySize; 
   }
   
 }

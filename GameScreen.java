@@ -1,10 +1,48 @@
 import DLibX.*;
 import java.awt.*;
+
+import java.io.*;
+
 import java.time.*;
+
 
 public class GameScreen {
   boolean[] players = {false, false, false, false};
   private DConsole dc;
+
+
+
+   public static void StartScreen(DConsole dc){
+    //space bar isnt pressed
+    while(!dc.isKeyPressed(' ')) {
+      dc.clear();
+
+      Font customFont = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(100f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFont);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
+    
+      dc.setFont(customFont);
+  		dc.drawString("Halo",200,200);
+  
+     
+      dc.redraw();
+      dc.pause(100);
+    }
+    join(dc);
+  }
+
+  public static void join(DConsole dc) {
 
   //Constructor
   public GameScreen(DConsole dc) {
@@ -13,11 +51,14 @@ public class GameScreen {
 
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
+
     boolean joined = false;
     int width = 2;
     int c = 1;
     int trans = 2;
     int change = 2;
+
+    
 
     while (!joined) {
       background(); //draw background

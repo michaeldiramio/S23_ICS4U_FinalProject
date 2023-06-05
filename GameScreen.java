@@ -1,7 +1,22 @@
 import DLibX.*;
 import java.awt.*;
+import java.io.*;
 
 public class GameScreen {
+
+  public static void StartScreen(DConsole dc){
+    //space bar isnt pressed
+    while(!dc.isKeyPressed(' ')) {
+      dc.clear();
+
+      
+
+      
+      dc.redraw();
+      dc.pause(100);
+    }
+    join(dc);
+  }
 
   public static void join(DConsole dc) {
     boolean joined = false;
@@ -16,6 +31,7 @@ public class GameScreen {
       Scene.background(dc);
       dc.setOrigin(DConsole.ORIGIN_CENTER);
 
+      
       if (trans >= 120 || trans <= 0) { //changing transparency
         change *= -1;
       }

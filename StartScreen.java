@@ -8,7 +8,13 @@ public class StartScreen {
     this.dc = dc;
   }
 
-  
+  public static void drawScreen(DConsole dc) {
+    
+
+
+    
+  }
+ 
 
 
 

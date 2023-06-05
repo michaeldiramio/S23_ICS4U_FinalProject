@@ -10,9 +10,13 @@ public class GameScreen {
   boolean[] players = {false, false, false, false};
   private DConsole dc;
 
+  //Constructor
+  public GameScreen(DConsole dc) {
+    this.dc = dc;
+  }
 
 
-   public static void StartScreen(DConsole dc){
+   public void StartScreen(){
     //space bar isnt pressed
     while(!dc.isKeyPressed(' ')) {
       dc.clear();
@@ -21,7 +25,7 @@ public class GameScreen {
       
       try {
           //create the font to use. Specify the size!
-          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(100f);
+          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(45f);
           GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
           //register the font
@@ -31,23 +35,20 @@ public class GameScreen {
       } catch(FontFormatException e) {
           e.printStackTrace();
       }
-    
+
+      dc.setPaint(new Color(0,25,255));
       dc.setFont(customFont);
-  		dc.drawString("Halo",200,200);
-  
+  		dc.drawString("Definity Not A",400,75);
+      dc.drawString("Mario Party Ripoff",400,150);
      
       dc.redraw();
       dc.pause(100);
     }
-    join(dc);
   }
 
-  public static void join(DConsole dc) {
 
-  //Constructor
-  public GameScreen(DConsole dc) {
-    this.dc = dc;
-  }
+
+  
 
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0

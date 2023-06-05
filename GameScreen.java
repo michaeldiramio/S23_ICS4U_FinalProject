@@ -1,7 +1,39 @@
 import DLibX.*;
 import java.awt.*;
+import java.io.*;
 
 public class GameScreen {
+
+
+   public static void StartScreen(DConsole dc){
+    //space bar isnt pressed
+    while(!dc.isKeyPressed(' ')) {
+      dc.clear();
+
+      Font customFont = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(100f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFont);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
+    
+      dc.setFont(customFont);
+  		dc.drawString("Halo",200,200);
+  
+     
+      dc.redraw();
+      dc.pause(100);
+    }
+    join(dc);
+  }
 
   public static void join(DConsole dc) {
     boolean joined = false;
@@ -11,6 +43,8 @@ public class GameScreen {
     boolean p2 = false;
     boolean p3 = false;
     boolean p4 = false;
+
+    
 
     while (!joined) {
       Scene.background(dc);

@@ -94,7 +94,7 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 1", 60, 10);
-        
+
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
         dc.fillRect(200, 200, 290, 90);
@@ -109,6 +109,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 1", 60, 10);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetBlue.png", 30, 75);
       }
 
       if (!(players[1])) { //not joined
@@ -136,6 +138,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 2", 460, 10);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetGreen.png", 475, 90);
       }
 
       if (!(players[2])) { //not joined
@@ -148,7 +152,6 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 3", 60, 260);
-        
         
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
@@ -164,6 +167,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 3", 60, 260);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
       }
 
       if (!(players[3])) { //not joined
@@ -191,6 +196,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 4", 460, 260);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetRed.png", 477, 335);
       }
       
       LocalTime end = LocalTime.now(); //end timer

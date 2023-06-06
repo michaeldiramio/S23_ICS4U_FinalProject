@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class Main {
+public class Main { //git test
 
   // data
   public DConsole dc;

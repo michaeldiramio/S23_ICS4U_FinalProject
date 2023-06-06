@@ -60,6 +60,11 @@ public class Player {
     return this.score;
   }
 
+  //Get color
+  public Color getColor() {
+    return this.color;
+  }
+
   //Add to score
   public void addToScore(int amt) {
     this.score += amt;

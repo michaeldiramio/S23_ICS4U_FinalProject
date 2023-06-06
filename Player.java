@@ -15,6 +15,7 @@ public class Player {
   private double yPOS;
   private int xSize; //Default is 20x20
   private int ySize;
+  private int minigamePoints;
   private Control control;
   private String username;
   private DConsole dc;
@@ -31,6 +32,7 @@ public class Player {
     this.username = "Player " + id;
     this.dc = dc;
     this.score = 0; //score counter
+    this.minigamePoints = 0;
   }
 
   //----------------------------Methods-------------------------
@@ -109,6 +111,21 @@ public class Player {
   //Get size y
   public int getSizeY() {
     return ySize; 
+  }
+
+  //Add minigame Points
+  public void addMinigamePoints(int amt) {
+    this.minigamePoints += amt;
+  }
+
+  //Reset minigame Points
+  public void resetMinigamePoints() {
+    this.minigamePoints = 0;
+  }
+
+  //Get minigame points
+  public int getMinigamePoints() {
+    return this.minigamePoints;
   }
   
 }

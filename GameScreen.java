@@ -247,16 +247,23 @@ public class GameScreen {
         
         // DRAW AVATAR TOP LEFT CORNER
 
-        dc.drawImage("Images/textbox.png", 400, 175);
-        String name = in.getFinalWord();
-        if (name != "" && name.length() <= 10) { 
+        dc.drawImage("Images/textbox.png", 400, 225);
+        
+        String name = in.getCurrentWord(); //to show as typed
+        if (name.length() <= 10) { 
           names[i] = name;
         }
+        
         dc.setPaint(new Color(0, 0, 0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        dc.drawString(names[i], 400, 114);
-        
-        
+        dc.drawString(names[i], 400, 164); //display names typing
+  
+        String nfinal = in.getFinalWord(); //pressed enter
+        if (nfinal != "" && nfinal.length() <= 10) { 
+          names[i] = nfinal; 
+          playerList.get(i).setUsername(nfinal); //set player username
+          select = true; //move to next part of loop
+        }
         
         dc.redraw();
         dc.pause(20);

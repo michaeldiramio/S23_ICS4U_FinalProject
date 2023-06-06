@@ -60,6 +60,7 @@ public class GameScreen {
     int c = 1;
     int trans = 2;
     int change = 2;
+    boolean joined = false;
        
 
     while (!joined) {

@@ -1,64 +1,57 @@
 import DLibX.*;
 import java.awt.*;
 import java.time.*;
+import java.util.*;
 
 public class GameScreen {
-  boolean[] players = {false, false, false, false};
+  
   private DConsole dc;
+  private ArrayList<Player> playerList;
+  private boolean[] players;
 
   //Constructor
-  public GameScreen(DConsole dc) {
+  public GameScreen(DConsole dc, ArrayList<Player> playerList, boolean[] players) {
     this.dc = dc;
+    this.playerList = playerList;
+    this.players = players;
   }
+
+
+
+
 
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
+    WordInput in = new WordInput(dc);
+    for (int i = 0; i < players.length; i++){
+      players[i] = false;
+    }
     boolean joined = false;
     int width = 2;
     int c = 1;
     int trans = 2;
     int change = 2;
+    
 
     while (!joined) {
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
+      in.refreshKeys();
 
       if (trans >= 120 || trans <= 0) { //changing transparency
         change *= -1;
       }
       trans += change;
 
-      //key press (I need Julian's help, I still can't get WorInput keyPressed to work in place of dc.isKeyPressed)
-      if (dc.isKeyPressed('w') && !players[0]) { //player 1
-        players[0] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('s') && players[0]) {
-        players[0] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('i') && !players[1]) { //player 2
-        players[1] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('k') && players[1]) {
-        players[1] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('t') && !players[2]) { //player 3
-        players[2] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('g') && players[2]) {
-        players[2] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('b') && !players[3]) { //player 4 (should be arrow keys "UP" and "DOWN". 'b' and 'n' were just for testing)
-        players[3] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('n') && players[3]) {
-        players[3] = false;
-        start = LocalTime.now();
+      for(int i = 0; i < 4; i++) {
+        boolean[] tempControl = playerList.get(i).getControl().getPlayerKeysPressed();
+        if(tempControl[0] && !players[i]) {
+          players[i] = true;
+          start = LocalTime.now();
+        } else if(tempControl[2] && players[i]) {
+          players[i] = false;
+          start = LocalTime.now();
+        }
       }
 
       if (!(players[0])) { //not joined
@@ -209,8 +202,37 @@ public class GameScreen {
   public void nicknames() {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
+    WordInput in = new WordInput(dc);
+    String names[] = new String[playerCount()];
+    for (int i = 0; i < playerCount(); i++) {
+      names[i] = "";
+    }
 
-    //FOR LATER
+   for (int i = 0; i < playerCount(); i++) {
+     boolean select = false;
+      while(!select) {
+        dc.setPaint(playerList.get(i).getColor()); //color array
+        dc.fillRect(400, 275, 800, 550); //background color
+        in.refreshKeys();
+        
+        // DRAW AVATAR TOP LEFT CORNER
+
+        dc.drawImage("Images/textbox.png", 400, 175);
+        String name = in.getFinalWord();
+        if (name != "" && name.length() <= 10) { 
+          names[i] = name;
+        }
+        dc.setPaint(new Color(0, 0, 0)); //black
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        dc.drawString(names[i], 400, 114);
+        
+        
+        
+        dc.redraw();
+        dc.pause(20);
+      }
+   }
+    
   }
 
   public void select() {
@@ -238,6 +260,8 @@ public class GameScreen {
       dc.fillRect(600, 225, 160, 160);
       dc.fillRect(300, 425, 160, 160);
       dc.fillRect(500, 425, 160, 160);
+
+      //draw game images
 
       //[VOTING FUNCTION TO BE ADDED]
       

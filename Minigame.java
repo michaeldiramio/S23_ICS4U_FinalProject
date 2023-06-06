@@ -8,12 +8,14 @@ public abstract class Minigame {
   private int id;
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
   private ArrayList<Player> playerList;
+  private ArrayList<Entity> entityList;
 
   //Constructor
-  public Minigame(int id, DConsole dc, ArrayList<Player> players) {
+  public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
     this.id = id;
     this.dc = dc;
     this.playerList = players;
+    this.entityList = entities;
   }
 
   //get ID
@@ -24,21 +26,42 @@ public abstract class Minigame {
   //**NOTE:** WHEN MAKING A GAME WITH DIFFERENT MOVEMENT, USE THE @OVERRIDE METHOD IN YOUR MINIGAME TO REMAKE THIS METHOD AS YOU PLEASE
   //Move characters 
   public void moveCharacters() {
-    for(int i = 0; i < playerList.size(); i++) { //check for each player to see if any of their designated keys are pressed
-      boolean[] tempControl = playerList.get(i).getControl().getPlayerKeysPressed(); //get all the current keys pressed
-      if(tempControl[0] == true && playerList.get(i).getY() >= 10) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
+    boolean[] movementAllowance = {true, true, true, true};
+    
+    for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed();
+
+      for(int j = 0; j < entityList.size(); j++) {
+        boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i));
+
+        for(int k = 0; k < tempEntityBounds.length; k++) {
+          if(tempEntityBounds[k]) {
+            movementAllowance[k] = false;
+          }
+        }
+      }
+
+      if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
         playerList.get(i).moveY(-5);
       }
-      if(tempControl[1] == true && playerList.get(i).getX() >= 10) { //left
+      if(tempControl[1] && movementAllowance[1]) { //left
         playerList.get(i).moveX(-5);
       }
-      if(tempControl[2] == true && playerList.get(i).getY() <= 590) { //down
+      if(tempControl[2] && movementAllowance[2]) { //down
         playerList.get(i).moveY(5);
       }
-      if(tempControl[3] == true && playerList.get(i).getX() <= 590) { //right
+      if(tempControl[3] && movementAllowance[3]) { //right
         playerList.get(i).moveX(5);
-      } 
-      playerList.get(i).draw(); //draw the players with their new position
+      }
+    }
+  }
+
+  public void refreshScreen() {
+    for(int i = 0; i < entityList.size(); i++) {
+      this.entityList.get(i).draw();
+    }
+    for(int i = 0; i < playerList.size(); i++) {
+      this.playerList.get(i).draw();
     }
   }
 

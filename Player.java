@@ -41,6 +41,7 @@ public class Player {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
     this.dc.fillRect(this.xPOS, this.yPOS, 20, 20);
     this.dc.setPaint(new Color(0,0,0));
+    dc.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
     this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 

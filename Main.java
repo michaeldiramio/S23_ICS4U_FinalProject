@@ -1,5 +1,5 @@
 import DLibX.*;
-import java.awt.Color;
+import java.awt.*;
 import java.util.*;
 
 public class Main {
@@ -26,14 +26,21 @@ public class Main {
     playerList.clear();
     fillPlayers(players);
     
-
-    //-----------------------Testing Chamber---------------------
-    Minigame test = new TestGame(0, dc, playerList);
-
-    
     n.nicknames();
     n.select();
+    
 
+    //-----------------------Testing Chamber---------------------
+    ArrayList<Player> playerList = new ArrayList<>();
+    ArrayList<Entity> entityList = new ArrayList<>();
+    entityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
+    entityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
+    entityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
+    entityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
+    entityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
+    entityList.add(new Entity(6, "testing object 2", 150.0, 100.0, 50.0, 70.0, false, Color.BLUE, this.dc));
+    
+    Minigame test = new TestGame(0, dc, playerList, entityList);
     test.play();
     //---------------------------------------------------------
   }

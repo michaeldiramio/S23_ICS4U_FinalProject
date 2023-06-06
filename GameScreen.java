@@ -1,7 +1,11 @@
 import DLibX.*;
 import java.awt.*;
+
+import java.io.*;
+
 import java.time.*;
 import java.util.*;
+
 
 public class GameScreen {
   
@@ -16,22 +20,47 @@ public class GameScreen {
     this.players = players;
   }
 
+   public void StartScreen(){
+    //space bar isnt pressed
+    while(!dc.isKeyPressed(' ')) {
+      dc.clear();
 
+      Font customFont = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(45f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFont);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
 
-
-
+      dc.setPaint(new Color(0,25,255));
+      dc.setFont(customFont);
+  		dc.drawString("Definity Not A",400,75);
+      dc.drawString("Mario Party Ripoff",400,150);
+     
+      dc.redraw();
+      dc.pause(100);
+    }
+  }
+  
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
     WordInput in = new WordInput(dc);
     for (int i = 0; i < players.length; i++){
       players[i] = false;
     }
-    boolean joined = false;
     int width = 2;
     int c = 1;
     int trans = 2;
     int change = 2;
-    
+       
 
     while (!joined) {
       background(); //draw background

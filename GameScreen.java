@@ -78,27 +78,7 @@ public class GameScreen {
       } catch(FontFormatException e) {
           e.printStackTrace();
       }
-
-    //halo text Join
-    Font customFontJoin = null;
-      
-      try {
-          //create the font to use. Specify the size!
-          customFontJoin = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(20f);
-          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            
-          //register the font
-          ge.registerFont(customFontJoin);
-      } catch (IOException e) {
-          e.printStackTrace();
-      } catch(FontFormatException e) {
-          e.printStackTrace();
-      }
-
-      
-
-    
-
+     
     while (!joined) {
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
@@ -126,7 +106,7 @@ public class GameScreen {
         dc.drawImage("Images/Keys/1.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
 
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
  
         dc.drawString("Press 'W' To Join!", 200, 35);
         dc.setPaint(new Color(0,0,0)); //black
@@ -142,7 +122,7 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'S' To Leave!", 200, 35);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -156,7 +136,7 @@ public class GameScreen {
         dc.fillRect(600, 200, 290, 90);
         dc.drawImage("Images/Keys/2.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'I' To Join!", 600, 35);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -171,7 +151,7 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'K' To Leave!", 600, 35);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -185,7 +165,7 @@ public class GameScreen {
         dc.fillRect(200, 445, 290, 90); 
         dc.drawImage("Images/Keys/3.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'T' To Join!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -200,7 +180,7 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'G' To Leave!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -214,7 +194,7 @@ public class GameScreen {
         dc.fillRect(600, 445, 290, 90);
         dc.drawImage("Images/Keys/4.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press '↑' To Join!", 600, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -229,7 +209,7 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(customFontJoin);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press '↓' To Leave!", 600, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
@@ -260,7 +240,7 @@ public class GameScreen {
 
           //number countdown
           dc.setPaint(new Color(255, 255, 255)); //white
-          dc.setFont(customFontPlayers);
+          dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
           dc.drawString(3-(int)((value-2000)/1000), 400, 260);
           
         } else {

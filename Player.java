@@ -41,6 +41,7 @@ public class Player {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
     this.dc.fillRect(this.xPOS, this.yPOS, 20, 20);
     this.dc.setPaint(new Color(0,0,0));
+    dc.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
     this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 
@@ -57,6 +58,11 @@ public class Player {
   //Get score
   public int getScore() {
     return this.score;
+  }
+
+  //Get color
+  public Color getColor() {
+    return this.color;
   }
 
   //Add to score

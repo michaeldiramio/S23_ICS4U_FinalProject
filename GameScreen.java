@@ -1,64 +1,87 @@
 import DLibX.*;
 import java.awt.*;
+
+import java.io.*;
+
 import java.time.*;
+import java.util.*;
+
 
 public class GameScreen {
-  boolean[] players = {false, false, false, false};
+  
   private DConsole dc;
+  private ArrayList<Player> playerList;
+  private boolean[] players;
 
   //Constructor
-  public GameScreen(DConsole dc) {
+  public GameScreen(DConsole dc, ArrayList<Player> playerList, boolean[] players) {
     this.dc = dc;
+    this.playerList = playerList;
+    this.players = players;
   }
 
+   public void StartScreen(){
+    //space bar isnt pressed
+    while(!dc.isKeyPressed(' ')) {
+      dc.clear();
+
+      Font customFont = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(45f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFont);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
+
+      dc.setPaint(new Color(0,25,255));
+      dc.setFont(customFont);
+  		dc.drawString("Definity Not A",400,75);
+      dc.drawString("Mario Party Ripoff",400,150);
+     
+      dc.redraw();
+      dc.pause(100);
+    }
+  }
+  
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
-    boolean joined = false;
+    WordInput in = new WordInput(dc);
+    for (int i = 0; i < players.length; i++){
+      players[i] = false;
+    }
     int width = 2;
     int c = 1;
     int trans = 2;
     int change = 2;
+    boolean joined = false;
+       
 
     while (!joined) {
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
+      in.refreshKeys();
 
       if (trans >= 120 || trans <= 0) { //changing transparency
         change *= -1;
       }
       trans += change;
 
-      //key press (I need Julian's help, I still can't get WorInput keyPressed to work in place of dc.isKeyPressed)
-      if (dc.isKeyPressed('w') && !players[0]) { //player 1
-        players[0] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('s') && players[0]) {
-        players[0] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('i') && !players[1]) { //player 2
-        players[1] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('k') && players[1]) {
-        players[1] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('t') && !players[2]) { //player 3
-        players[2] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('g') && players[2]) {
-        players[2] = false;
-        start = LocalTime.now();
-      }
-      
-      if (dc.isKeyPressed('b') && !players[3]) { //player 4 (should be arrow keys "UP" and "DOWN". 'b' and 'n' were just for testing)
-        players[3] = true;
-        start = LocalTime.now();
-      } else if (dc.isKeyPressed('n') && players[3]) {
-        players[3] = false;
-        start = LocalTime.now();
+      for(int i = 0; i < 4; i++) {
+        boolean[] tempControl = playerList.get(i).getControl().getPlayerKeysPressed();
+        if(tempControl[0] && !players[i]) {
+          players[i] = true;
+          start = LocalTime.now();
+        } else if(tempControl[2] && players[i]) {
+          players[i] = false;
+          start = LocalTime.now();
+        }
       }
 
       if (!(players[0])) { //not joined
@@ -71,7 +94,7 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 1", 60, 10);
-        
+
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
         dc.fillRect(200, 200, 290, 90);
@@ -86,6 +109,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 1", 60, 10);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetBlue.png", 30, 75);
       }
 
       if (!(players[1])) { //not joined
@@ -113,6 +138,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 2", 460, 10);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetGreen.png", 475, 90);
       }
 
       if (!(players[2])) { //not joined
@@ -125,7 +152,6 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 3", 60, 260);
-        
         
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
@@ -141,6 +167,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 3", 60, 260);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
       }
 
       if (!(players[3])) { //not joined
@@ -168,6 +196,8 @@ public class GameScreen {
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Player 4", 460, 260);
+        
+        dc.drawImage("Images/Character-Icons/haloHelmetRed.png", 477, 335);
       }
       
       LocalTime end = LocalTime.now(); //end timer
@@ -209,8 +239,44 @@ public class GameScreen {
   public void nicknames() {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
+    WordInput in = new WordInput(dc);
+    String names[] = new String[playerCount()];
+    for (int i = 0; i < playerCount(); i++) {
+      names[i] = "";
+    }
 
-    //FOR LATER
+   for (int i = 0; i < playerCount(); i++) {
+     boolean select = false;
+      while(!select) {
+        dc.setPaint(playerList.get(i).getColor()); //color array
+        dc.fillRect(400, 275, 800, 550); //background color
+        in.refreshKeys();
+        
+        // DRAW AVATAR TOP LEFT CORNER
+
+        dc.drawImage("Images/textbox.png", 400, 225);
+        
+        String name = in.getCurrentWord(); //to show as typed
+        if (name.length() <= 10) { 
+          names[i] = name;
+        }
+        
+        dc.setPaint(new Color(0, 0, 0)); //black
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        dc.drawString(names[i], 400, 164); //display names typing
+  
+        String nfinal = in.getFinalWord(); //pressed enter
+        if (nfinal != "" && nfinal.length() <= 10) { 
+          names[i] = nfinal; 
+          playerList.get(i).setUsername(nfinal); //set player username
+          select = true; //move to next part of loop
+        }
+        
+        dc.redraw();
+        dc.pause(20);
+      }
+   }
+    
   }
 
   public void select() {
@@ -238,6 +304,8 @@ public class GameScreen {
       dc.fillRect(600, 225, 160, 160);
       dc.fillRect(300, 425, 160, 160);
       dc.fillRect(500, 425, 160, 160);
+
+      //draw game images
 
       //[VOTING FUNCTION TO BE ADDED]
       

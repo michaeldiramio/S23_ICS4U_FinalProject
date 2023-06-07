@@ -315,6 +315,31 @@ public class GameScreen {
     
   }
 
+  public void winScreen() { //bars display score
+    boolean play = false;
+    int up = 1;
+    int xs[] = {340, 460, 220, 580};
+
+    while (!play) {
+      dc.clear();
+      background(); //draw background
+      dc.setOrigin(DConsole.ORIGIN_CENTER);
+
+      for (int i = 0; i < playerCount(); i++) {
+        dc.setPaint(playerList.get(i).getColor()); //color array
+        int tempScore = playerList.get(i).getScore();
+        dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time
+      }
+      
+      dc.redraw();
+      dc.pause(20);
+      if (up < 150) {
+        up++;
+      }
+    }
+    join();
+  }
+
   //draw the default background which is currently halo skybox
   public void background() {
     dc.setOrigin(DConsole.ORIGIN_CENTER);

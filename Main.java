@@ -27,7 +27,7 @@ public class Main { //git test
     fillPlayers(players);
     
     n.nicknames();
-    n.select();
+    n.winScreen();
     
 
     //-----------------------Testing Chamber---------------------

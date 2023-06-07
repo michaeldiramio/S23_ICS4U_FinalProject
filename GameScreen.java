@@ -291,7 +291,7 @@ public class GameScreen {
           names[i] = name;
         }
         dc.setPaint(new Color(0, 0, 0)); //black
-        dc.setFont(customsFontPlayers);
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
         dc.drawString(names[i], 400, 114);
         
         
@@ -319,7 +319,7 @@ public class GameScreen {
       color += change;
       dc.setPaint(new Color(250-color,75+color,200));
       
-      dc.setFont(customFontJoin);
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 80));
       dc.drawString("Choose A Game", 400, 50); //head line
 
       //game display boxs

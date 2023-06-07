@@ -61,7 +61,43 @@ public class GameScreen {
     int trans = 2;
     int change = 2;
     boolean joined = false;
-       
+
+
+    //halo text Players
+    Font customFontPlayers = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFontPlayers = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(25f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFontPlayers);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
+
+    //halo text Join
+    Font customFontJoin = null;
+      
+      try {
+          //create the font to use. Specify the size!
+          customFontJoin = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(20f);
+          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            
+          //register the font
+          ge.registerFont(customFontJoin);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch(FontFormatException e) {
+          e.printStackTrace();
+      }
+
+      
+
+    
 
     while (!joined) {
       background(); //draw background
@@ -89,10 +125,12 @@ public class GameScreen {
         dc.fillRect(200, 200, 290, 90);
         dc.drawImage("Images/Keys/1.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+
+        dc.setFont(customFontJoin);
+ 
         dc.drawString("Press 'W' To Join!", 200, 35);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 1", 60, 10);
 
       } else { //joined
@@ -104,10 +142,10 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press 'S' To Leave!", 200, 35);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 1", 60, 10);
         
         dc.drawImage("Images/Character-Icons/haloHelmetBlue.png", 30, 75);
@@ -118,10 +156,10 @@ public class GameScreen {
         dc.fillRect(600, 200, 290, 90);
         dc.drawImage("Images/Keys/2.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press 'I' To Join!", 600, 35);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 2", 460, 10);
         
       } else { //joined
@@ -133,10 +171,10 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press 'K' To Leave!", 600, 35);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 2", 460, 10);
         
         dc.drawImage("Images/Character-Icons/haloHelmetGreen.png", 475, 90);
@@ -147,10 +185,10 @@ public class GameScreen {
         dc.fillRect(200, 445, 290, 90); 
         dc.drawImage("Images/Keys/3.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press 'T' To Join!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 3", 60, 260);
         
       } else { //joined
@@ -162,10 +200,10 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press 'G' To Leave!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 3", 60, 260);
         
         dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
@@ -176,10 +214,10 @@ public class GameScreen {
         dc.fillRect(600, 445, 290, 90);
         dc.drawImage("Images/Keys/4.png", 400, 275);
         dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press '↑' To Join!", 600, 280);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 4", 460, 260);
         
       } else { //joined
@@ -191,10 +229,10 @@ public class GameScreen {
         //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 18));
+        dc.setFont(customFontJoin);
         dc.drawString("Press '↓' To Leave!", 600, 280);
         dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        dc.setFont(customFontPlayers);
         dc.drawString("Player 4", 460, 260);
         
         dc.drawImage("Images/Character-Icons/haloHelmetRed.png", 477, 335);
@@ -222,7 +260,7 @@ public class GameScreen {
 
           //number countdown
           dc.setPaint(new Color(255, 255, 255)); //white
-          dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+          dc.setFont(customFontPlayers);
           dc.drawString(3-(int)((value-2000)/1000), 400, 260);
           
         } else {

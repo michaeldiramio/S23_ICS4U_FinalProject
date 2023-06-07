@@ -20,6 +20,7 @@ public class Main { //git test
     fillPlayers(players);
     
     GameScreen n = new GameScreen(dc, playerList, players);
+    //n.StartScreen();
     n.join();
 
     players = n.playerInit();

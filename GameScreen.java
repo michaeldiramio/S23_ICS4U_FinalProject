@@ -315,7 +315,7 @@ public class GameScreen {
     
   }
 
-  public void winScreen() { //bars display score
+  public void winScreen() { //bars display score trth
     boolean play = false;
     int up = 1;
     int xs[] = {340, 460, 220, 580};

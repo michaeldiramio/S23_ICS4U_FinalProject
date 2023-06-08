@@ -15,6 +15,7 @@ public class Player {
   private double yPOS;
   private int xSize; //Default is 20x20
   private int ySize;
+  private int minigamePoints;
   private Control control;
   private String username;
   private DConsole dc;
@@ -90,12 +91,12 @@ public class Player {
     return this.control;
   }
 
-  // get username
+  //get username
   public String getUsername() {
     return this.username;
   }
 
-  // set username
+  //set username
   public void setUsername(String username) {
     this.username = username;
   }
@@ -115,5 +116,22 @@ public class Player {
   public int getSizeY() {
     return ySize; 
   }
+
+  //getMinigame points
+  public int getPoints() {
+    return this.minigamePoints;
+  }
+
+  //add to minigame points
+  public void addToPoints(int amt) {
+    this.minigamePoints += amt;
+  }
+
+  //reset minigame points
+  public void resetPoints() {
+    this.minigamePoints = 0;
+  }
+
+  
   
 }

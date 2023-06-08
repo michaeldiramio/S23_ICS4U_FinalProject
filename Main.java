@@ -31,7 +31,7 @@ public class Main { //git test
     n.winScreen();
     
 
-    //-----------------------Testing Chamber---------------------
+    //--------------------Testing Chamber---------------------
     ArrayList<Player> playerList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
     entityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
@@ -43,7 +43,7 @@ public class Main { //git test
     
     Minigame test = new TestGame(0, dc, playerList, entityList);
     test.play();
-    //---------------------------------------------------------
+    //--------------------------------------------------------
   }
   
 

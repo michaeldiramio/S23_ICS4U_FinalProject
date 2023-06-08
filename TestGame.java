@@ -22,6 +22,10 @@ public class TestGame extends Minigame {
     int seconds = 15;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
+
+      //the game code will be here.
+
+      
       
       super.moveCharacters();
       super.refreshScreen();

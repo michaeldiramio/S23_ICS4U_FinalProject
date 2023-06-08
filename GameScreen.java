@@ -274,8 +274,10 @@ public class GameScreen {
       playerList.get(i).setUsername("");
     }
     String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
-    int xvals[] = {50, 50, 50, 50};
-    int yvals[]= {50, 50, 50, 50};
+
+    int xvals[] = {50, 101, 102, 101};
+    int yvals[]= {50, 67, 50, 59};
+
     
    for (int i = 0; i < playerCount(); i++) {
      boolean select = false;

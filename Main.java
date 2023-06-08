@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class Main {
+public class Main { //git test
 
   // data
   public DConsole dc;
@@ -43,7 +43,6 @@ public class Main {
     //-------------------------Other Game----------------------------------
 
 
-
     
     //-------------------------------------------------------------------------
 
@@ -55,7 +54,7 @@ public class Main {
     n.join();
     
     n.nicknames();
-    n.select();
+    n.winScreen();
     
     minigameList.get(n.getCurrentGame()).play();
     

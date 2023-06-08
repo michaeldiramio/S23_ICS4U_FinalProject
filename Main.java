@@ -5,22 +5,22 @@ import java.util.*;
 public class Main { //git test
 
   // data
-  public DConsole dc;
-  ArrayList<Player> playerList = new ArrayList<>();
+  static DConsole dc;
+  static ArrayList<Player> playerList = new ArrayList<>();
 
   // initializes DConsole
   public void DInit(int width, int height) {
-    this.dc = new DConsole(width, height);
-    this.dc.setOrigin(this.dc.ORIGIN_CENTER);
+    dc = new DConsole(width, height);
+    dc.setOrigin(dc.ORIGIN_CENTER);
   }
 
   // runs methods from other classes
-  public void run() {
+  public static void run() {
 
-    this.playerList.add(new Player(1, Color.BLUE, 200, 200, dc));
-    this.playerList.add(new Player(2, Color.PINK, 200, 200, dc));
-    this.playerList.add(new Player(3, Color.RED, 200, 200, dc));
-    this.playerList.add(new Player(4, Color.GREEN, 200, 200, dc));
+    playerList.add(new Player(1, new Color (0, 0, 200), 200, 200, dc));
+    playerList.add(new Player(2, new Color (17, 188, 76), 200, 200, dc));
+    playerList.add(new Player(3, new Color (153, 51, 255), 200, 200, dc));
+    playerList.add(new Player(4, new Color (200, 0, 0), 200, 200, dc));
 
     //------------------------Game Creation Area--------------------------
 
@@ -30,14 +30,14 @@ public class Main { //git test
     
     ArrayList<Player> testPlayerList = new ArrayList<>();
     ArrayList<Entity> testEntityList = new ArrayList<>();
-    testEntityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    testEntityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    testEntityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    testEntityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    testEntityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
-    testEntityList.add(new Entity(6, "testing object 2", 150.0, 100.0, 50.0, 70.0, false, Color.BLUE, this.dc));
+    testEntityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, dc));
+    testEntityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, dc));
+    testEntityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, dc));
+    testEntityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, dc));
+    testEntityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, dc));
+    testEntityList.add(new Entity(6, "testing object 2", 150.0, 100.0, 50.0, 70.0, false, Color.BLUE, dc));
     
-    Minigame test = new TestGame(0, this.dc, testPlayerList, testEntityList);
+    Minigame test = new TestGame(0, dc, testPlayerList, testEntityList);
 
     //-------------------------------------------------------------------------
     //-------------------------Other Game----------------------------------
@@ -49,7 +49,7 @@ public class Main { //git test
     minigameList.add(test);
     //-------------------------------------------------------------------------
     
-    GameScreen n = new GameScreen(dc, this.playerList, minigameList);
+    GameScreen n = new GameScreen(dc, playerList, minigameList);
     
     n.join();
     
@@ -66,7 +66,7 @@ public class Main { //git test
     Main m = new Main();
     m.DInit(800, 550); 
     while(true) {
-      m.run();
+      run();
     }
   }
 }

@@ -271,10 +271,13 @@ public class GameScreen {
     String names[] = new String[playerCount()];
     for (int i = 0; i < playerCount(); i++) {
       names[i] = "";
+      playerList.get(i).setUsername("");
     }
     String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
+
     int xvals[] = {50, 101, 102, 101};
     int yvals[]= {50, 67, 50, 59};
+
     
    for (int i = 0; i < playerCount(); i++) {
      boolean select = false;
@@ -494,6 +497,7 @@ public class GameScreen {
     int xs[] = {340, 460, 220, 580};
     WordInput in = new WordInput(dc);
 
+    //COULD BE REMOVED (FOR TESTING)
     playerList.get(2).addToScore(50);
     playerList.get(1).addToScore(90);
 
@@ -502,7 +506,7 @@ public class GameScreen {
       dc.setOrigin(DConsole.ORIGIN_CENTER);
       in.refreshKeys();
 
-      sorting(); //sort array list by score
+      sortingByScore();; //sort array list by score
 
       for (int i = 0; i < playerCount(); i++) {
         dc.setPaint(playerList.get(i).getColor()); //color array
@@ -533,11 +537,7 @@ public class GameScreen {
       dc.pause(20);
     }
     playerList.clear();
-    playerList.add(new Player(1, Color.BLUE, 200, 200, dc));
-    playerList.add(new Player(2, Color.PINK, 200, 200, dc));
-    playerList.add(new Player(3, Color.RED, 200, 200, dc));
-    playerList.add(new Player(4, Color.GREEN, 200, 200, dc));
-    join();
+    Main.run();
   }
 
   //draw the default background which is currently halo skybox
@@ -547,11 +547,27 @@ public class GameScreen {
   }
 
   //sort arraylist by points
-  public void sorting() {
+  public void sortingByScore() {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
             if (playerList.get(i).getScore() < playerList.get(j).getScore()) {
+              
+                // Swapping
+                temp = playerList.get(i);
+                playerList.set(i, playerList.get(j));
+                playerList.set(j, temp);
+            }
+        }
+    }
+  }
+
+  //sort arraylist by ID
+  public void sortingByID() {
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (playerList.get(i).getID() > playerList.get(j).getID()) {
               
                 // Swapping
                 temp = playerList.get(i);

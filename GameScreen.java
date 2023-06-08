@@ -183,7 +183,7 @@ public class GameScreen {
         dc.drawString("Press 'T' To Join!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 60, 260);
+        dc.drawString("Player 3", 65, 260);
         
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
@@ -196,7 +196,7 @@ public class GameScreen {
         dc.drawString("Press 'G' To Leave!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 60, 260);
+        dc.drawString("Player 3", 65, 260);
         
         dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
       }
@@ -272,7 +272,10 @@ public class GameScreen {
     for (int i = 0; i < playerCount(); i++) {
       names[i] = "";
     }
-
+    String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
+    int xvals[] = {50};
+    int yvals[]= {50};
+    
    for (int i = 0; i < playerCount(); i++) {
      boolean select = false;
       while(!select) {
@@ -280,7 +283,7 @@ public class GameScreen {
         dc.fillRect(400, 275, 800, 550); //background color
         in.refreshKeys();
         
-        // DRAW AVATAR TOP LEFT CORNER
+        dc.drawImage(avatar[i], xvals[i], yvals[i]);
 
         dc.drawImage("Images/textbox.png", 400, 225);
         
@@ -529,6 +532,11 @@ public class GameScreen {
       dc.redraw();
       dc.pause(20);
     }
+    playerList.clear();
+    playerList.add(new Player(1, Color.BLUE, 200, 200, dc));
+    playerList.add(new Player(2, Color.PINK, 200, 200, dc));
+    playerList.add(new Player(3, Color.RED, 200, 200, dc));
+    playerList.add(new Player(4, Color.GREEN, 200, 200, dc));
     join();
   }
 

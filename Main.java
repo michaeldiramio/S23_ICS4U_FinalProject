@@ -17,16 +17,16 @@ public class Main { //git test
   // runs methods from other classes
   public void run() {
 
-    ArrayList<ArrayList<Minigame>> minigameList = new ArrayList<ArrayList<Minigame>>();
+    ArrayList<ArrayList<Minigame>> minigameList = new ArrayList<ArrayList<Minigame>>(); //arraylist of player numbers
 
     ArrayList<Minigame> twoPlayerMinigameList = new ArrayList<Minigame>();
-    minigameList.add(twoPlayerMinigameList);
+    minigameList.add(twoPlayerMinigameList); //two player
 
     ArrayList<Minigame> threePlayerMinigameList = new ArrayList<Minigame>();
-    minigameList.add(threePlayerMinigameList);
+    minigameList.add(threePlayerMinigameList); //three player
     
     ArrayList<Minigame> fourPlayerMinigameList = new ArrayList<Minigame>();
-    minigameList.add(fourPlayerMinigameList);
+    minigameList.add(fourPlayerMinigameList); //four player
     
 
     // making players for all games

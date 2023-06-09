@@ -5,8 +5,8 @@ import java.util.*;
 public class TestGame extends Minigame {
 
   //Constructor
-  public TestGame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
-    super(0, dc, players, entities);
+  public TestGame(int id, DConsole dc, ArrayList<Player> players) {
+    super(0, dc, players);
   }
 
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second
@@ -20,11 +20,15 @@ public class TestGame extends Minigame {
     boolean game = true;
     int cycles = 0;
     int seconds = 15;
+
+    super.addEntity();
+    
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
       super.moveCharacters();
       super.refreshScreen();
+      System.out.println("redrew!");
       super.printTime(seconds);
       
       cycles++;

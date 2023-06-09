@@ -5,17 +5,17 @@ import java.util.*;
 public class Main { //git test
 
   // data
-  public DConsole dc;
-  ArrayList<Player> playerList = new ArrayList<>();
+  static DConsole dc;
+  static ArrayList<Player> playerList = new ArrayList<>();
 
   // initializes DConsole
   public void DInit(int width, int height) {
-    this.dc = new DConsole(width, height);
-    this.dc.setOrigin(this.dc.ORIGIN_CENTER);
+    dc = new DConsole(width, height);
+    dc.setOrigin(dc.ORIGIN_CENTER);
   }
 
   // runs methods from other classes
-  public void run() {
+  public static void run() {
 
     ArrayList<ArrayList<Minigame>> minigameList = new ArrayList<ArrayList<Minigame>>();
 
@@ -30,10 +30,10 @@ public class Main { //git test
     
 
     // making players for all games
-    this.playerList.add(new Player(1, Color.BLUE, 200, 200, dc));
-    this.playerList.add(new Player(2, Color.PINK, 200, 200, dc));
-    this.playerList.add(new Player(3, Color.RED, 200, 200, dc));
-    this.playerList.add(new Player(4, Color.GREEN, 200, 200, dc));
+    this.playerList.add(new Player(1, new Color (0, 0, 200), 200, 200, this.dc));
+    this.playerList.add(new Player(2, new Color (17, 188, 76), 200, 200, this.dc));
+    this.playerList.add(new Player(3, new Color (153, 51, 255), 200, 200, this.dc));
+    this.playerList.add(new Player(4, new Color (200, 0, 0), 200, 200, this.dc));
 
     
 
@@ -109,7 +109,7 @@ public class Main { //git test
     Main m = new Main();
     m.DInit(800, 550); 
     while(true) {
-      m.run();
+      run();
     }
   }
 }

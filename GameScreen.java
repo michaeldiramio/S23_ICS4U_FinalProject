@@ -135,8 +135,6 @@ public class GameScreen {
         dc.fillRect(200, 105, 90, 90);
         dc.drawImage("Images/Keys/5.png", 400, 275);
 
-        //draw character avatar (my favourite tv show)
-        
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'S' To Leave!", 200, 35);
@@ -163,8 +161,6 @@ public class GameScreen {
         dc.fillRect(600, 200, 290, 90);
         dc.fillRect(600, 105, 90, 90);
         dc.drawImage("Images/Keys/6.png", 400, 275);
-
-        //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
@@ -185,7 +181,7 @@ public class GameScreen {
         dc.drawString("Press 'T' To Join!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 60, 260);
+        dc.drawString("Player 3", 65, 260);
         
       } else { //joined
         dc.setPaint(new Color(255,255,255)); //white
@@ -193,14 +189,12 @@ public class GameScreen {
         dc.fillRect(200, 445, 290, 90);
         dc.drawImage("Images/Keys/7.png", 400, 275);
         
-        //draw character avatar
-        
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
         dc.drawString("Press 'G' To Leave!", 200, 280);
         dc.setPaint(new Color(0,0,0)); //black
         dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 60, 260);
+        dc.drawString("Player 3", 65, 260);
         
         dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
       }
@@ -221,8 +215,6 @@ public class GameScreen {
         dc.fillRect(600, 350, 90, 90);
         dc.fillRect(600, 445, 290, 90);
         dc.drawImage("Images/Keys/8.png", 400, 275);
-        
-        //draw character avatar
         
         dc.setPaint(new Color(225, 0, 0,255-trans)); //red
         dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
@@ -274,36 +266,51 @@ public class GameScreen {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
     WordInput in = new WordInput(dc);
+    
+    String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
+    int xvals[] = {50, 101, 102, 101};
+    int yvals[]= {50, 67, 50, 59};
+    
     String names[] = {"", "", "", ""};
 
-   for (int i = 0; i < 4; i++) {
-     boolean select = false;
-     if(this.activePlayers[i] != null) { // if the player has joined the game
-       while(!select) {
-        dc.setPaint(playerList.get(i).getColor()); //color array
-        dc.fillRect(400, 275, 800, 550); //background color
-        in.refreshKeys();
-        
-        // DRAW AVATAR TOP LEFT CORNER
+    for (int i = 0; i < 4; i++) {
+      playerList.get(i).setUsername("");
+      boolean select = false;
+        if(this.activePlayers[i] != null) { // if the player has joined the game
+         while(!select) {
+          dc.setPaint(playerList.get(i).getColor()); //color array
+          dc.fillRect(400, 275, 800, 550); //background color
+          in.refreshKeys();
 
-        dc.drawImage("Images/textbox.png", 400, 225);
-        
-        String name = in.getCurrentWord(); //to show as typed
-        if (name.length() <= 10) { 
-          names[i] = name;
+          dc.drawImage(avatar[i], xvals[i], yvals[i]);
+
+          dc.drawImage("Images/textbox.png", 400, 225);
+
+          String name = in.getCurrentWord(); //to show as typed
+          if (name.length() <= 10) { 
+            names[i] = name;
+          }
+
+          dc.setPaint(new Color(0, 0, 0)); //black
+          dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+          dc.drawString(names[i], 400, 164); //display names typing
+
+          String nfinal = in.getFinalWord(); //pressed enter
+           
+          if (nfinal != "" && nfinal.length() <= 10) { 
+            boolean inn = false;
+            for (int iz = 0; iz < playerList.size(); iz++) { //check if other player already has that name
+              if (nfinal.equals( playerList.get(iz).getUsername())) {
+                inn = true;
+              }
+            }
+            if (!inn) { //if no other player has that username
+              names[i] = nfinal; 
+              playerList.get(i).setUsername(nfinal); //set player username
+              select = true; //move to next part of loop
+            }
+          }
         }
-        
-        dc.setPaint(new Color(0, 0, 0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        dc.drawString(names[i], 400, 164); //display names typing
-  
-        String nfinal = in.getFinalWord(); //pressed enter
-        if(nfinal != "") {
-          names[i] = nfinal; 
-          playerList.get(i).setUsername(nfinal); //set player username
-          select = true; //move to next part of loop
-        }
-        
         dc.redraw();
         dc.pause(20);
       }
@@ -481,29 +488,56 @@ public class GameScreen {
     
   }
 
-  public void winScreen() { //bars display score trth
+  public void winScreen() { //bars display score trth (IN ODER OF SCORE GET ALEX CODE)
     boolean play = false;
     int up = 1;
+    int trans = 1;
+    int change = 1;
     int xs[] = {340, 460, 220, 580};
+    WordInput in = new WordInput(dc);
+
+    //COULD BE REMOVED (FOR TESTING)
+    playerList.get(2).addToScore(50);
+    playerList.get(1).addToScore(90);
 
     while (!play) {
-      dc.clear();
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
+      in.refreshKeys();
+
+      sortingByScore();; //sort array list by score
 
       for (int i = 0; i < playerCount(); i++) {
         dc.setPaint(playerList.get(i).getColor()); //color array
         int tempScore = playerList.get(i).getScore();
         dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 17));
+        dc.drawString(playerList.get(i).getUsername(), xs[i], 535 - (int)(((tempScore*up) / 25)/2));
+      }
+      
+      if (up < 150) {
+        up++;
+      } else if (up >= 150) {
+        if (trans >= 150 || trans <= 0) { //changing transparency
+        change *= -1;
+      }
+      trans += change;
+
+        dc.setPaint(new Color(0, 0, 0,255-trans)); 
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
+        dc.drawString("Press Any Key To Play Again", 400, 100);
+        String press = in.getCurrentWord();
+        if (press != "") {
+          play = true;
+        }
       }
       
       dc.redraw();
       dc.pause(20);
-      if (up < 150) {
-        up++;
-      }
     }
-    join();
+    playerList.clear();
+    dc.pause(50);
+    Main.run();
   }
 
   //draw the default background which is currently halo skybox
@@ -512,6 +546,37 @@ public class GameScreen {
     dc.drawImage("Images/background.png", 400, 275);
   }
 
+  //sort arraylist by points
+  public void sortingByScore() {
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (playerList.get(i).getScore() < playerList.get(j).getScore()) {
+              
+                // Swapping
+                temp = playerList.get(i);
+                playerList.set(i, playerList.get(j));
+                playerList.set(j, temp);
+            }
+        }
+    }
+  }
+
+  //sort arraylist by ID
+  public void sortingByID() {
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (playerList.get(i).getID() > playerList.get(j).getID()) {
+              
+                // Swapping
+                temp = playerList.get(i);
+                playerList.set(i, playerList.get(j));
+                playerList.set(j, temp);
+            }
+        }
+    }
+  }
 
   //return the number of players playing
   public int playerCount(){

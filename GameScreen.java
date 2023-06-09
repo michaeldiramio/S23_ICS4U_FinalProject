@@ -544,7 +544,7 @@ public class GameScreen {
     dc.drawImage("Images/background.png", 400, 275);
   }
 
-  //sort arraylist by points
+  //sort arraylist by score
   public void sortingByScore() {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {

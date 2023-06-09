@@ -13,16 +13,14 @@ public class GameScreen {
   private ArrayList<Player> playerList;
   private int playerAmount;
   private Player[] activePlayers;
-  private ArrayList<Minigame> minigameList;
   private int currentGame;
 
   //Constructor
-  public GameScreen(DConsole dc, ArrayList<Player> playerList, ArrayList<Minigame> minigameList) {
+  public GameScreen(DConsole dc, ArrayList<Player> playerList) {
     this.dc = dc;
     this.playerList = playerList;
     this.playerAmount = 4;
     this.activePlayers = new Player[4];
-    this.minigameList = minigameList;
     this.currentGame = 0;
   }
 
@@ -268,65 +266,64 @@ public class GameScreen {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
     WordInput in = new WordInput(dc);
-    String names[] = new String[playerCount()];
-    for (int i = 0; i < playerCount(); i++) {
-      names[i] = "";
-      playerList.get(i).setUsername("");
-    }
+    
     String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
-
     int xvals[] = {50, 101, 102, 101};
     int yvals[]= {50, 67, 50, 59};
-
     
-   for (int i = 0; i < playerCount(); i++) {
-     boolean select = false;
-      while(!select) {
-        dc.setPaint(playerList.get(i).getColor()); //color array
-        dc.fillRect(400, 275, 800, 550); //background color
-        in.refreshKeys();
-        
-        dc.drawImage(avatar[i], xvals[i], yvals[i]);
+    String names[] = {"", "", "", ""};
 
-        dc.drawImage("Images/textbox.png", 400, 225);
-        
-        String name = in.getCurrentWord(); //to show as typed
-        if (name.length() <= 10) { 
-          names[i] = name;
-        }
-        
-        dc.setPaint(new Color(0, 0, 0)); //black
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        dc.drawString(names[i], 400, 164); //display names typing
-  
-        String nfinal = in.getFinalWord(); //pressed enter
-        if (nfinal != "" && nfinal.length() <= 10) { 
-          boolean inn = false;
-          for (int iz = 0; iz < playerList.size(); iz++) { //check if other player already has that name
-	          if (nfinal.equals( playerList.get(iz).getUsername())) {
-              inn = true;
-	          }
+    for (int i = 0; i < 4; i++) {
+      playerList.get(i).setUsername("");
+      boolean select = false;
+        if(this.activePlayers[i] != null) { // if the player has joined the game
+         while(!select) {
+          dc.setPaint(playerList.get(i).getColor()); //color array
+          dc.fillRect(400, 275, 800, 550); //background color
+          in.refreshKeys();
+
+          dc.drawImage(avatar[i], xvals[i], yvals[i]);
+
+          dc.drawImage("Images/textbox.png", 400, 225);
+
+          String name = in.getCurrentWord(); //to show as typed
+          if (name.length() <= 10) { 
+            names[i] = name;
           }
-          if (!inn) { //if no other player has that username
-            names[i] = nfinal; 
-            playerList.get(i).setUsername(nfinal); //set player username
-            select = true; //move to next part of loop
+
+          dc.setPaint(new Color(0, 0, 0)); //black
+          dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+          dc.drawString(names[i], 400, 164); //display names typing
+
+          String nfinal = in.getFinalWord(); //pressed enter
+           
+          if (nfinal != "" && nfinal.length() <= 10) { 
+            boolean inn = false;
+            for (int iz = 0; iz < playerList.size(); iz++) { //check if other player already has that name
+              if (nfinal.equals( playerList.get(iz).getUsername())) {
+                inn = true;
+              }
+            }
+            if (!inn) { //if no other player has that username
+              names[i] = nfinal; 
+              playerList.get(i).setUsername(nfinal); //set player username
+              select = true; //move to next part of loop
+            }
           }
         }
-        
         dc.redraw();
         dc.pause(20);
       }
-   }
-    
+    }
   }
+}
 
-  public void select() {
+  public void select(ArrayList<Minigame> subMinigameList) {
     LocalTime start = LocalTime.now(); //reset time to 0
     boolean gameChosen = false;
     int maxPlayers = 4;
     int gameScreenNum = 4;
-    int gameTotal = 8; // will change after we add more games
+    int gameTotal = subMinigameList.size(); // will change after we add more games
     int color = 2;
     int[] voteCount = new int[maxPlayers];
     int screenNum = 1;
@@ -371,7 +368,9 @@ public class GameScreen {
       dc.fillRect(500, 425, 160, 160);
 
       // eventually draw game images
-      
+      for(int i = 0; i < 0; i++) {
+        
+      }
 
       // coordinates for icons/text
       int[] xCoords = {300, 500, 300, 500};
@@ -381,7 +380,7 @@ public class GameScreen {
       dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
       // gets the possible games based on which page you are on
       // ex. if you are on page 1, the games shown would be slots 0-4
-      for(int i = (screenNum - 1) * gameScreenNum; i < (screenNum - 1) * gameScreenNum + gameScreenNum; i++) {
+      for(int i = (screenNum - 1) * gameScreenNum; i < (screenNum - 1) * gameTotal; i++) {
         dc.drawString("Game " + (i + 1), xCoords[i], yCoords[i]); // temporary game image placeholder
       }
 
@@ -586,6 +585,18 @@ public class GameScreen {
 
   public int getCurrentGame() {
     return this.currentGame;
+  }
+
+  public ArrayList<Player> getActivePlayers() {
+    ArrayList<Player> tempActivePlayers = new ArrayList<Player>();
+    for(int i = 0; i < 4; i++) {
+      tempActivePlayers.add(this.activePlayers[i]);
+    }
+    return tempActivePlayers;
+  }
+
+  public int getPlayerAmount() {
+    return this.playerAmount;
   }
   
 }

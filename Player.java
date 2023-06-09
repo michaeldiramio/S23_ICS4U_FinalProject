@@ -132,6 +132,11 @@ public class Player {
     this.minigamePoints = 0;
   }
 
-  
-  
+  public void setX(double x) {
+    this.xPOS = x;
+  }
+
+  public void setY(double y) {
+    this.yPOS = y;
+  }
 }

@@ -1,33 +1,23 @@
 import DLibX.*;
-import java.awt.Color;
+import java.awt.*;
 import java.util.*;
 
-public abstract class Minigame {
-
-  //Instance variables
-  public int id;
-  public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
-  public ArrayList<Player> playerList;
-  public ArrayList<Entity> entityList;
+public class FirstToTheTop extends Minigame {
 
   //Constructor
-  public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
-    this.id = id;
-    this.dc = dc;
-    this.playerList = players;
-    this.entityList = entities;
+  public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entityList) {
+    super(1, dc, playerList, entityList);
   }
 
-  //get ID
-  public int getID() {
-    return this.id;
-  }
 
-  //**NOTE:** WHEN MAKING A GAME WITH DIFFERENT MOVEMENT, USE THE @OVERRIDE METHOD IN YOUR MINIGAME TO REMAKE THIS METHOD AS YOU PLEASE
-  //Move characters 
+  int spawnCoordX = 300;
+  int spawnCoordY = 510;
+
+
+  
   public void moveCharacters() {
     boolean[] movementAllowance = {true, true, true, true};
-
+    
     for(int i = 0; i < this.playerList.size(); i++) {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
@@ -35,8 +25,13 @@ public abstract class Minigame {
         for(int j = 0; j < entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds 
                                                                                    // (if a player has touched an entity)
-  
           for(int k = 0; k < tempEntityBounds.length; k++) {
+            
+            // if a player hits an entity put them back to their spawnpoint
+            if(tempEntityBounds[j]) {
+              this.playerList.get(i).setX(getNewSpawnPointX(this.playerList.get(i).getID()));
+            }
+            
             // if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
             // ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
             if(tempEntityBounds[k]) {
@@ -62,29 +57,55 @@ public abstract class Minigame {
     }
   }
 
-  public void refreshScreen() {
-    for(int i = 0; i < entityList.size(); i++) {
-      this.entityList.get(i).draw();
+  
+  //Play the game
+  @Override
+  public void play() {
+
+    boolean game = true;
+    int cycles = 0;
+    int seconds = 15;
+
+    
+    while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
+      dc.clear();
+
+      cycles++;
+      if (cycles >= 50) { //one second has passed
+        seconds--;
+        cycles = 0;
+      }
+
+      if (seconds == 0) { //15 second are up, game ends
+        game = false;
+      }
+
+
+
+
+
+
+
+
+
+
+
+      
+      super.moveCharacters();
+      super.refreshScreen();
+      super.printTime(seconds);
+
+      dc.redraw();
+      dc.pause(20);
     }
-    for(int i = 0; i < playerList.size(); i++) {
-      this.playerList.get(i).draw();
-    }
+  
   }
 
-  //Award points on victory
-  public void rewardPoints(Player p, int amount) {
-    p.addToScore(amount);
-  }
 
-  //Play game
-  public abstract void play(); //note to everyone else: use @override in your minigame, and code the play method 
-
-  //This is just for testing 
-  public void printTime(int s) {
-    dc.drawString("Time: " + s, 300, 40);
+  public int getNewSpawnPointX(int playerID) {
+    return spawnCoordX + ((playerID - 1) * 35); // it is -1 because ids go from 1-4, whereas for muliplication it should go from 0-3 
   }
+  
 
-  public void setPlayers(ArrayList<Player> playerList) {
-    this.playerList = playerList;
-  }
+
 }

@@ -534,10 +534,10 @@ public class GameScreen {
       }
       
       dc.redraw();
-      dc.pause(50);
+      dc.pause(20);
     }
     playerList.clear();
-    dc.pause(20);
+    dc.pause(50);
     Main.run();
   }
 

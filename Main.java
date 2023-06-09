@@ -5,8 +5,8 @@ import java.util.*;
 public class Main { //git test
 
   // data
-  static DConsole dc;
-  static ArrayList<Player> playerList = new ArrayList<>();
+  DConsole dc;
+  ArrayList<Player> playerList = new ArrayList<>();
 
   // initializes DConsole
   public void DInit(int width, int height) {
@@ -15,7 +15,7 @@ public class Main { //git test
   }
 
   // runs methods from other classes
-  public static void run() {
+  public void run() {
 
     ArrayList<ArrayList<Minigame>> minigameList = new ArrayList<ArrayList<Minigame>>();
 
@@ -109,7 +109,7 @@ public class Main { //git test
     Main m = new Main();
     m.DInit(800, 550); 
     while(true) {
-      run();
+      m.run();
     }
   }
 }

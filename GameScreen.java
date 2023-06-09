@@ -276,8 +276,8 @@ public class GameScreen {
     for (int i = 0; i < 4; i++) {
       playerList.get(i).setUsername("");
       boolean select = false;
-        if(this.activePlayers[i] != null) { // if the player has joined the game
-         while(!select) {
+      if(this.activePlayers[i] != null) { // if the player has joined the game
+        while(!select) {
           dc.setPaint(playerList.get(i).getColor()); //color array
           dc.fillRect(400, 275, 800, 550); //background color
           in.refreshKeys();
@@ -310,13 +310,12 @@ public class GameScreen {
               select = true; //move to next part of loop
             }
           }
+           dc.redraw();
+          dc.pause(20);
         }
-        dc.redraw();
-        dc.pause(20);
       }
     }
   }
-}
 
   public void select(ArrayList<Minigame> subMinigameList) {
     LocalTime start = LocalTime.now(); //reset time to 0
@@ -537,7 +536,6 @@ public class GameScreen {
     }
     playerList.clear();
     dc.pause(50);
-    Main.run();
   }
 
   //draw the default background which is currently halo skybox

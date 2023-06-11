@@ -79,9 +79,9 @@ public abstract class Minigame {
   //Play game
   public abstract void play(); //note to everyone else: use @override in your minigame, and code the play method 
 
-  //This is just for testing 
-  public void printTime(int s) {
-    dc.drawString("Time: " + s, 300, 40);
+  //Print time
+  public void printTime(int s, int x, int y) {
+    dc.drawString("Time: " + s, x, y);
   }
 
   public void setPlayers(ArrayList<Player> playerList) {

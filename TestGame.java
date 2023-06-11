@@ -28,7 +28,7 @@ public class TestGame extends Minigame {
       
       super.moveCharacters();
       super.refreshScreen();
-      super.printTime(seconds);
+      super.printTime(seconds, 300, 40);
       
       cycles++;
       if (cycles >= 50) { //one second has passed

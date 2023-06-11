@@ -2,7 +2,8 @@ import DLibX.*;
 import java.awt.Color;
 
 public class Entity {
-  
+
+  //Instance variables
   private int id;
   private String name;
   private DConsole dc;
@@ -13,7 +14,7 @@ public class Entity {
   private Color color;
   private boolean collision;
 
-  
+  //Basic entity with collisions
   public Entity(int id, double x, double y, double width, double height, Color color, DConsole dc) {
     this.id = id;
     this.name = "null";
@@ -26,6 +27,7 @@ public class Entity {
     this.color = color;
   }
 
+  //Entity with possible no collisions
   public Entity(int id, String name, double x, double y, double width, double height, boolean collision, Color color, DConsole dc) {
     this.id = id;
     this.name = name;
@@ -38,7 +40,6 @@ public class Entity {
     this.color = color;
   }
 
-  
   public boolean[] getEntityBounds(Player player) {
     boolean[] boundsArray = new boolean[4];
 

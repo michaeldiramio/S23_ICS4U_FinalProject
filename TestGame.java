@@ -26,7 +26,7 @@ public class TestGame extends Minigame {
     
     boolean game = true;
     int cycles = 0;
-    int seconds = 1;
+    int seconds = 3;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
@@ -40,8 +40,12 @@ public class TestGame extends Minigame {
         cycles = 0;
       }
 
+      Random r = new Random();
+      playerList.get(3).addToPoints(10000);
+
       if (seconds == 0) { //15 second are up, game ends
         game = false;
+        super.endGame();
       }
 
       dc.redraw();

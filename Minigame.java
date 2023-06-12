@@ -123,9 +123,6 @@ public abstract class Minigame {
     
   }
 
-  //This is just for testing 
-  public void printTime(int s) {
-    dc.drawString("Time: " + s, 300, 40);
 
   //Print time
   public void printTime(int s, int x, int y) {

@@ -79,6 +79,54 @@ public abstract class Minigame {
   //Play game
   public abstract void play(); //note to everyone else: use @override in your minigame, and code the play method 
 
+  //Ends game and rewards points
+  public void endGame(){
+    //makes temporary list of players
+    Player[] tempPlayerList = new Player[4];
+
+    //fills temp list with players
+    for(int i = 0; i < playerList.size(); i++){
+      try {
+        tempPlayerList[i] = playerList.get(i);
+      }catch (Exception e) {}
+    }
+
+    //bubble sorts players in tempPlayerArray by points
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+             
+                // Swapping
+                temp = tempPlayerList[i];
+                tempPlayerList[i] = tempPlayerList[j];
+                tempPlayerList[j] = temp;
+            }
+        }
+    }
+    
+
+    //rewards score to players based on where they are in tempPlayerArray
+    for(int i = 0; i < tempPlayerList.length; i++){
+      if(tempPlayerList[i] != null) {
+        if(i == 0){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
+        }else if(i == 1){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
+        }else if(i == 2){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+        }else if(i == 3){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        }
+      }
+    }
+    
+  }
+
+  //This is just for testing 
+  public void printTime(int s) {
+    dc.drawString("Time: " + s, 300, 40);
+
   //Print time
   public void printTime(int s, int x, int y) {
     dc.drawString("Time: " + s, x, y);
@@ -86,5 +134,6 @@ public abstract class Minigame {
 
   public void setPlayers(ArrayList<Player> playerList) {
     this.playerList = playerList;
+
   }
 }

@@ -47,12 +47,12 @@ public class Player {
   }
 
   //Move X
-  public void moveX(int xChange) {
+  public void moveX(double xChange) {
     this.xPOS += xChange;
   }
 
   //move Y
-  public void moveY(int yChange) {
+  public void moveY(double yChange) {
     this.yPOS += yChange;
   }
 
@@ -108,12 +108,12 @@ public class Player {
   }
 
   //Get size x
-  public int getSizeX() {
+  public double getSizeX() {
     return xSize;
   }
 
   //Get size y
-  public int getSizeY() {
+  public double getSizeY() {
     return ySize; 
   }
 

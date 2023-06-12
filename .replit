@@ -5,7 +5,7 @@ entrypoint = "Main.java"
 hidden = ["**/*.class"]
 
 [packager]
-language = "java12"
+language = "java"
 
 [packager.features]
 packageSearch = true

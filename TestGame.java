@@ -3,11 +3,18 @@ import java.awt.*;
 import java.util.*;
 
 public class TestGame extends Minigame {
-
-
+  DConsole dc;
+   
   //Constructor
-  public TestGame(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entities) {
-    super(0, dc, playerList, entities);
+  public TestGame(int id, DConsole dc, ArrayList<Player> playerList) {
+    super(0, dc, playerList);
+    this.dc = dc;
+  }
+
+  //create entities here
+  private void addEntites(){
+    super.entityList.add(new Entity(1, "joesef", 50, 50, 50, 50, true, Color.GREEN, this.dc));
+    
   }
 
   
@@ -20,6 +27,7 @@ public class TestGame extends Minigame {
   //Play the game
   @Override
   public void play() {
+    addEntites();
     
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
@@ -40,7 +48,7 @@ public class TestGame extends Minigame {
         cycles = 0;
       }
 
-      if (seconds == 0) { //15 second are up, game ends
+      if (seconds == -15) { //15 second are up, game ends
         game = false;
       }
 

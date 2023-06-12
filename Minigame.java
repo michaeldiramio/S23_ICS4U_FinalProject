@@ -8,7 +8,7 @@ public abstract class Minigame {
   public int id;
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
   public ArrayList<Player> playerList;
-  public ArrayList<Entity> entityList;
+  public ArrayList<Entity> entityList = new ArrayList<Entity>();
 
   //Constructor
   public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
@@ -16,6 +16,12 @@ public abstract class Minigame {
     this.dc = dc;
     this.playerList = players;
     this.entityList = entities;
+  }
+
+   public Minigame(int id, DConsole dc, ArrayList<Player> players) {
+    this.id = id;
+    this.dc = dc;
+    this.playerList = players;
   }
 
   //get ID

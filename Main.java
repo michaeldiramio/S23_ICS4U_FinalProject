@@ -44,7 +44,7 @@ public class Main { //git test
     testEntityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
     testEntityList.add(new Entity(6, "testing object 2", 150.0, 100.0, 50.0, 70.0, false, Color.BLUE, this.dc));
     
-    Minigame test = new TestGame(0, this.dc, this.playerList, testEntityList);
+    Minigame test = new TestGame(0, this.dc, this.playerList);
 
     //-------------------------------------------------------------------------
     //-------------------------FirstToTheTop-------------------------------

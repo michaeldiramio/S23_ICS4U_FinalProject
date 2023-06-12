@@ -27,31 +27,37 @@ public abstract class Minigame {
   //Move characters 
   public void moveCharacters() {
     boolean[] movementAllowance = {true, true, true, true};
-    
+
     for(int i = 0; i < this.playerList.size(); i++) {
-      boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed();
-
-      for(int j = 0; j < entityList.size(); j++) {
-        boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i));
-
-        for(int k = 0; k < tempEntityBounds.length; k++) {
-          if(tempEntityBounds[k]) {
-            movementAllowance[k] = false;
+      if(this.playerList.get(i) != null) {
+        boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
+  
+        for(int j = 0; j < entityList.size(); j++) {
+          boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds 
+                                                                                   // (if a player has touched an entity)
+  
+          for(int k = 0; k < tempEntityBounds.length; k++) {
+            // if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
+            // ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
+            if(tempEntityBounds[k]) {
+              movementAllowance[k] = false;
+            }
           }
         }
-      }
-
-      if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-        playerList.get(i).moveY(-5);
-      }
-      if(tempControl[1] && movementAllowance[1]) { //left
-        playerList.get(i).moveX(-5);
-      }
-      if(tempControl[2] && movementAllowance[2]) { //down
-        playerList.get(i).moveY(5);
-      }
-      if(tempControl[3] && movementAllowance[3]) { //right
-        playerList.get(i).moveX(5);
+  
+        // movement based on key input and if movement is allowed (from entity bounds)
+        if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
+          playerList.get(i).moveY(-5);
+        }
+        if(tempControl[1] && movementAllowance[1]) { //left
+          playerList.get(i).moveX(-5);
+        }
+        if(tempControl[2] && movementAllowance[2]) { //down
+          playerList.get(i).moveY(5);
+        }
+        if(tempControl[3] && movementAllowance[3]) { //right
+          playerList.get(i).moveX(5);
+        }
       }
     }
   }
@@ -120,5 +126,14 @@ public abstract class Minigame {
   //This is just for testing 
   public void printTime(int s) {
     dc.drawString("Time: " + s, 300, 40);
+
+  //Print time
+  public void printTime(int s, int x, int y) {
+    dc.drawString("Time: " + s, x, y);
+  }
+
+  public void setPlayers(ArrayList<Player> playerList) {
+    this.playerList = playerList;
+
   }
 }

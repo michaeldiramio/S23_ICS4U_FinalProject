@@ -8,8 +8,7 @@ import java.util.*;
 
 
 public class GameScreen {
-
-  //instance variables
+  
   private DConsole dc;
   private ArrayList<Player> playerList;
   private int playerAmount;
@@ -545,7 +544,7 @@ public class GameScreen {
     dc.drawImage("Images/background.png", 400, 275);
   }
 
-  //sort arraylist by score
+  //sort arraylist by points
   public void sortingByScore() {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {

@@ -4,10 +4,9 @@ import java.util.*;
 
 public class TestGame extends Minigame {
 
-
   //Constructor
-  public TestGame(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entities) {
-    super(0, dc, playerList, entities);
+  public TestGame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
+    super(0, dc, players, entities);
   }
 
   
@@ -20,19 +19,16 @@ public class TestGame extends Minigame {
   //Play the game
   @Override
   public void play() {
-    
-    //this is how you add points to a player
-    //this.playerList.get(0).addToPoints(4);
-    
+
     boolean game = true;
     int cycles = 0;
-    int seconds = 1;
+    int seconds = 15;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
       super.moveCharacters();
       super.refreshScreen();
-      super.printTime(seconds, 300, 40);
+      super.printTime(seconds);
       
       cycles++;
       if (cycles >= 50) { //one second has passed

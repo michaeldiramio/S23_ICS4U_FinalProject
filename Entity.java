@@ -2,8 +2,7 @@ import DLibX.*;
 import java.awt.Color;
 
 public class Entity {
-
-  //Instance variables
+  
   private int id;
   private String name;
   private DConsole dc;
@@ -14,7 +13,7 @@ public class Entity {
   private Color color;
   private boolean collision;
 
-  //Basic entity with collisions
+  
   public Entity(int id, double x, double y, double width, double height, Color color, DConsole dc) {
     this.id = id;
     this.name = "null";
@@ -27,7 +26,6 @@ public class Entity {
     this.color = color;
   }
 
-  //Entity with possible no collisions
   public Entity(int id, String name, double x, double y, double width, double height, boolean collision, Color color, DConsole dc) {
     this.id = id;
     this.name = name;
@@ -40,6 +38,7 @@ public class Entity {
     this.color = color;
   }
 
+  
   public boolean[] getEntityBounds(Player player) {
     boolean[] boundsArray = new boolean[4];
 
@@ -74,13 +73,13 @@ public class Entity {
     
     
     if(orientation == 0) {
-      return playerTop < entityBottom + 5.0 && playerBottom > entityTop + 2.0 && ((playerLeft > entityLeft - 2.0 && playerLeft < entityRight) || (playerRight < entityRight + 2.0 && playerRight > entityLeft));
+      return playerTop < entityBottom + 5.0 && playerBottom > entityTop + 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 1) {
-      return playerLeft < entityRight + 5.0 && playerLeft > entityRight - 2.0 && ((playerTop < entityBottom && playerTop > entityTop - 2.0) || (playerBottom > entityTop && playerBottom < entityBottom + 2.0));
+      return playerLeft < entityRight + 5.0 && playerLeft > entityRight - 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     } else if(orientation == 2) {
-      return playerBottom > entityTop - 5.0 && playerBottom < entityBottom - 2.0 && ((playerLeft > entityLeft - 2.0 && playerLeft < entityRight) || (playerRight < entityRight + 2.0 && playerRight > entityLeft));
+      return playerBottom > entityTop - 5.0 && playerBottom < entityBottom - 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 3) {
-      return playerRight > entityLeft - 5.0 && playerRight < entityLeft + 2.0 && ((playerTop < entityBottom && playerTop > entityTop - 2.0) || (playerBottom > entityTop && playerBottom < entityBottom + 2.0));
+      return playerRight > entityLeft - 5.0 && playerRight < entityLeft + 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     }
     
     return false;

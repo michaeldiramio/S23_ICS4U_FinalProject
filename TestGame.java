@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TestGame extends Minigame {
 
-
+  
   //Constructor
   public TestGame(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entities) {
     super(0, dc, playerList, entities);
@@ -47,6 +47,5 @@ public class TestGame extends Minigame {
   
   }
   
-
 
 }

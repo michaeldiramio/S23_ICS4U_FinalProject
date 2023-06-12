@@ -116,6 +116,7 @@ public abstract class Minigame {
     }
     
   }
+  
 
   //This is just for testing 
   public void printTime(int s) {

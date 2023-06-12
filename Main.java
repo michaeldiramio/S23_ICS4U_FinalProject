@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Main { //git test
 
+  // Please Lord
+
   // data
   DConsole dc;
   ArrayList<Player> playerList = new ArrayList<>();

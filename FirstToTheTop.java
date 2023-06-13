@@ -111,7 +111,7 @@ public class FirstToTheTop extends Minigame {
       
       this.moveCharacters();
       super.refreshScreen();
-      super.printTime(seconds);
+      super.printTime(seconds, 300, 40);
 
       dc.redraw();
       dc.pause(20);

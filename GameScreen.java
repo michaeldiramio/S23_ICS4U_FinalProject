@@ -9,6 +9,7 @@ import java.util.*;
 
 public class GameScreen {
   
+  //instance variables
   private DConsole dc;
   private ArrayList<Player> playerList;
   private int playerAmount;
@@ -495,10 +496,6 @@ public class GameScreen {
     int xs[] = {340, 460, 220, 580};
     WordInput in = new WordInput(dc);
 
-    //COULD BE REMOVED (FOR TESTING)
-    playerList.get(2).addToScore(50);
-    playerList.get(1).addToScore(90);
-
     while (!play) {
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
@@ -544,7 +541,7 @@ public class GameScreen {
     dc.drawImage("Images/background.png", 400, 275);
   }
 
-  //sort arraylist by points
+  //sort arraylist by score
   public void sortingByScore() {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {

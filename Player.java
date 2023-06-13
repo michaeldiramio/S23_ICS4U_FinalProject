@@ -7,6 +7,8 @@ import java.util.ArrayList;
 //Player class keeps player data 
 public class Player {
 
+  // PLEASE
+
   //Instance Variables
   private int id;
   private int score;
@@ -47,12 +49,12 @@ public class Player {
   }
 
   //Move X
-  public void moveX(int xChange) {
+  public void moveX(double xChange) {
     this.xPOS += xChange;
   }
 
   //move Y
-  public void moveY(int yChange) {
+  public void moveY(double yChange) {
     this.yPOS += yChange;
   }
 
@@ -108,12 +110,12 @@ public class Player {
   }
 
   //Get size x
-  public int getSizeX() {
+  public double getSizeX() {
     return xSize;
   }
 
   //Get size y
-  public int getSizeY() {
+  public double getSizeY() {
     return ySize; 
   }
 
@@ -132,10 +134,12 @@ public class Player {
     this.minigamePoints = 0;
   }
 
+  //set position X
   public void setX(double x) {
     this.xPOS = x;
   }
 
+  //set position Y
   public void setY(double y) {
     this.yPOS = y;
   }

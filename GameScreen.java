@@ -496,10 +496,6 @@ public class GameScreen {
     int xs[] = {340, 460, 220, 580};
     WordInput in = new WordInput(dc);
 
-    //COULD BE REMOVED (FOR TESTING)
-    playerList.get(2).addToScore(50);
-    playerList.get(1).addToScore(90);
-
     while (!play) {
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);

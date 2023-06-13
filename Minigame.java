@@ -4,8 +4,6 @@ import java.util.*;
 
 public abstract class Minigame {
 
-  // PLEASE
-
   //Instance variables
   public int id;
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here

@@ -8,8 +8,6 @@ import java.util.*;
 
 
 public class GameScreen {
-
-  // PLEASE
   
   private DConsole dc;
   private ArrayList<Player> playerList;

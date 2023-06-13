@@ -4,8 +4,6 @@ import java.util.*;
 
 public class FirstToTheTop extends Minigame {
 
-  // PLEASE
-
   //Constructor
   public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entityList) {
     super(1, dc, playerList, entityList);
@@ -16,7 +14,6 @@ public class FirstToTheTop extends Minigame {
   double spawnCoordY = 510.0;
 
 
-  @Override
   public void moveCharacters() {
     boolean[] movementAllowance = {true, true, true, true};
     

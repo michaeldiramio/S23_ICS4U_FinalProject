@@ -7,8 +7,6 @@ import java.util.ArrayList;
 //Player class keeps player data 
 public class Player {
 
-  // PLEASE
-
   //Instance Variables
   private int id;
   private int score;

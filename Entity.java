@@ -2,8 +2,6 @@ import DLibX.*;
 import java.awt.Color;
 
 public class Entity {
-
-  // PLEASE
   
   private int id;
   private String name;

@@ -129,6 +129,13 @@ public abstract class Minigame {
     
   }
 
+  //Reset player points
+  public void resetPlayerPoints() {
+    for (int i = 0; i < playerList.size(); i++) {
+      playerList.get(i).resetPoints();
+    }
+  }
+
 
   //Print time
   public void printTime(int s, int x, int y) {

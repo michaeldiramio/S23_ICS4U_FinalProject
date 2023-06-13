@@ -3,9 +3,7 @@ import java.awt.*;
 import java.util.*;
 
 public class Main { //git test
-
-  // Please Lord
-
+  
   // data
   DConsole dc;
   ArrayList<Player> playerList = new ArrayList<>();
@@ -48,7 +46,12 @@ public class Main { //git test
     FTTTEntityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
     FTTTEntityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
     FTTTEntityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    FTTTEntityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
+    FTTTEntityList.add(new Entity(5, "maze block 1", 125.0, 525.0, 310.0, 50.0, true, Color.RED, this.dc));
+    FTTTEntityList.add(new Entity(6, "maze block 2", 675.0, 525.0, 310.0, 50.0, true, Color.RED, this.dc));
+    FTTTEntityList.add(new Entity(7, "maze block 3", 300.0, 400.0, 100.0, 300.0, true, Color.RED, this.dc));
+    FTTTEntityList.add(new Entity(8, "maze block 4", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
+    FTTTEntityList.add(new Entity(9, "maze block 5", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
+    
     
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp, FTTTEntityList);
 

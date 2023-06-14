@@ -13,17 +13,9 @@ public class Pong extends Minigame {
   @Override
   public void play() {
     boolean game = true;
-    WordInput in = new WordInput(dc);
-
-    ArrayList<Player> tempPlayerList = new ArrayList<>();
-    for (int i = 0; i < playerList.size(); i++) {
-      Player temp = playerList.get(i);
-      tempPlayerList.add(temp);
-    }
-
-    int ballSpeed = 4;
     
     //ball
+    int ballSpeed = 4;
     int bx = 400;
     int by = 275;
     int bxc = ballSpeed;
@@ -61,7 +53,7 @@ public class Pong extends Minigame {
 
       //ball passes edge (WIN)
       if(bx < 0 || bx > 800) {
-        
+        game = false;
       }
 
       //move ball 
@@ -83,10 +75,10 @@ public class Pong extends Minigame {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
-        if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
+        if(tempControl[0] && movementAllowance[0] && playerList.get(i).getY() > 55) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
           playerList.get(i).moveY(-5);
         }
-        if(tempControl[2] && movementAllowance[2]) { //down
+        if(tempControl[2] && movementAllowance[2] && playerList.get(i).getY() < 495) { //down
           playerList.get(i).moveY(5);
         }
       }

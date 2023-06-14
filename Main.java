@@ -54,6 +54,7 @@ public class Main { //git test
     
     
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp, FTTTEntityList);
+    Minigame pong = new Pong(2, this.dc, this.cp);
 
     //QUICK FORMAT:
     //-----------------------MINIGAME NAME-----------------------------------
@@ -67,6 +68,7 @@ public class Main { //git test
 
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
+    fourPlayerMinigameList.add(pong);
     
     //-------------------------------------------------------------------------
     
@@ -103,11 +105,11 @@ public class Main { //git test
 
       //Loop twice for 2 1v1s
       for (int j = 0; j <= 3; j+=2) { 
+        cp.clear();
         cp.add(playerList.get(j)); //get the first player
         cp.add(playerList.get(j + 1)); //2nd player
         System.out.println(cp.get(0).getID() + " " + cp.get(1).getID()); //for testing
-        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game (cp has already been passed into the constructor, if it hasnt that means you can play the game with all four players, so the rest of this code wont matter in that case)
-        cp.clear(); 
+        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game (cp has already been passed into the constructor, if it hasnt that means you can play the game with all four players, so the rest of this code wont matter in that case) 
       }
 
       tempSubMinigameList.get(n.getCurrentGame()).endGame();

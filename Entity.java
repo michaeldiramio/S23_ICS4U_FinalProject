@@ -86,6 +86,12 @@ public class Entity {
     return false;
   }
 
+  public void move(double xChange, double Ychange){
+    this.x += x;
+    this.y += y;
+  }
+ 
+
   public void draw() {
     this.dc.setPaint(this.color);
     this.dc.fillRect(this.x, this.y, this.width, this.height);

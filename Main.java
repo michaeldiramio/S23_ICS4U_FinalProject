@@ -36,41 +36,18 @@ public class Main { //git test
     this.playerList.add(new Player(3, new Color (153, 51, 255), 200, 200, this.dc));
     this.playerList.add(new Player(4, new Color (200, 0, 0), 200, 200, this.dc));
 
-    //------------------------------"Test"-----------------------------------
-    Minigame test = new TestGame(0, this.dc, this.cp); //pass off cp instead of the whole thing (cp can change as we please)
-
-    //-------------------------------------------------------------------------
-    //-------------------------FirstToTheTop-------------------------------
-    ArrayList<Entity> FTTTEntityList = new ArrayList<>();
-    FTTTEntityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    FTTTEntityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    FTTTEntityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    FTTTEntityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    FTTTEntityList.add(new Entity(5, "maze block 1", 125.0, 525.0, 310.0, 50.0, true, Color.RED, this.dc));
-    FTTTEntityList.add(new Entity(6, "maze block 2", 675.0, 525.0, 310.0, 50.0, true, Color.RED, this.dc));
-    FTTTEntityList.add(new Entity(7, "maze block 3", 300.0, 400.0, 100.0, 300.0, true, Color.RED, this.dc));
-    FTTTEntityList.add(new Entity(8, "maze block 4", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
-    FTTTEntityList.add(new Entity(9, "maze block 5", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
+    //ADDING MINIGAMES
     
-    
+    //format is:
+    //Minigame MingameName = new nameOfClass(id, this.dc, this.cp);
+    Minigame test = new TestGame(0, this.dc, this.cp);
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp, FTTTEntityList);
     Minigame pong = new Pong(2, this.dc, this.cp);
 
-    //QUICK FORMAT:
-    //-----------------------MINIGAME NAME-----------------------------------
-    //create entity list for that game
-    //make entities for that game
-    //make minigame
-
-    //remember to add it to the specific game arraylist (note that some 4 player games can still be played by 2 or 3 players)
-    
-    //-----------------------ADDING MINIGAMES------------------------
-
+    //add minigames to lists here
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
     fourPlayerMinigameList.add(pong);
-    
-    //-------------------------------------------------------------------------
     
     GameScreen n = new GameScreen(dc, this.playerList);
     

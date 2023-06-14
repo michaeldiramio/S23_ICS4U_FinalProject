@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class GameScreen {
-
+  
   //instance variables
   private DConsole dc;
   private ArrayList<Player> playerList;
@@ -488,7 +488,7 @@ public class GameScreen {
     
   }
 
-  public void winScreen() { //bars display score trth (IN ODER OF SCORE GET ALEX CODE)
+  public void winScreen() { //bars display score highet to lowest
     boolean play = false;
     int up = 1;
     int trans = 1;
@@ -533,6 +533,86 @@ public class GameScreen {
     }
     playerList.clear();
     dc.pause(50);
+  }
+
+  public void gameSwap(ArrayList<Player> cp) {
+    boolean play = false;
+    int change = 4;
+    int col = 4;
+    LocalTime start = LocalTime.now(); //reset time to 0
+    int width = 2;
+    int c = 1;
+    
+    /*int cPos[][] = {
+      {200, 600}, {175, 375}
+    };
+    String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"}; */ //Images sizes need to be changed
+
+    while (!play) {
+      dc.setOrigin(DConsole.ORIGIN_CENTER);
+
+      //changing color
+      if (col >= 150 || col <= 0) {
+        change *= -1;
+      }
+      col += change;
+
+      dc.setPaint(cp.get(0).getColor()); 
+      dc.fillRect(200, 275, 400, 550);
+
+      dc.setPaint(cp.get(1).getColor());
+      dc.fillRect(600, 275, 400, 550);
+
+      dc.drawImage("Images/fire.png", 400, 275);
+
+      dc.setPaint(new Color(255-col, 50+col, col)); 
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+      dc.drawString("VS", 400, 275);
+
+      /*for (int i = 0; i < cp.size(); i++) {
+        if (cp.get(i).getID() == 1) {
+          dc.drawImage(avatar[1], cPos[i][i], cPos[i][i]);
+        } else if (cp.get(i).getID() == 2) {
+          dc.drawImage(avatar[2], cPos[i][i], cPos[i][i]);
+        } else if (cp.get(i).getID() == 3) {
+          dc.drawImage(avatar[3], cPos[i][i], cPos[i][i]);
+        } else if (cp.get(i).getID() == 4) {
+          dc.drawImage(avatar[4], cPos[i][i], cPos[i][i]);
+        }
+      }*/
+
+      //countdown
+      LocalTime end = LocalTime.now(); //end timer
+      long value = Duration.between(start, end).toMillis();
+      if (value > 3000) {
+        if (value > 5900) { //end
+          play = true;
+        }
+
+        //plusing circle effect
+        if (width == 51) {
+          width = 0;
+          c = 2;
+        } else if (width == 0) {
+          c = -2;
+        }
+        width++;
+        dc.setPaint(new Color(126, 217, 87)); //green
+        dc.fillEllipse(400, 275, 150, 150);
+        if (c > 0) {
+          dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
+          dc.fillEllipse(400, 275, 150+width, 150+width);
+        }
+
+        //number countdown
+        dc.setPaint(new Color(255, 255, 255)); //white
+        dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+        dc.drawString(6-(int)(value/1000), 400, 260);
+      }
+      
+      dc.redraw();
+      dc.pause(20);
+    }
   }
 
   //draw the default background which is currently halo skybox

@@ -1,25 +1,20 @@
 import DLibX.*;
-import java.awt.*;
+import java.awt.Color;
 import java.util.*;
 
-public class TestGame extends Minigame {
-  DConsole dc;
-   
-  //Constructor
-  public TestGame(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
-    this.dc = dc;
+public class Kahoot extends Minigame {
+
+public Kahoot(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
+    super(0, dc, players, entities);
   }
 
-  //create entities here
+//create entities here
   private void addEntites(){
     super.entityList.add(new Entity(1, "joesef", 50, 50, 50, 50, true, Color.GREEN, this.dc));
-    super.entityList.add(new Entity(1, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(2, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(3, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(4, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(5, "testing object 1", 500.0, 225.0, 100.0, 100.0, true, Color.RED, this.dc));
-    super.entityList.add(new Entity(6, "testing object 2", 150.0, 100.0, 50.0, 70.0, false, Color.BLUE, this.dc));
+    super.entityList.add(new Entity(2, "Answer 1", 75, 75, 55, 55, true, Color.RED, this.dc));
+    super.entityList.add(new Entity(3, "Answer 2", 75, 75, 155, 155, true, Color.GREEN, this.dc));
+    super.entityList.add(new Entity(4, "Answer 3", 75, 75, 255, 55, true, Color.BLUE, this.dc));
+    super.entityList.add(new Entity(5, "Answer 4", 75, 75, 355, 155, true, Color.YELLOW, this.dc));
     
   }
 
@@ -37,9 +32,7 @@ public class TestGame extends Minigame {
     
     boolean game = true;
     int cycles = 0;
-
     int seconds = 8;
-
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
@@ -53,12 +46,8 @@ public class TestGame extends Minigame {
         cycles = 0;
       }
 
-      Random r = new Random();
-      playerList.get(3).addToPoints(10000);
-
       if (seconds == 0) { //15 second are up, game ends
         game = false;
-        super.endGame();
       }
 
       dc.redraw();
@@ -69,4 +58,7 @@ public class TestGame extends Minigame {
   
 
 
+
+
+  
 }

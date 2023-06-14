@@ -128,6 +128,11 @@ public abstract class Minigame {
         }
       }
     }
+
+    //reset all player points for next game
+    for (int i = 0; i < tempPlayerList.length; i++) {
+      playerList.get(i).resetPoints();
+    }
     
   }
 

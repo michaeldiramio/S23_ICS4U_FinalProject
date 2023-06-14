@@ -110,9 +110,11 @@ public class Main { //git test
         cp.add(playerList.get(j + 1)); //2nd player
         System.out.println(cp.get(0).getID() + " " + cp.get(1).getID()); //for testing
         n.gameSwap(cp);
+        tempSubMinigameList.get(n.getCurrentGame()).setPlayers(cp);
         tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game (cp has already been passed into the constructor, if it hasnt that means you can play the game with all four players, so the rest of this code wont matter in that case) 
       }
 
+      tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList);
       tempSubMinigameList.get(n.getCurrentGame()).endGame();
       
     }

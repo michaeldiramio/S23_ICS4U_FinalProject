@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.Color;
 
 public class Entity {
-
+  
   //Instance variables
   private int id;
   private String name;
@@ -74,17 +74,23 @@ public class Entity {
     
     
     if(orientation == 0) {
-      return playerTop < entityBottom + 5.0 && playerBottom > entityTop + 2.0 && ((playerLeft > entityLeft - 2.0 && playerLeft < entityRight) || (playerRight < entityRight + 2.0 && playerRight > entityLeft));
+      return playerTop < entityBottom + 5.0 && playerBottom > entityTop + 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 1) {
-      return playerLeft < entityRight + 5.0 && playerLeft > entityRight - 2.0 && ((playerTop < entityBottom && playerTop > entityTop - 2.0) || (playerBottom > entityTop && playerBottom < entityBottom + 2.0));
+      return playerLeft < entityRight + 5.0 && playerLeft > entityRight - 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     } else if(orientation == 2) {
-      return playerBottom > entityTop - 5.0 && playerBottom < entityBottom - 2.0 && ((playerLeft > entityLeft - 2.0 && playerLeft < entityRight) || (playerRight < entityRight + 2.0 && playerRight > entityLeft));
+      return playerBottom > entityTop - 5.0 && playerBottom < entityBottom - 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 3) {
-      return playerRight > entityLeft - 5.0 && playerRight < entityLeft + 2.0 && ((playerTop < entityBottom && playerTop > entityTop - 2.0) || (playerBottom > entityTop && playerBottom < entityBottom + 2.0));
+      return playerRight > entityLeft - 5.0 && playerRight < entityLeft + 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     }
     
     return false;
   }
+
+  public void move(double xChange, double Ychange){
+    this.x += x;
+    this.y += y;
+  }
+ 
 
   public void draw() {
     this.dc.setPaint(this.color);

@@ -4,11 +4,13 @@ import java.util.*;
 
 public abstract class Minigame {
 
+  // PLEASE
+
   //Instance variables
   public int id;
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
   public ArrayList<Player> playerList;
-  public ArrayList<Entity> entityList;
+  public ArrayList<Entity> entityList = new ArrayList<Entity>();
 
   //Constructor
   public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
@@ -18,7 +20,12 @@ public abstract class Minigame {
     this.entityList = entities;
   }
 
+
   public Minigame(int id, DConsole dc, ArrayList<Player> players) {
+
+  //No Entities
+   public Minigame(int id, DConsole dc, ArrayList<Player> players) {
+
     this.id = id;
     this.dc = dc;
     this.playerList = players;
@@ -126,7 +133,19 @@ public abstract class Minigame {
         }
       }
     }
+
+    //reset all player points for next game
+    for (int i = 0; i < tempPlayerList.length; i++) {
+      playerList.get(i).resetPoints();
+    }
     
+  }
+
+  //Reset player points
+  public void resetPlayerPoints() {
+    for (int i = 0; i < playerList.size(); i++) {
+      playerList.get(i).resetPoints();
+    }
   }
 
 

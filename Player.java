@@ -7,6 +7,8 @@ import java.util.ArrayList;
 //Player class keeps player data 
 public class Player {
 
+  // PLEASE
+
   //Instance Variables
   private int id;
   private int score;
@@ -40,19 +42,19 @@ public class Player {
   public void draw() {
     this.dc.setPaint(this.color);
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
-    this.dc.fillRect(this.xPOS, this.yPOS, 20, 20);
+    this.dc.fillRect(this.xPOS, this.yPOS, this.xSize, this.ySize);
     this.dc.setPaint(new Color(0,0,0));
     dc.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
     this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 
   //Move X
-  public void moveX(int xChange) {
+  public void moveX(double xChange) {
     this.xPOS += xChange;
   }
 
   //move Y
-  public void moveY(int yChange) {
+  public void moveY(double yChange) {
     this.yPOS += yChange;
   }
 
@@ -108,12 +110,12 @@ public class Player {
   }
 
   //Get size x
-  public int getSizeX() {
+  public double getSizeX() {
     return xSize;
   }
 
   //Get size y
-  public int getSizeY() {
+  public double getSizeY() {
     return ySize; 
   }
 
@@ -130,6 +132,11 @@ public class Player {
   //reset minigame points
   public void resetPoints() {
     this.minigamePoints = 0;
+  }
+
+  //set full position
+  public void setPOS(double x, double y) {
+    
   }
 
   //set position X

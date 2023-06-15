@@ -557,11 +557,19 @@ public class GameScreen {
       }
       col += change;
 
+      //Make first player's box
       dc.setPaint(cp.get(0).getColor()); 
       dc.fillRect(200, 275, 400, 550);
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
+      dc.setPaint(cp.get(1).getColor()); //get the other players color (cool contrast)
+      dc.drawString(cp.get(0).getUsername(), 225, 275);
 
+      //2nd player's box
       dc.setPaint(cp.get(1).getColor());
       dc.fillRect(600, 275, 400, 550);
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
+      dc.setPaint(cp.get(0).getColor()); 
+      dc.drawString(cp.get(1).getUsername(), 575, 275);
 
       dc.drawImage("Images/fire.png", 400, 275);
 

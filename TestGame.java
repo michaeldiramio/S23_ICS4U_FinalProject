@@ -53,12 +53,8 @@ public class TestGame extends Minigame {
         cycles = 0;
       }
 
-      Random r = new Random();
-      playerList.get(3).addToPoints(10000);
-
       if (seconds == 0) { //15 second are up, game ends
         game = false;
-        super.endGame();
       }
 
       dc.redraw();

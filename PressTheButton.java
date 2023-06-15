@@ -69,20 +69,22 @@ public class PressTheButton extends Minigame {
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
 
-
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
       //time
       dc.setPaint(new Color(0, 0, 0));//black
-      super.printTime(seconds, 300, 40);
+      super.printTime(seconds, 100, 40);
 
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
-      dc.drawString("Press the button!!!", 200, 200); 
-      
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
-      dc.drawString(key[correctKey], 300, 300); 
-
+    
       //button
       dc.setPaint(new Color(225, 0, 0)); //red
-      dc.fillEllipse(300, 300, 300, 300);
+      dc.fillEllipse(400, 300, 300, 300);
+
+      dc.setPaint(new Color(0, 0, 0));//black
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
+      dc.drawString("Press the button!!!", 400, 100); 
+      
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
+      dc.drawString(key[correctKey], 400, 275); 
       
 
       cycles++;
@@ -105,6 +107,7 @@ public class PressTheButton extends Minigame {
       dc.redraw();
       dc.pause(20);
     }
+
 
     //rewards points to players based on where they are in tempPlayerArrayList
     for(int i = 0; i < tempPlayerList.size(); i++){

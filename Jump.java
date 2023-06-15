@@ -80,6 +80,8 @@ public class Jump extends Minigame {
             }
           }
         }
+
+        int work;
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0] && !movementAllowance[2]) { //Up

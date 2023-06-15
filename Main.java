@@ -43,11 +43,13 @@ public class Main { //git test
     Minigame test = new TestGame(0, this.dc, this.cp);
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp, FTTTEntityList);
     Minigame pong = new Pong(2, this.dc, this.cp);
+    Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
 
     //add minigames to lists here
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
     fourPlayerMinigameList.add(pong);
+    fourPlayerMinigameList.add(MazeRun);
     
     GameScreen n = new GameScreen(dc, this.playerList);
     

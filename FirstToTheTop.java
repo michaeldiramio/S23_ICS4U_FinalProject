@@ -7,8 +7,8 @@ public class FirstToTheTop extends Minigame {
   // PLEASE
 
   //Constructor
-  public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList, ArrayList<Entity> entityList) {
-    super(1, dc, playerList, entityList);
+  public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList) {
+    super(1, dc, playerList);
   }
 
 

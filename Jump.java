@@ -82,11 +82,11 @@ public class Jump extends Minigame {
         }
   
         // movement based on key input and if movement is allowed (from entity bounds)
-        if(tempControl[0] && movementAllowance[0]) { //Up
-          playerList.get(i).moveY(-10);
+        if(tempControl[0] && movementAllowance[0] && !movementAllowance[2]) { //Up
+          playerList.get(i).moveY(-75);
         }
         if(movementAllowance[2]) { //down
-          playerList.get(i).moveY(5);
+          playerList.get(i).moveY(2);
         }
       }
     }

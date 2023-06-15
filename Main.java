@@ -47,11 +47,11 @@ public class Main { //git test
     Minigame Jump = new Jump(5, this.dc, this.cp);
 
     //add minigames to lists here
-    fourPlayerMinigameList.add(Jump);
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
     fourPlayerMinigameList.add(pong);
     fourPlayerMinigameList.add(MazeRun);
+    fourPlayerMinigameList.add(Jump);
     
     GameScreen n = new GameScreen(dc, this.playerList);
     

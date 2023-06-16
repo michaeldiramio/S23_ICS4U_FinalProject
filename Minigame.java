@@ -20,7 +20,6 @@ public abstract class Minigame {
 
   //No Entities
    public Minigame(int id, DConsole dc, ArrayList<Player> players) {
-
     this.id = id;
     this.dc = dc;
     this.playerList = players;

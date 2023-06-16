@@ -47,11 +47,11 @@ public class GameScreen {
 
       dc.setPaint(new Color(0,25,255));
       dc.setFont(customFont);
-  		dc.drawString("Definity Not A",400,75);
-      dc.drawString("Mario Party Ripoff",400,150);
+  		dc.drawString("Totally Not A",400,75);
+      dc.drawString("Mario Party Rip off",400,150);
      
       dc.redraw();
-      dc.pause(100);
+      dc.pause(20);
     }
   }
   

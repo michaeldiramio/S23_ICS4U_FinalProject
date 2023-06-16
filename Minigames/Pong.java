@@ -53,7 +53,17 @@ public class Pong extends Minigame {
 
       //ball passes edge (WIN)
       if(bx < 0 || bx > 800) {
+        
+        if(bx < 0) { //player 2 wins
+          playerList.get(1).addToPoints(1000);
+        } else if (bx > 800) { //player 1 wins
+          playerList.get(0).addToPoints(1000);
+        }
+        
         game = false;
+        //resize characters back to normal
+        playerList.get(0).setSize(20, 20);
+        playerList.get(1).setSize(20, 20);
       }
 
       //move ball 

@@ -54,7 +54,8 @@ public class GameScreen {
       dc.pause(20);
     }
   }
-  
+
+  //Player join screen
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
     WordInput in = new WordInput(dc);
@@ -263,6 +264,7 @@ public class GameScreen {
     
   }
 
+  //Setting username screen
   public void nicknames() {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
@@ -318,6 +320,7 @@ public class GameScreen {
     }
   }
 
+  //game vote screen
   public void select(ArrayList<Minigame> subMinigameList) {
     LocalTime start = LocalTime.now(); //reset time to 0
     boolean gameChosen = false;
@@ -488,6 +491,7 @@ public class GameScreen {
     
   }
 
+  //Leaderboard at end
   public void winScreen() { //bars display score highet to lowest
     boolean play = false;
     int up = 1;
@@ -666,10 +670,12 @@ public class GameScreen {
     return playerList.size();
   }
 
+  //Return the game being played
   public int getCurrentGame() {
     return this.currentGame;
   }
 
+  //Get the players playing
   public ArrayList<Player> getActivePlayers() {
     ArrayList<Player> tempActivePlayers = new ArrayList<Player>();
     for(int i = 0; i < 4; i++) {
@@ -678,6 +684,7 @@ public class GameScreen {
     return tempActivePlayers;
   }
 
+  //Get how many are playing
   public int getPlayerAmount() {
     return this.playerAmount;
   }

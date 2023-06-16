@@ -82,7 +82,6 @@ public class MazeRun extends Minigame {
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
     
-    
     int cycles = 0;
     int seconds = 1;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)

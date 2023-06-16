@@ -24,19 +24,16 @@ public class Control {
   );
 
   private String[] universalKeys = player4Keys;
-
   
   // data
   private int playerNum;
   private DConsole dc;
-
 
   // constructor
   public Control(int playerNum, DConsole dc) {
     this.playerNum = playerNum;
     this.dc = dc;
   }
-
   
   /*
   // METHODS
@@ -60,11 +57,10 @@ public class Control {
   public boolean[] getPlayerKeysPressed() {
     int[] tempKeys = this.getCurrentKeycodesPressed(); // gets the player's current keycodes (integer value)
     
-    int[] tempKeycodes = playerKeycodes.get(this.playerNum - 1); // gets the desired player's assigned keycodes: 
-                                                    // ex. player 1 will be designated 87,65,83,68 (w,a,s,d)
+    int[] tempKeycodes = playerKeycodes.get(this.playerNum - 1); // gets the desired player's assigned keycodes:
+    //ex. player 1 will be designated 87,65,83,68 (w,a,s,d)
     
-    boolean[] tempKeysActive = new boolean[tempKeycodes.length]; // creating boolean array to later store which 
-                                                         // keys are active
+    boolean[] tempKeysActive = new boolean[tempKeycodes.length]; // creating boolean array to later store which keys are active
 
     // checks each active key and compares it with the player's possible keys to evaluate if the key is pressed
     // ex. if this method is used for player1, if they are pressing w and s, the method would return true,false,true,false

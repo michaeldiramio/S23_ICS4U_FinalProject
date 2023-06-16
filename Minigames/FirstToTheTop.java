@@ -4,17 +4,13 @@ import java.util.*;
 
 public class FirstToTheTop extends Minigame {
 
-  // PLEASE
-
   //Constructor
   public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList) {
     super(id, dc, playerList);
   }
 
-
   double spawnCoordX = 347.5;
   double spawnCoordY = 510.0;
-
 
   @Override
   public void moveCharacters() {

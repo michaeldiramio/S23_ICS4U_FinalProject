@@ -40,9 +40,11 @@ public class Entity {
     this.color = color;
   }
 
+  //Get entity bounds
   public boolean[] getEntityBounds(Player player) {
     boolean[] boundsArray = new boolean[4];
 
+    //player collides with entitiy
     if(this.collision) {
       for(int i = 0; i < boundsArray.length; i++) {
         boundsArray[i] = boundsCalculation(i, player) ? true : false;
@@ -54,6 +56,7 @@ public class Entity {
     
   }
 
+  //============================================================Calculations for Bounds=======================================================================
   private boolean boundsCalculation(int orientation, Player player) {
     double playerX = player.getX();
     double playerY = player.getY();
@@ -85,13 +88,15 @@ public class Entity {
     
     return false;
   }
+  //=========================================================================================================================================================
 
+  //Entity movement
   public void move(double xChange, double Ychange){
     this.x += x;
     this.y += y;
   }
- 
 
+  //Draw the entity
   public void draw() {
     this.dc.setPaint(this.color);
     this.dc.fillRect(this.x, this.y, this.width, this.height);

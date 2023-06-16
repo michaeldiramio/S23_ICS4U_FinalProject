@@ -59,7 +59,7 @@ public class Jump extends Minigame {
   }
 
 
-  //New character movement
+  //New character movement (only jump up)
   @Override
   public void moveCharacters() {
     boolean[] movementAllowance = {true, true, true, true};
@@ -81,8 +81,6 @@ public class Jump extends Minigame {
           }
         }
 
-        int work;
-  
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0] && !movementAllowance[2]) { //Up
           playerList.get(i).moveY(-75);

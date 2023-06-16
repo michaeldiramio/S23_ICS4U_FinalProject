@@ -5,7 +5,7 @@ import java.util.*;
 public class Kahoot extends Minigame {
 
 public Kahoot(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
-    super(0, dc, players, entities);
+    super(id, dc, players, entities);
   }
 
 //create entities here

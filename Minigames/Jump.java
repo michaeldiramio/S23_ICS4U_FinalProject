@@ -14,7 +14,7 @@ public class Jump extends Minigame {
    
   //Constructor
   public Jump(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
+    super(id, dc, playerList);
     this.dc = dc;
   }
 

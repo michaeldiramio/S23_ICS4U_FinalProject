@@ -11,7 +11,7 @@ public class PressTheButton extends Minigame {
 
   //Constructor
   public PressTheButton(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(1, dc, playerList);
+    super(id, dc, playerList);
     this.correctKey = r.nextInt(3); // 0-3 random correct key
     this.canPress = new boolean[playerList.size()];
     for(int i = 0; i < canPress.length; i++) {

@@ -41,7 +41,6 @@ public class Main { //git test
     //add minigames to lists here
     fourPlayerMinigameList.add(pressTheButton);
     twoPlayerMinigameList.add(test);
-    twoPlayerMinigameList.add(FirstToTheTop);
     twoPlayerMinigameList.add(pong);
     fourPlayerMinigameList.add(jump);
 
@@ -124,7 +123,7 @@ public class Main { //git test
   //Get minigame folder
   public ArrayList<Minigame> findMinigame(int id) {
     for (int i = 0; i < minigameList.size(); i++) { //go through the 2player list and 4player list
-      for (int j = 0; i < minigameList.get(i).size(); j++) { //go through each index in those lists
+      for (int j = 0; j < minigameList.get(i).size(); j++) { //go through each index in those lists
         if (id == minigameList.get(i).get(j).getID()) { //get id from the arraylist inside the arraylist
           return minigameList.get(i);
         }

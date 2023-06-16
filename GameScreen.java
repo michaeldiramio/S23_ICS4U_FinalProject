@@ -503,7 +503,7 @@ public class GameScreen {
 
       sortingByScore();; //sort array list by score
 
-      for (int i = 0; i < playerCount(); i++) {
+      for (int i = 0; i < playerList.size(); i++) {
         dc.setPaint(playerList.get(i).getColor()); //color array
         int tempScore = playerList.get(i).getScore();
         dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time

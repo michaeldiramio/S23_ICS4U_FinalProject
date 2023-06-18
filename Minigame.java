@@ -33,9 +33,10 @@ public abstract class Minigame {
   //**NOTE:** WHEN MAKING A GAME WITH DIFFERENT MOVEMENT, USE THE @OVERRIDE METHOD IN YOUR MINIGAME TO REMAKE THIS METHOD AS YOU PLEASE
   //Move characters 
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
 
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
+      
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   

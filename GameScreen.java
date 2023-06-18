@@ -26,6 +26,10 @@ public class GameScreen {
   }
 
    public void StartScreen(){
+      //For blinking affect
+      int transChange = -5;
+      int trans = 250;
+     
     //space bar isnt pressed
     while(!dc.isKeyPressed(' ')) {
       dc.clear();
@@ -33,23 +37,37 @@ public class GameScreen {
       Font customFont = null;
       
       try {
-          //create the font to use. Specify the size!
-          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(45f);
-          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        //create the font to use. Specify the size!
+        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(50f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
-          //register the font
-          ge.registerFont(customFont);
+        //register the font
+        ge.registerFont(customFont);
       } catch (IOException e) {
           e.printStackTrace();
       } catch(FontFormatException e) {
           e.printStackTrace();
       }
 
+      //Change Transparency
+      if (trans <= 0) {
+        transChange*=-1;
+      } else if (trans >= 255) {
+        transChange*=-1;
+      }
+
+      //Set new transparency 
+      trans+=transChange; 
+
+      //Print on Screen
       dc.setPaint(new Color(0,25,255));
       dc.setFont(customFont);
   		dc.drawString("Totally Not A",400,75);
       dc.drawString("Mario Party Rip off",400,150);
-     
+      dc.setPaint(new Color(255, 25, 0, trans)); //
+      dc.setFont(new Font("Comic sans", Font.PLAIN, 18));
+      dc.drawString("Press Space to Play", 400, 480);
+      
       dc.redraw();
       dc.pause(20);
     }
@@ -71,12 +89,12 @@ public class GameScreen {
     Font customFontPlayers = null;
       
       try {
-          //create the font to use. Specify the size!
-          customFontPlayers = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(25f);
-          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        //create the font to use. Specify the size!
+        customFontPlayers = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(25f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
-          //register the font
-          ge.registerFont(customFontPlayers);
+        //register the font
+        ge.registerFont(customFontPlayers);
       } catch (IOException e) {
           e.printStackTrace();
       } catch(FontFormatException e) {
@@ -113,10 +131,7 @@ public class GameScreen {
         if(this.activePlayers[i] != null) {
           this.playerAmount++;
         }
-      }
-      
-
-      
+      }      
 
       if (!(tempPlayers[0])) { //not joined
         dc.setPaint(new Color(255,255,255)); //white

@@ -30,6 +30,7 @@ public class Main { //git test
     this.playerList.add(new Player(3, new Color (153, 51, 255), 200, 200, this.dc));
     this.playerList.add(new Player(4, new Color (200, 0, 0), 200, 200, this.dc));
 
+    //---------------------------------------------------Add MiniGames Here------------------------------------------------------------------
     //Creating Minigames
     Minigame test = new TestGame(0, this.dc, this.cp);
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
@@ -39,13 +40,15 @@ public class Main { //git test
     Minigame jump = new Jump(5, this.dc, this.cp);
 
     //add minigames to lists here
-    fourPlayerMinigameList.add(pressTheButton);
-    twoPlayerMinigameList.add(test);
-    twoPlayerMinigameList.add(pong);
     fourPlayerMinigameList.add(jump);
+    twoPlayerMinigameList.add(MazeRun);
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens
     GameScreen n = new GameScreen(dc, this.playerList);
+
+    //Title screen
+    n.StartScreen();
 
     //Initilize game
     n.join();
@@ -89,8 +92,7 @@ public class Main { //git test
           cp.clear();
           cp.add(playerList.get(j)); //get the first player
           cp.add(playerList.get(j + 1)); //2nd player
-          System.out.println(cp.get(0).getID() + " " + cp.get(1).getID()); //for testing
-          n.gameSwap(cp);
+          n.gameSwap(cp); //show which players are playing
           tempSubMinigameList.get(n.getCurrentGame()).setPlayers(cp); //only play with 2 players
           tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game 
         }

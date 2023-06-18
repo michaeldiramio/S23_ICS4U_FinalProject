@@ -134,7 +134,8 @@ public class Player {
 
   //set full position
   public void setPOS(double x, double y) {
-    
+    this.xPOS = x;
+    this.yPOS = y;
   }
 
   //set position X

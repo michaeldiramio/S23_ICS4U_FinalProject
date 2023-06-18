@@ -20,18 +20,29 @@ public class Jump extends Minigame {
 
   //Entities
   private void addEntites(){
-    super.entityList.add(new Entity(0, 400, 490, 800.0, 10.0, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(0, 400, 550, 800, 70, Color.BLACK, this.dc)); //floor
+    super.entityList.add(new Entity(1, 400, 100, 800, 400, Color.BLACK, this.dc)); //cieling
+  }
+
+  //Set player spawn and size
+  private void spawnPlayers() {
+    playerList.get(0).setPOS(150, 450);
+    playerList.get(1).setPOS(300, 450);
+    playerList.get(2).setPOS(450, 450);
+    playerList.get(3).setPOS(600, 450);
   }
 
   //Play the game
   @Override
   public void play() {
-    addEntites();
+    addEntites(); //load entities
+    spawnPlayers(); //spawn players
 
-
+    //Variables
     int cycles = 0;
-    int seconds = 15;
+    int seconds = 25;
     game = true;
+    
     //Game Loop
     while (game) {
       dc.clear();
@@ -58,13 +69,12 @@ public class Jump extends Minigame {
     
   }
 
-
-  //New character movement (only jump up)
+  //Move Characters (only up and down)
   @Override
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
-  
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
+      
       if(this.playerList.get(i) != null) { //get current pressed keys
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); 
         
@@ -91,8 +101,6 @@ public class Jump extends Minigame {
       }
     }
   }
-
-
 
 
 

@@ -40,6 +40,7 @@ public class Main { //git test
     Minigame jump = new Jump(5, this.dc, this.cp);
     Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
 
+
     //add minigames to lists here
     fourPlayerMinigameList.add(jump);
     twoPlayerMinigameList.add(MazeRun);
@@ -82,11 +83,15 @@ public class Main { //git test
     //set names
     n.nicknames();
     
-    // play 4 games for now 
+    // play 4 games
     for(int i = 0; i < 4; i++) {
+      //Shuffle Minigames
+      Collections.shuffle(tempSubMinigameList); //comment this out if you are testing a minigame
+
+      //Players vote
       n.select(tempSubMinigameList); 
 
-      //The minigame is a 2 player type
+      //The selected minigame is a 2 player type
       if (findMinigame(tempSubMinigameList.get(n.getCurrentGame()).getID()) == twoPlayerMinigameList) {
         //Loop twice for 2 1v1s
         for (int j = 0; j <= 3; j+=2) { 
@@ -111,7 +116,7 @@ public class Main { //git test
     //Display the leaderboard
     n.winScreen();
     
-  }
+  } //end of run
 
   //Player linear search
   public Player findByID(int id) {

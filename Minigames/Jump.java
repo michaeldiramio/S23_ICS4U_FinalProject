@@ -16,6 +16,8 @@ public class Jump extends Minigame {
   int seconds; 
   //Keep track of alive players
   boolean[] alivePlayers = {true, true, true, true};
+  //Speed
+  int xChange;
    
   //Constructor
   public Jump(int id, DConsole dc, ArrayList<Player> playerList) {
@@ -32,10 +34,13 @@ public class Jump extends Minigame {
 
   //Set player spawn and size
   private void spawnPlayers() {
-    playerList.get(0).setPOS(150, 450);
-    playerList.get(1).setPOS(300, 450);
-    playerList.get(2).setPOS(450, 450);
-    playerList.get(3).setPOS(600, 450);
+    playerList.get(0).setPOS(150, 480);
+    playerList.get(1).setPOS(300, 480);
+    playerList.get(2).setPOS(450, 480);
+    playerList.get(3).setPOS(600, 480);
+    for(int i = 0; i < alivePlayers.length; i++) { //set players to alive
+      alivePlayers[i] = true;
+    }
   }
 
   //Play the game
@@ -47,6 +52,7 @@ public class Jump extends Minigame {
     //Variables
     cycles = 0;
     seconds = 25;
+    xChange = -5;
     game = true;
     
     //Game Loop
@@ -58,6 +64,12 @@ public class Jump extends Minigame {
       this.moveCharacters();
       super.refreshScreen();
 
+      //Print Jump
+      this.dc.setPaint(new Color(255,255,255));
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 200));
+      this.dc.drawString("JUMP!", 400, 100);
+      this.dc.setPaint(new Color(0,0,0));
+
       cycles++;
        //one second has passed
       if (cycles >= 50) {
@@ -68,6 +80,7 @@ public class Jump extends Minigame {
       //time is up or all players die, game ends
       if (seconds == 0 || (!alivePlayers[0] && !alivePlayers[1] && !alivePlayers[2] && !alivePlayers[3])) { 
         game = false;
+        this.entityList.clear(); //clear entities so they spawn in their original position if replayed
       }
 
       dc.redraw();
@@ -113,26 +126,19 @@ public class Jump extends Minigame {
       }
     }
   }
-
-  //still a work in progress
   
   //Move the block entity
   public void moveBlock() {
 
-    int xChange = -10; //direction
-
     //check bounds
     if (this.entityList.get(2).getX() >= 800) { //right bound
-      xChange = -10;
+      xChange*=-1;
     } else if (this.entityList.get(2).getX() <= 0) { //left bound
-      xChange = 10;
+      xChange*=-1;
     }
 
     //move 
     this.entityList.get(2).move(xChange, 0);
-
-    System.out.println(this.entityList.get(2).getX());
-
     
   }
 

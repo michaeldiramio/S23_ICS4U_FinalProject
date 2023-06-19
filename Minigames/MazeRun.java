@@ -84,7 +84,7 @@ public class MazeRun extends Minigame {
     //this.playerList.get(0).addToPoints(4);
     
     int cycles = 0;
-    int seconds = 1;
+    int seconds = 15;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
@@ -98,7 +98,7 @@ public class MazeRun extends Minigame {
         cycles = 0;
       }
 
-      if (seconds == -10) { //15 second are up, game ends
+      if (seconds == 0) { //15 second are up, game ends
         game = false;
       }
 

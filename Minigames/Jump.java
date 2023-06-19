@@ -11,6 +11,11 @@ public class Jump extends Minigame {
   //Instance Variables
   DConsole dc;
   private boolean game;
+  //To keep track of time
+  int cycles;
+  int seconds; 
+  //Keep track of alive players
+  boolean[] alivePlayers = {true, true, true, true};
    
   //Constructor
   public Jump(int id, DConsole dc, ArrayList<Player> playerList) {
@@ -22,6 +27,7 @@ public class Jump extends Minigame {
   private void addEntites(){
     super.entityList.add(new Entity(0, 400, 550, 800, 70, Color.BLACK, this.dc)); //floor
     super.entityList.add(new Entity(1, 400, 100, 800, 400, Color.BLACK, this.dc)); //cieling
+    super.entityList.add(new Entity(2, 750, 500, 10, 10, Color.RED, this.dc)); //red block
   }
 
   //Set player spawn and size
@@ -39,8 +45,8 @@ public class Jump extends Minigame {
     spawnPlayers(); //spawn players
 
     //Variables
-    int cycles = 0;
-    int seconds = 25;
+    cycles = 0;
+    seconds = 25;
     game = true;
     
     //Game Loop
@@ -48,6 +54,7 @@ public class Jump extends Minigame {
       dc.clear();
 
       //Move characters and refresh screen
+      this.moveBlock();
       this.moveCharacters();
       super.refreshScreen();
 
@@ -58,8 +65,8 @@ public class Jump extends Minigame {
         cycles = 0;
       }
 
-      //15 second are up, game ends
-      if (seconds == 0) { 
+      //time is up or all players die, game ends
+      if (seconds == 0 || (!alivePlayers[0] && !alivePlayers[1] && !alivePlayers[2] && !alivePlayers[3])) { 
         game = false;
       }
 
@@ -87,6 +94,11 @@ public class Jump extends Minigame {
             //ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
             if(tempEntityBounds[k]) {
               movementAllowance[k] = false;
+            } 
+            if (j == 2 && tempEntityBounds[k]) { //a player hits the red block
+              playerList.get(i).addToPoints(25 - seconds); //their points depend on how long they lived
+              playerList.get(i).setPOS(playerList.get(i).getX(), 700); //move them off the board
+              alivePlayers[i] = false; 
             }
           }
         }
@@ -100,6 +112,28 @@ public class Jump extends Minigame {
         }
       }
     }
+  }
+
+  //still a work in progress
+  
+  //Move the block entity
+  public void moveBlock() {
+
+    int xChange = -10; //direction
+
+    //check bounds
+    if (this.entityList.get(2).getX() >= 800) { //right bound
+      xChange = -10;
+    } else if (this.entityList.get(2).getX() <= 0) { //left bound
+      xChange = 10;
+    }
+
+    //move 
+    this.entityList.get(2).move(xChange, 0);
+
+    System.out.println(this.entityList.get(2).getX());
+
+    
   }
 
 

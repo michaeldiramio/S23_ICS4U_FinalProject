@@ -68,7 +68,6 @@ public class Main { //git test
     //put every single game in here
     for (int i = 0; i < minigameList.size(); i++) { //go through the 2player list and 4player list
       for (int j = 0; j < minigameList.get(i).size(); j++) { //go through each index in those lists
-        System.out.println(minigameList.get(i).get(j).getID());
         tempSubMinigameList.add(minigameList.get(i).get(j)); //add each game
       }
     }

@@ -101,6 +101,7 @@ public class Main { //git test
           n.gameSwap(cp); //show which players are playing
           tempSubMinigameList.get(n.getCurrentGame()).setPlayers(cp); //only play with 2 players
           tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game 
+          n.miniWin(cp);
         }
       } else { //The minigame is a 4 player type
         tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList); //play with everyone

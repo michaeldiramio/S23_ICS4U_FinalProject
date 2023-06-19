@@ -3,6 +3,8 @@ import java.awt.*;
 import java.util.*;
 
 public class Main { //git test
+
+  int julian;
   
   // data
   DConsole dc;

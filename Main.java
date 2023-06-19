@@ -2,9 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class Main { //git test
-
-  int julian;
+public class Main { 
   
   // data
   DConsole dc;
@@ -35,18 +33,26 @@ public class Main { //git test
     //---------------------------------------------------Add MiniGames Here------------------------------------------------------------------
     //Creating Minigames
     Minigame test = new TestGame(0, this.dc, this.cp);
-    Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
+    Minigame firstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
     Minigame pong = new Pong(2, this.dc, this.cp);
-    Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
+    Minigame mazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
-    Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
+    Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
+    Minigame findColor = new FindColor(7, this.dc, this.playerList);
 
     //add minigames to lists here
-    twoPlayerMinigameList.add(FirstToTheTop);
+    fourPlayerMinigameList.add(findColor);
+    
+    /*
+    twoPlayerMinigameList.add(mazeRun);
+    twoPlayerMinigameList.add(collectCoins);
+    twoPlayerMinigameList.add(pong);
+    twoPlayerMinigameList.add(firstToTheTop);
+    
     fourPlayerMinigameList.add(jump);
-    twoPlayerMinigameList.add(MazeRun);
-    twoPlayerMinigameList.add(CollectCoins);
+    fourPlayerMinigameList.add(pressTheButton);
+    */
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

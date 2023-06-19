@@ -111,4 +111,9 @@ public class Entity {
   public double getY() {
     return this.y;
   }
+
+  //Get color
+  public Color getColor() {
+    return this.color;
+  }
 }

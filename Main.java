@@ -42,17 +42,14 @@ public class Main {
     Minigame findColor = new FindColor(7, this.dc, this.playerList);
 
     //add minigames to lists here
-    fourPlayerMinigameList.add(findColor);
-    
-    /*
     twoPlayerMinigameList.add(mazeRun);
     twoPlayerMinigameList.add(collectCoins);
     twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(firstToTheTop);
-    
+    twoPlayerMinigameList.add(firstToTheTop);  
     fourPlayerMinigameList.add(jump);
     fourPlayerMinigameList.add(pressTheButton);
-    */
+    fourPlayerMinigameList.add(findColor);
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens
@@ -113,7 +110,8 @@ public class Main {
         }
       } else { //The minigame is a 4 player type
         tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList); //play with everyone
-        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game 
+        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game
+        n.miniWin(playerList);
       }
       
       //use all 4 players to end the game

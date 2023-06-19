@@ -12,12 +12,12 @@ public class Jump extends Minigame {
   DConsole dc;
   private boolean game;
   //To keep track of time
-  int cycles;
-  int seconds; 
+  private int cycles;
+  private int seconds; 
   //Keep track of alive players
-  boolean[] alivePlayers = {true, true, true, true};
+  private boolean[] alivePlayers = {true, true, true, true};
   //Speed
-  int xChange;
+  private int xChange;
    
   //Constructor
   public Jump(int id, DConsole dc, ArrayList<Player> playerList) {
@@ -26,7 +26,7 @@ public class Jump extends Minigame {
   }
 
   //Entities
-  private void addEntites(){
+  private void addEntities(){
     super.entityList.add(new Entity(0, 400, 550, 800, 70, Color.BLACK, this.dc)); //floor
     super.entityList.add(new Entity(1, 400, 100, 800, 400, Color.BLACK, this.dc)); //cieling
     super.entityList.add(new Entity(2, 750, 500, 10, 10, Color.RED, this.dc)); //red block
@@ -46,7 +46,7 @@ public class Jump extends Minigame {
   //Play the game
   @Override
   public void play() {
-    addEntites(); //load entities
+    addEntities(); //load entities
     spawnPlayers(); //spawn players
 
     //Variables

@@ -245,7 +245,7 @@ public class GameScreen {
       
       LocalTime end = LocalTime.now(); //end timer
       long value = Duration.between(start, end).toMillis(); //duration of time since button was pressed
-      if (value > 1850 && this.playerAmount > 1) {
+      if (value > 1850 && this.playerAmount == 4) {
         if (value < 5000) { //5000 miliseconds is 5 seconds and time for next screen if no more buttons are pressed
 
           //plusing circle effect

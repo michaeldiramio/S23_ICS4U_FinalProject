@@ -126,7 +126,7 @@ public class Main { //git test
     for (int i = 0; i < minigameList.size(); i++) { //go through the 2player list and 4player list
       for (int j = 0; j < minigameList.get(i).size(); j++) { //go through each index in those lists
         if (id == minigameList.get(i).get(j).getID()) { //get id from the arraylist inside the arraylist
-          return minigameList.get(i);
+          return minigameList.get(i); //return the arraylist its in
         }
       }
     }

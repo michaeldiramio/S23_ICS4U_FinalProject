@@ -38,6 +38,7 @@ public class Main { //git test
 
     //------------------------------"Test"-----------------------------------
     Minigame test = new TestGame(0, this.dc, this.cp); //pass off cp instead of the whole thing (cp can change as we please)
+    Minigame Kahoot = new Kahoot(0, this.dc, this.cp);
 
     //-------------------------------------------------------------------------
     //-------------------------FirstToTheTop-------------------------------
@@ -67,6 +68,7 @@ public class Main { //git test
 
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
+    fourPlayerMinigameList.add(Kahoot);
     
     //-------------------------------------------------------------------------
     

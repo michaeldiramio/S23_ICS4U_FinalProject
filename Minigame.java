@@ -145,6 +145,9 @@ public abstract class Minigame {
   }
 
   public void setPlayers(ArrayList<Player> playerList) {
+    
+    
+    
     this.playerList = playerList;
 
   }

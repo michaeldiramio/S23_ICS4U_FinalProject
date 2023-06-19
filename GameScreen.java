@@ -509,6 +509,55 @@ public class GameScreen {
     
   }
 
+  public void miniWin(ArrayList<Player> playerList) { //bars display score highet to lowest
+    boolean play = false;
+    int time = 0;
+
+    Player[] tempPlayerList = new Player[2];
+
+    //fills temp list with players
+    for(int i = 0; i < playerList.size(); i++){
+      try {
+        tempPlayerList[i] = playerList.get(i);
+      }catch (Exception e) {}
+    }
+
+    //bubble sorts players in tempPlayerArray by points
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+             
+                // Swapping
+                temp = tempPlayerList[i];
+                tempPlayerList[i] = tempPlayerList[j];
+                tempPlayerList[j] = temp;
+            }
+        }
+    }
+
+    while (!play) {
+      background(); //draw background
+      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      dc.setPaint(tempPlayerList[0].getColor());
+      dc.fillRect(400, 275, 800, 550);
+
+      dc.setPaint(new Color(255, 255, 255)); 
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
+      dc.drawString("Player "+ tempPlayerList[0].getID() + " Wins", 400, 150);
+
+      if (time > 150) {
+        play = true;
+      }
+      
+      dc.redraw();
+      dc.pause(20);
+      time++;
+    }
+    playerList.clear();
+    dc.pause(50);
+  }
+
   //Leaderboard at end
   public void winScreen() { //bars display score highet to lowest
     boolean play = false;

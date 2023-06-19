@@ -131,6 +131,10 @@ public abstract class Minigame {
     
   }
 
+  public double getNewSpawnPointX(int playerID, double spawnCoord) {
+    return spawnCoord + ((playerID - 1) * 35.0); // it is -1 because ids go from 1-4, whereas for muliplication it should go from 0-3 
+  }
+
   //Reset player points
   public void resetPlayerPoints() {
     for (int i = 0; i < playerList.size(); i++) {

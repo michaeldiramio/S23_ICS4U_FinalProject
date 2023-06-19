@@ -91,14 +91,24 @@ public class Entity {
   //=========================================================================================================================================================
 
   //Entity movement
-  public void move(double xChange, double Ychange){
-    this.x += x;
-    this.y += y;
+  public void move(double xChange, double yChange){
+    this.x += xChange;
+    this.y += yChange;
   }
 
   //Draw the entity
   public void draw() {
     this.dc.setPaint(this.color);
     this.dc.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  //Get entitiy xPOS
+  public double getX() {
+    return this.x;
+  }
+
+  //get yPOS
+  public double getY() {
+    return this.y;
   }
 }

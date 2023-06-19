@@ -5,6 +5,8 @@ import java.util.*;
 
 public class Control {
 
+  int julian;
+
   // constants
   private String[] player1Keys = {"w", "a", "s", "d"};
   private int[] player1Keycodes = {87, 65, 83, 68};

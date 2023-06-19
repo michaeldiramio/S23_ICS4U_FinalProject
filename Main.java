@@ -37,11 +37,14 @@ public class Main { //git test
     Minigame pong = new Pong(2, this.dc, this.cp);
     Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
-    Minigame jump = new Jump(5, this.dc, this.playerList);
+    Minigame jump = new Jump(5, this.dc, this.cp);
+    Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
+
 
     //add minigames to lists here
     fourPlayerMinigameList.add(jump);
     twoPlayerMinigameList.add(MazeRun);
+    fourPlayerMinigameList.add(CollectCoins);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

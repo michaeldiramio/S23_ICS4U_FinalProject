@@ -513,7 +513,7 @@ public class GameScreen {
     boolean play = false;
     int time = 0;
 
-    Player[] tempPlayerList = new Player[2];
+    Player[] tempPlayerList = new Player[playerList.size()];
 
     //fills temp list with players
     for(int i = 0; i < playerList.size(); i++){
@@ -592,12 +592,12 @@ public class GameScreen {
 
         dc.setPaint(new Color(0, 0, 0,255-trans)); 
         dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
-        dc.drawString("Press Any Key To Play Again", 400, 100);
-        String press = in.getCurrentWord();
-        if (press != "") {
+        dc.drawString("Press Space To Play Again", 400, 100);
+        if (dc.isKeyPressed(' ')) {
           play = true;
         }
       }
+      
       
       dc.redraw();
       dc.pause(20);

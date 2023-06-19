@@ -153,6 +153,7 @@ public abstract class Minigame {
     dc.drawString("Time: " + s, x, y);
   }
 
+  //Set players
   public void setPlayers(ArrayList<Player> playerList) {
     this.playerList = playerList;
 

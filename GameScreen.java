@@ -298,6 +298,9 @@ public class GameScreen {
         while(!select) {
           dc.setPaint(playerList.get(i).getColor()); //color array
           dc.fillRect(400, 275, 800, 550); //background color
+          dc.setPaint(new Color(255, 255, 255));
+          dc.setFont(new Font("Comic Sans", Font.BOLD, 35));
+          dc.drawString("Create a Username", 400, 35);
           in.refreshKeys();
 
           dc.drawImage(avatar[i], xvals[i], yvals[i]);

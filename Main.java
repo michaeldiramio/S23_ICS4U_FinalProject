@@ -42,11 +42,11 @@ public class Main { //git test
     Minigame jump = new Jump(5, this.dc, this.cp);
     Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
 
-
     //add minigames to lists here
+    twoPlayerMinigameList.add(FirstToTheTop);
     fourPlayerMinigameList.add(jump);
     twoPlayerMinigameList.add(MazeRun);
-    fourPlayerMinigameList.add(CollectCoins);
+    twoPlayerMinigameList.add(CollectCoins);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

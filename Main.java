@@ -44,7 +44,7 @@ public class Main { //git test
     //add minigames to lists here
     fourPlayerMinigameList.add(jump);
     twoPlayerMinigameList.add(MazeRun);
-    fourPlayerMinigameList.add(CollectCoins);
+    twoPlayerMinigameList.add(CollectCoins);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

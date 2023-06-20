@@ -35,25 +35,27 @@ public class Main {
     Minigame test = new TestGame(0, this.dc, this.cp);
     Minigame firstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
     Minigame pong = new Pong(2, this.dc, this.cp);
-    Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
+    Minigame mazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
     Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
     Minigame findColor = new FindColor(7, this.dc, this.playerList);
-    Minigame SpamPress = new SpamPress(8, this.dc, this.cp);
-    Minigame Kahoot = new Kahoot(9, this.dc, this.cp);
+    Minigame spamPress = new SpamPress(8, this.dc, this.cp);
+    Minigame kahoot = new Kahoot(9, this.dc, this.cp);
+    Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
 
     //add minigames to lists here
-    fourPlayerMinigameList.add(test);
+   
     twoPlayerMinigameList.add(firstToTheTop);
     twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(MazeRun);
+    twoPlayerMinigameList.add(mazeRun);
     fourPlayerMinigameList.add(pressTheButton);
     fourPlayerMinigameList.add(jump);
     twoPlayerMinigameList.add(collectCoins);
     fourPlayerMinigameList.add(findColor);
-    twoPlayerMinigameList.add(SpamPress);
-    fourPlayerMinigameList.add(Kahoot);
+    twoPlayerMinigameList.add(spamPress);
+    fourPlayerMinigameList.add(kahoot);
+    twoPlayerMinigameList.add(rps);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

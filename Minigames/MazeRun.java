@@ -8,7 +8,7 @@ public class MazeRun extends Minigame {
    
   //Constructor
   public MazeRun(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "Maze 2");
     this.dc = dc;
   }
 

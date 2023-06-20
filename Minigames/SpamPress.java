@@ -8,7 +8,7 @@ public class SpamPress extends Minigame {
    
   //Constructor
   public SpamPress(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
+    super(0, dc, playerList, "Tug of War");
     this.dc = dc;
   }
 

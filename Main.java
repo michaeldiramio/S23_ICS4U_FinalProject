@@ -39,7 +39,7 @@ public class Main {
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
     Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
-    //Minigame findColor = new FindColor(7, this.dc, this.playerList);
+    Minigame findColor = new FindColor(7, this.dc, this.playerList);
 
     //add minigames to lists here
     twoPlayerMinigameList.add(mazeRun);
@@ -122,6 +122,7 @@ public class Main {
 
     //Display the leaderboard
     n.winScreen();
+    playerList.clear(); //clears players
     
   } //end of run
 

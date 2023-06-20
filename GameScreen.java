@@ -526,7 +526,7 @@ public class GameScreen {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
-            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+            if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
              
                 // Swapping
                 temp = tempPlayerList[i];
@@ -535,6 +535,9 @@ public class GameScreen {
             }
         }
     }
+
+    int cycles = 0;
+    int seconds = 2;
 
     while (!play) {
       background(); //draw background
@@ -546,16 +549,21 @@ public class GameScreen {
       dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
       dc.drawString("Player "+ tempPlayerList[0].getID() + " Wins", 400, 150);
 
-      if (time > 150) {
+      
+      //one second has passed
+      if (cycles >= 50) {
+        seconds--;
+        cycles = 0;
+      }
+      cycles++;
+
+      if (seconds == 0) {
         play = true;
       }
       
       dc.redraw();
       dc.pause(20);
-      time++;
     }
-    playerList.clear();
-    dc.pause(50);
   }
 
   //Leaderboard at end
@@ -603,7 +611,7 @@ public class GameScreen {
       dc.pause(20);
     }
     playerList.clear();
-    dc.pause(50);
+    dc.pause(20);
   }
 
   public void gameSwap(ArrayList<Player> cp) {

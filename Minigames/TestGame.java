@@ -7,7 +7,7 @@ public class TestGame extends Minigame {
    
   //Constructor
   public TestGame(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "Test");
     this.dc = dc;
   }
 

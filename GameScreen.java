@@ -367,7 +367,6 @@ public class GameScreen {
     while (!gameChosen) { //we are on screen
 
       totalVotes = 0;
-
       
       background(); //draw background
       dc.setOrigin(DConsole.ORIGIN_CENTER);
@@ -389,9 +388,12 @@ public class GameScreen {
       dc.fillRect(500, 425, 160, 160);
 
       // eventually draw game images
-      for(int i = 0; i < 0; i++) {
-        
-      }
+      dc.setPaint(Color.BLACK);
+      dc.setFont(new Font("Comic Sans", Font.PLAIN, 18));
+      dc.drawString(subMinigameList.get(0).getName(), 300, 225);
+      dc.drawString(subMinigameList.get(1).getName(), 500, 225);
+      dc.drawString(subMinigameList.get(2).getName(), 300, 425);
+      dc.drawString(subMinigameList.get(3).getName(), 500, 425);
 
       // coordinates for icons/text
       int[] xCoords = {300, 500, 300, 500};
@@ -547,7 +549,7 @@ public class GameScreen {
 
       dc.setPaint(new Color(255, 255, 255)); 
       dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
-      dc.drawString("Player "+ tempPlayerList[0].getID() + " Wins", 400, 150);
+      dc.drawString(tempPlayerList[0].getUsername() + " Wins", 400, 150);
 
       
       //one second has passed

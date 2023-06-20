@@ -17,7 +17,7 @@ public class FindColor extends Minigame {
 
   //Constructor
   public FindColor(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "4 Corners");
     this.dc = dc;
   }
 

@@ -9,25 +9,33 @@ public abstract class Minigame {
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
   public ArrayList<Player> playerList;
   public ArrayList<Entity> entityList = new ArrayList<Entity>();
+  public String name;
 
   //Constructor
-  public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities) {
+  public Minigame(int id, DConsole dc, ArrayList<Player> players, ArrayList<Entity> entities, String name) {
     this.id = id;
     this.dc = dc;
     this.playerList = players;
     this.entityList = entities;
+    this.name = name;
   }
 
   //No Entities
-   public Minigame(int id, DConsole dc, ArrayList<Player> players) {
+   public Minigame(int id, DConsole dc, ArrayList<Player> players, String name) {
     this.id = id;
     this.dc = dc;
     this.playerList = players;
+    this.name = name;
   }
 
   //get ID
   public int getID() {
     return this.id;
+  }
+
+  //get name
+  public String getName() {
+    return this.name;
   }
 
   //**NOTE:** WHEN MAKING A GAME WITH DIFFERENT MOVEMENT, USE THE @OVERRIDE METHOD IN YOUR MINIGAME TO REMAKE THIS METHOD AS YOU PLEASE

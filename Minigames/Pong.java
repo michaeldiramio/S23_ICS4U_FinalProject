@@ -6,7 +6,7 @@ public class Pong extends Minigame {
 
   //Constructor
   public Pong (int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "Pong");
   }
   
   //Play the game

@@ -10,7 +10,7 @@ public class CollectCoins extends Minigame {
 
   //Constructor
   public CollectCoins (int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "Coin Game");
     coins = new ArrayList<>();
   }
   

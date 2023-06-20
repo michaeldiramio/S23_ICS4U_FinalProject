@@ -4,13 +4,11 @@ import java.util.*;
 
 public class FirstToTheTop extends Minigame {
 
-  private String name;
   private int gifCounter;
 
   //Constructor
   public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(1, dc, playerList);
-    this.name = "First To The Top";
+    super(1, dc, playerList, "Maze 1");
     this.gifCounter = 0;
   }
 

@@ -13,7 +13,7 @@ public class Kahoot extends Minigame {
   private Color rightAnswer;
 
 public Kahoot(int id, DConsole dc, ArrayList<Player> players) {
-    super(id, dc, players);
+    super(id, dc, players, "Kahoot");
   }
 
   //Spawn Players
@@ -36,13 +36,12 @@ public Kahoot(int id, DConsole dc, ArrayList<Player> players) {
     super.entityList.add(new Entity(3, "Answer 2", 200, 413, 150, 150, true, colors.get(1), this.dc));
     super.entityList.add(new Entity(4, "Answer 3", 600, 138,  150, 150, true, colors.get(2), this.dc));
     super.entityList.add(new Entity(5, "Answer 4", 600, 413, 150, 150, true, colors.get(3), this.dc));
-     super.entityList.add(new Entity(6, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(6, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(7, "right barrier", 805.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(8, "top barrier", 400.0, -5.0, 850.0, 10.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(9, "bottom barrier", 400.0, 
+    super.entityList.add(new Entity(9, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
   }
 
-  
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second
   //That being said, we can track time with these multiples of 50, 750 cycles is 15 seconds, and 3000 cycles is a minute
   //These cycles should increase at the end of each cycle of the while loop, and can be used to end the game upon a time limit

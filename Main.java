@@ -44,8 +44,10 @@ public class Main { //git test
     Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
     Minigame pong = new Pong(2, this.dc, this.cp);
     Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
+    Minigame SpamPress = new SpamPress(4, this.dc, this.cp);
 
     //add minigames to lists here
+    fourPlayerMinigameList.add(SpamPress);
     fourPlayerMinigameList.add(test);
     fourPlayerMinigameList.add(FirstToTheTop);
     fourPlayerMinigameList.add(pong);

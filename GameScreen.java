@@ -26,6 +26,10 @@ public class GameScreen {
   }
 
    public void StartScreen(){
+      //For blinking affect
+      int transChange = -5;
+      int trans = 250;
+     
     //space bar isnt pressed
     while(!dc.isKeyPressed(' ')) {
       dc.clear();
@@ -33,28 +37,43 @@ public class GameScreen {
       Font customFont = null;
       
       try {
-          //create the font to use. Specify the size!
-          customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(45f);
-          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        //create the font to use. Specify the size!
+        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(50f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
-          //register the font
-          ge.registerFont(customFont);
+        //register the font
+        ge.registerFont(customFont);
       } catch (IOException e) {
           e.printStackTrace();
       } catch(FontFormatException e) {
           e.printStackTrace();
       }
 
+      //Change Transparency
+      if (trans <= 0) {
+        transChange*=-1;
+      } else if (trans >= 255) {
+        transChange*=-1;
+      }
+
+      //Set new transparency 
+      trans+=transChange; 
+
+      //Print on Screen
       dc.setPaint(new Color(0,25,255));
       dc.setFont(customFont);
-  		dc.drawString("Definity Not A",400,75);
-      dc.drawString("Mario Party Ripoff",400,150);
-     
+  		dc.drawString("Totally Not A",400,75);
+      dc.drawString("Mario Party Rip off",400,150);
+      dc.setPaint(new Color(255, 25, 0, trans)); //
+      dc.setFont(new Font("Comic sans", Font.PLAIN, 18));
+      dc.drawString("Press Space to Play", 400, 480);
+      
       dc.redraw();
-      dc.pause(100);
+      dc.pause(20);
     }
   }
-  
+
+  //Player join screen
   public void join() {
     LocalTime start = LocalTime.now(); //reset time to 0
     WordInput in = new WordInput(dc);
@@ -70,12 +89,12 @@ public class GameScreen {
     Font customFontPlayers = null;
       
       try {
-          //create the font to use. Specify the size!
-          customFontPlayers = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(25f);
-          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        //create the font to use. Specify the size!
+        customFontPlayers = Font.createFont(Font.TRUETYPE_FONT, new File("Halo.ttf")).deriveFont(25f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
-          //register the font
-          ge.registerFont(customFontPlayers);
+        //register the font
+        ge.registerFont(customFontPlayers);
       } catch (IOException e) {
           e.printStackTrace();
       } catch(FontFormatException e) {
@@ -112,10 +131,7 @@ public class GameScreen {
         if(this.activePlayers[i] != null) {
           this.playerAmount++;
         }
-      }
-      
-
-      
+      }      
 
       if (!(tempPlayers[0])) { //not joined
         dc.setPaint(new Color(255,255,255)); //white
@@ -229,7 +245,7 @@ public class GameScreen {
       
       LocalTime end = LocalTime.now(); //end timer
       long value = Duration.between(start, end).toMillis(); //duration of time since button was pressed
-      if (value > 1850 && this.playerAmount > 1) {
+      if (value > 1850 && this.playerAmount == 4) {
         if (value < 5000) { //5000 miliseconds is 5 seconds and time for next screen if no more buttons are pressed
 
           //plusing circle effect
@@ -263,6 +279,7 @@ public class GameScreen {
     
   }
 
+  //Setting username screen
   public void nicknames() {
     background();
     dc.setOrigin(DConsole.ORIGIN_CENTER);
@@ -281,6 +298,9 @@ public class GameScreen {
         while(!select) {
           dc.setPaint(playerList.get(i).getColor()); //color array
           dc.fillRect(400, 275, 800, 550); //background color
+          dc.setPaint(new Color(255, 255, 255));
+          dc.setFont(new Font("Comic Sans", Font.BOLD, 35));
+          dc.drawString("Create a Username", 400, 35);
           in.refreshKeys();
 
           dc.drawImage(avatar[i], xvals[i], yvals[i]);
@@ -318,6 +338,7 @@ public class GameScreen {
     }
   }
 
+  //game vote screen
   public void select(ArrayList<Minigame> subMinigameList) {
     LocalTime start = LocalTime.now(); //reset time to 0
     boolean gameChosen = false;
@@ -488,6 +509,64 @@ public class GameScreen {
     
   }
 
+  public void miniWin(ArrayList<Player> playerList) { //bars display score highet to lowest
+    boolean play = false;
+    int time = 0;
+
+    Player[] tempPlayerList = new Player[playerList.size()];
+
+    //fills temp list with players
+    for(int i = 0; i < playerList.size(); i++){
+      try {
+        tempPlayerList[i] = playerList.get(i);
+      }catch (Exception e) {}
+    }
+
+    //bubble sorts players in tempPlayerArray by points
+    for (int i = 0; i < playerList.size(); i++) {
+        for (int j = i + 1; j < playerList.size(); j++) {
+            Player temp;
+            if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
+             
+                // Swapping
+                temp = tempPlayerList[i];
+                tempPlayerList[i] = tempPlayerList[j];
+                tempPlayerList[j] = temp;
+            }
+        }
+    }
+
+    int cycles = 0;
+    int seconds = 2;
+
+    while (!play) {
+      background(); //draw background
+      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      dc.setPaint(tempPlayerList[0].getColor());
+      dc.fillRect(400, 275, 800, 550);
+
+      dc.setPaint(new Color(255, 255, 255)); 
+      dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
+      dc.drawString("Player "+ tempPlayerList[0].getID() + " Wins", 400, 150);
+
+      
+      //one second has passed
+      if (cycles >= 50) {
+        seconds--;
+        cycles = 0;
+      }
+      cycles++;
+
+      if (seconds == 0) {
+        play = true;
+      }
+      
+      dc.redraw();
+      dc.pause(20);
+    }
+  }
+
+  //Leaderboard at end
   public void winScreen() { //bars display score highet to lowest
     boolean play = false;
     int up = 1;
@@ -503,7 +582,7 @@ public class GameScreen {
 
       sortingByScore();; //sort array list by score
 
-      for (int i = 0; i < playerCount(); i++) {
+      for (int i = 0; i < playerList.size(); i++) {
         dc.setPaint(playerList.get(i).getColor()); //color array
         int tempScore = playerList.get(i).getScore();
         dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time
@@ -521,18 +600,18 @@ public class GameScreen {
 
         dc.setPaint(new Color(0, 0, 0,255-trans)); 
         dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
-        dc.drawString("Press Any Key To Play Again", 400, 100);
-        String press = in.getCurrentWord();
-        if (press != "") {
+        dc.drawString("Press Space To Play Again", 400, 100);
+        if (dc.isKeyPressed(' ')) {
           play = true;
         }
       }
+      
       
       dc.redraw();
       dc.pause(20);
     }
     playerList.clear();
-    dc.pause(50);
+    dc.pause(20);
   }
 
   public void gameSwap(ArrayList<Player> cp) {
@@ -666,10 +745,12 @@ public class GameScreen {
     return playerList.size();
   }
 
+  //Return the game being played
   public int getCurrentGame() {
     return this.currentGame;
   }
 
+  //Get the players playing
   public ArrayList<Player> getActivePlayers() {
     ArrayList<Player> tempActivePlayers = new ArrayList<Player>();
     for(int i = 0; i < 4; i++) {
@@ -678,6 +759,7 @@ public class GameScreen {
     return tempActivePlayers;
   }
 
+  //Get how many are playing
   public int getPlayerAmount() {
     return this.playerAmount;
   }

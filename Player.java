@@ -7,8 +7,6 @@ import java.util.ArrayList;
 //Player class keeps player data 
 public class Player {
 
-  // PLEASE
-
   //Instance Variables
   private int id;
   private int score;
@@ -136,7 +134,8 @@ public class Player {
 
   //set full position
   public void setPOS(double x, double y) {
-    
+    this.xPOS = x;
+    this.yPOS = y;
   }
 
   //set position X

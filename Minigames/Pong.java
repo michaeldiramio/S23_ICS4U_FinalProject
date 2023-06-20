@@ -6,7 +6,7 @@ public class Pong extends Minigame {
 
   //Constructor
   public Pong (int id, DConsole dc, ArrayList<Player> playerList) {
-    super(1, dc, playerList);
+    super(id, dc, playerList);
   }
   
   //Play the game
@@ -53,7 +53,17 @@ public class Pong extends Minigame {
 
       //ball passes edge (WIN)
       if(bx < 0 || bx > 800) {
+        
+        if(bx < 0) { //player 2 wins
+          playerList.get(1).addToPoints(1000);
+        } else if (bx > 800) { //player 1 wins
+          playerList.get(0).addToPoints(1000);
+        }
+        
         game = false;
+        //resize characters back to normal
+        playerList.get(0).setSize(20, 20);
+        playerList.get(1).setSize(20, 20);
       }
 
       //move ball 
@@ -69,9 +79,9 @@ public class Pong extends Minigame {
 
   @Override
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
 
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   

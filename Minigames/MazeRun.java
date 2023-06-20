@@ -8,7 +8,7 @@ public class MazeRun extends Minigame {
    
   //Constructor
   public MazeRun(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
+    super(id, dc, playerList);
     this.dc = dc;
   }
 
@@ -26,9 +26,10 @@ public class MazeRun extends Minigame {
 
   @Override
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
 
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
+      
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
@@ -82,9 +83,8 @@ public class MazeRun extends Minigame {
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
     
-    
     int cycles = 0;
-    int seconds = 1;
+    int seconds = 15;
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
@@ -98,7 +98,7 @@ public class MazeRun extends Minigame {
         cycles = 0;
       }
 
-      if (seconds == -10) { //15 second are up, game ends
+      if (seconds == 0) { //15 second are up, game ends
         game = false;
       }
 

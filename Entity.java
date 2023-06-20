@@ -40,9 +40,11 @@ public class Entity {
     this.color = color;
   }
 
+  //Get entity bounds
   public boolean[] getEntityBounds(Player player) {
     boolean[] boundsArray = new boolean[4];
 
+    //player collides with entitiy
     if(this.collision) {
       for(int i = 0; i < boundsArray.length; i++) {
         boundsArray[i] = boundsCalculation(i, player) ? true : false;
@@ -54,6 +56,7 @@ public class Entity {
     
   }
 
+  //============================================================Calculations for Bounds=======================================================================
   private boolean boundsCalculation(int orientation, Player player) {
     double playerX = player.getX();
     double playerY = player.getY();
@@ -74,26 +77,43 @@ public class Entity {
     
     
     if(orientation == 0) {
-      return playerTop < entityBottom + 5.0 && playerBottom > entityTop + 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
+      return playerTop < entityBottom + 2.0 && playerBottom > entityTop + 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 1) {
-      return playerLeft < entityRight + 5.0 && playerLeft > entityRight - 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
+      return playerLeft < entityRight + 2.0 && playerLeft > entityRight - 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     } else if(orientation == 2) {
-      return playerBottom > entityTop - 5.0 && playerBottom < entityBottom - 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
+      return playerBottom > entityTop - 2.0 && playerBottom < entityBottom - 1.0 && ((playerLeft > entityLeft - 1.0 && playerLeft < entityRight) || (playerRight < entityRight + 1.0 && playerRight > entityLeft));
     } else if(orientation == 3) {
-      return playerRight > entityLeft - 5.0 && playerRight < entityLeft + 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
+      return playerRight > entityLeft - 2.0 && playerRight < entityLeft + 1.0 && ((playerTop < entityBottom && playerTop > entityTop - 1.0) || (playerBottom > entityTop && playerBottom < entityBottom + 1.0));
     }
     
     return false;
   }
+  //=========================================================================================================================================================
 
-  public void move(double xChange, double Ychange){
-    this.x += x;
-    this.y += y;
+  //Entity movement
+  public void move(double xChange, double yChange){
+    this.x += xChange;
+    this.y += yChange;
   }
- 
 
+  //Draw the entity
   public void draw() {
     this.dc.setPaint(this.color);
     this.dc.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  //Get entitiy xPOS
+  public double getX() {
+    return this.x;
+  }
+
+  //get yPOS
+  public double getY() {
+    return this.y;
+  }
+
+  //Get color
+  public Color getColor() {
+    return this.color;
   }
 }

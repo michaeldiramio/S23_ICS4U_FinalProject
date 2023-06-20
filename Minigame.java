@@ -4,8 +4,6 @@ import java.util.*;
 
 public abstract class Minigame {
 
-  // PLEASE
-
   //Instance variables
   public int id;
   public DConsole dc; //Since the extensions need to access the DConsole, it needs to be public here
@@ -35,15 +33,15 @@ public abstract class Minigame {
   //**NOTE:** WHEN MAKING A GAME WITH DIFFERENT MOVEMENT, USE THE @OVERRIDE METHOD IN YOUR MINIGAME TO REMAKE THIS METHOD AS YOU PLEASE
   //Move characters 
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
 
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
+      
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
         for(int j = 0; j < entityList.size(); j++) {
-          boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds 
-                                                                                   // (if a player has touched an entity)
+          boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds (if a player has touched an entity)
   
           for(int k = 0; k < tempEntityBounds.length; k++) {
             // if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
@@ -71,6 +69,7 @@ public abstract class Minigame {
     }
   }
 
+  //Redraw everything
   public void refreshScreen() {
     for(int i = 0; i < entityList.size(); i++) {
       this.entityList.get(i).draw();
@@ -137,6 +136,10 @@ public abstract class Minigame {
     
   }
 
+  public double getNewSpawnPointX(int playerID, double spawnCoord) {
+    return spawnCoord + ((playerID - 1) * 35.0); // it is -1 because ids go from 1-4, whereas for muliplication it should go from 0-3 
+  }
+
   //Reset player points
   public void resetPlayerPoints() {
     for (int i = 0; i < playerList.size(); i++) {
@@ -150,6 +153,7 @@ public abstract class Minigame {
     dc.drawString("Time: " + s, x, y);
   }
 
+  //Set players
   public void setPlayers(ArrayList<Player> playerList) {
     this.playerList = playerList;
 

@@ -35,21 +35,23 @@ public class Main {
     Minigame test = new TestGame(0, this.dc, this.cp);
     Minigame firstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
     Minigame pong = new Pong(2, this.dc, this.cp);
-    Minigame mazeRun = new MazeRun(3, this.dc, this.cp);
+    Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
     Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
     Minigame findColor = new FindColor(7, this.dc, this.playerList);
+    Minigame SpamPress = new SpamPress(8, this.dc, this.cp);
 
     //add minigames to lists here
-    twoPlayerMinigameList.add(mazeRun);
-    twoPlayerMinigameList.add(collectCoins);
+    fourPlayerMinigameList.add(test);
+    twoPlayerMinigameList.add(firstToTheTop);
     twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(firstToTheTop);  
-    fourPlayerMinigameList.add(jump);
+    twoPlayerMinigameList.add(mazeRun);
     fourPlayerMinigameList.add(pressTheButton);
+    twoPlayerMinigameList.add(collectCoins);
+    fourPlayerMinigameList.add(jump);
     fourPlayerMinigameList.add(findColor);
-
+    twoPlayerMinigameList.add(SpamPress);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

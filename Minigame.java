@@ -103,7 +103,7 @@ public abstract class Minigame {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
-            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+            if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
              
                 // Swapping
                 temp = tempPlayerList[i];
@@ -117,15 +117,38 @@ public abstract class Minigame {
     //rewards score to players based on where they are in tempPlayerArray
     for(int i = 0; i < tempPlayerList.length; i++){
       if(tempPlayerList[i] != null) {
+
+        //codes for ties
         if(i == 0){
-          playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
-        }else if(i == 1){
-          playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
-        }else if(i == 2){
-          playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
-        }else if(i == 3){
           playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        }else if(i == 1){
+          if(tempPlayerList[0].getPoints() != tempPlayerList[1].getPoints()){
+            playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        }else if(i == 2){
+          if(tempPlayerList[1].getPoints() != tempPlayerList[2].getPoints()){
+            playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
+          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+        }else if(i == 3){
+          if(tempPlayerList[2].getPoints() != tempPlayerList[3].getPoints()){
+            playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
+          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
         }
+        
+
+        //old code no ties
+        /*
+        if(i == 0){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        }else if(i == 1){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+        }else if(i == 2){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
+        }else if(i == 3){
+          playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
+        }
+        */
+        
       }
     }
 
@@ -134,6 +157,10 @@ public abstract class Minigame {
       playerList.get(i).resetPoints();
     }
     
+  }
+
+  public double getNewSpawnPointX(int playerID, double spawnCoord) {
+    return spawnCoord + ((playerID - 1) * 35.0); // it is -1 because ids go from 1-4, whereas for muliplication it should go from 0-3 
   }
 
   //Reset player points
@@ -149,6 +176,7 @@ public abstract class Minigame {
     dc.drawString("Time: " + s, x, y);
   }
 
+  //Set players
   public void setPlayers(ArrayList<Player> playerList) {
     this.playerList = playerList;
 

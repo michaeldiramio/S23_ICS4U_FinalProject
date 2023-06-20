@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class Main { //git test
+public class Main { 
   
   // data
   DConsole dc;
@@ -33,18 +33,27 @@ public class Main { //git test
     //---------------------------------------------------Add MiniGames Here------------------------------------------------------------------
     //Creating Minigames
     Minigame test = new TestGame(0, this.dc, this.cp);
-    Minigame FirstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
+    Minigame firstToTheTop = new FirstToTheTop(1, this.dc, this.cp);
     Minigame pong = new Pong(2, this.dc, this.cp);
     Minigame MazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
-    Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
-
+    Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
+    Minigame findColor = new FindColor(7, this.dc, this.playerList);
+    Minigame SpamPress = new SpamPress(8, this.dc, this.cp);
+    Minigame Kahoot = new Kahoot(9, this.dc, this.cp);
 
     //add minigames to lists here
-    fourPlayerMinigameList.add(jump);
+    fourPlayerMinigameList.add(test);
+    twoPlayerMinigameList.add(firstToTheTop);
+    twoPlayerMinigameList.add(pong);
     twoPlayerMinigameList.add(MazeRun);
-    twoPlayerMinigameList.add(CollectCoins);
+    fourPlayerMinigameList.add(pressTheButton);
+    fourPlayerMinigameList.add(jump);
+    twoPlayerMinigameList.add(collectCoins);
+    fourPlayerMinigameList.add(findColor);
+    twoPlayerMinigameList.add(SpamPress);
+    fourPlayerMinigameList.add(Kahoot);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens
@@ -105,7 +114,8 @@ public class Main { //git test
         }
       } else { //The minigame is a 4 player type
         tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList); //play with everyone
-        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game 
+        tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game
+        n.miniWin(playerList);
       }
       
       //use all 4 players to end the game
@@ -116,6 +126,7 @@ public class Main { //git test
 
     //Display the leaderboard
     n.winScreen();
+    playerList.clear(); //clears players
     
   } //end of run
 

@@ -513,7 +513,7 @@ public class GameScreen {
     boolean play = false;
     int time = 0;
 
-    Player[] tempPlayerList = new Player[2];
+    Player[] tempPlayerList = new Player[playerList.size()];
 
     //fills temp list with players
     for(int i = 0; i < playerList.size(); i++){
@@ -526,7 +526,7 @@ public class GameScreen {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
-            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+            if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
              
                 // Swapping
                 temp = tempPlayerList[i];
@@ -535,6 +535,9 @@ public class GameScreen {
             }
         }
     }
+
+    int cycles = 0;
+    int seconds = 2;
 
     while (!play) {
       background(); //draw background
@@ -546,16 +549,21 @@ public class GameScreen {
       dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
       dc.drawString("Player "+ tempPlayerList[0].getID() + " Wins", 400, 150);
 
-      if (time > 150) {
+      
+      //one second has passed
+      if (cycles >= 50) {
+        seconds--;
+        cycles = 0;
+      }
+      cycles++;
+
+      if (seconds == 0) {
         play = true;
       }
       
       dc.redraw();
       dc.pause(20);
-      time++;
     }
-    playerList.clear();
-    dc.pause(50);
   }
 
   //Leaderboard at end
@@ -592,18 +600,18 @@ public class GameScreen {
 
         dc.setPaint(new Color(0, 0, 0,255-trans)); 
         dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
-        dc.drawString("Press Any Key To Play Again", 400, 100);
-        String press = in.getCurrentWord();
-        if (press != "") {
+        dc.drawString("Press Space To Play Again", 400, 100);
+        if (dc.isKeyPressed(' ')) {
           play = true;
         }
       }
+      
       
       dc.redraw();
       dc.pause(20);
     }
     playerList.clear();
-    dc.pause(50);
+    dc.pause(20);
   }
 
   public void gameSwap(ArrayList<Player> cp) {

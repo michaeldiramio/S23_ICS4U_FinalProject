@@ -46,10 +46,10 @@ public class Main {
     fourPlayerMinigameList.add(test);
     twoPlayerMinigameList.add(firstToTheTop);
     twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(mazeRun);
+    twoPlayerMinigameList.add(MazeRun);
     fourPlayerMinigameList.add(pressTheButton);
-    twoPlayerMinigameList.add(collectCoins);
     fourPlayerMinigameList.add(jump);
+    twoPlayerMinigameList.add(collectCoins);
     fourPlayerMinigameList.add(findColor);
     twoPlayerMinigameList.add(SpamPress);
     //------------------------------------------------------------------------------------------------------------------------------------------

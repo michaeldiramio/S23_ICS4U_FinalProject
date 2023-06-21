@@ -30,7 +30,7 @@ public class TestGame extends Minigame {
   //Play the game
   @Override
   public void play() {
-    addEntites();
+    this.addEntites();
     
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
@@ -41,7 +41,7 @@ public class TestGame extends Minigame {
     int seconds = 8;
 
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
-      dc.clear();
+      this.dc.clear();
       
       super.moveCharacters();
       super.refreshScreen();
@@ -57,12 +57,8 @@ public class TestGame extends Minigame {
         game = false;
       }
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
-  
   }
-  
-
-
 }

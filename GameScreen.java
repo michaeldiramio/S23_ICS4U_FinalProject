@@ -31,8 +31,8 @@ public class GameScreen {
       int trans = 250;
      
     //space bar isnt pressed
-    while(!dc.isKeyPressed(' ')) {
-      dc.clear();
+    while(!this.dc.isKeyPressed(' ')) {
+      this.dc.clear();
 
       Font customFont = null;
       
@@ -60,16 +60,16 @@ public class GameScreen {
       trans+=transChange; 
 
       //Print on Screen
-      dc.setPaint(new Color(0,25,255));
-      dc.setFont(customFont);
-  		dc.drawString("Totally Not A",400,75);
-      dc.drawString("Mario Party Rip off",400,150);
-      dc.setPaint(new Color(255, 25, 0, trans)); //
-      dc.setFont(new Font("Comic sans", Font.PLAIN, 18));
-      dc.drawString("Press Space to Play", 400, 480);
+      this.dc.setPaint(new Color(0,25,255));
+      this.dc.setFont(customFont);
+  		this.dc.drawString("Totally Not A",400,75);
+      this.dc.drawString("Mario Party Rip off",400,150);
+      this.dc.setPaint(new Color(255, 25, 0, trans)); //
+      this.dc.setFont(new Font("Comic sans", Font.PLAIN, 18));
+      this.dc.drawString("Press Space to Play", 400, 480);
       
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   }
 
@@ -103,7 +103,7 @@ public class GameScreen {
      
     while (!joined) {
       background(); //draw background
-      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
       in.refreshKeys();
 
       if (trans >= 120 || trans <= 0) { //changing transparency
@@ -113,7 +113,7 @@ public class GameScreen {
 
       // goes through each player to confirm if they are joining the game based on their keypresses
       for(int i = 0; i < 4; i++) {
-        boolean[] tempControl = playerList.get(i).getControl().getPlayerKeysPressed(); // gets each player's direction keys
+        boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets each player's direction keys
         if(tempControl[0] && !tempPlayers[i]) {
           tempPlayers[i] = true;
           this.activePlayers[i] = this.playerList.get(i);
@@ -134,113 +134,113 @@ public class GameScreen {
       }      
 
       if (!(tempPlayers[0])) { //not joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(200, 200, 290, 90);
-        dc.drawImage("Images/Keys/1.png", 400, 275);
-        dc.setPaint(new Color(126, 217, 87,255-trans)); //green
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(200, 200, 290, 90);
+        this.dc.drawImage("Images/Keys/1.png", 400, 275);
+        this.dc.setPaint(new Color(126, 217, 87,255-trans)); //green
 
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
  
-        dc.drawString("Press 'W' To Join!", 200, 35);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 1", 60, 10);
+        this.dc.drawString("Press 'W' To Join!", 200, 35);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 1", 60, 10);
 
       } else { //joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(200, 200, 290, 90);
-        dc.fillRect(200, 105, 90, 90);
-        dc.drawImage("Images/Keys/5.png", 400, 275);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(200, 200, 290, 90);
+        this.dc.fillRect(200, 105, 90, 90);
+        this.dc.drawImage("Images/Keys/5.png", 400, 275);
 
-        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press 'S' To Leave!", 200, 35);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 1", 60, 10);
+        this.dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press 'S' To Leave!", 200, 35);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 1", 60, 10);
         
-        dc.drawImage("Images/Character-Icons/haloHelmetBlue.png", 30, 75);
+        this.dc.drawImage("Images/Character-Icons/haloHelmetBlue.png", 30, 75);
       }
 
       if (!(tempPlayers[1])) { //not joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(600, 200, 290, 90);
-        dc.drawImage("Images/Keys/2.png", 400, 275);
-        dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press 'I' To Join!", 600, 35);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 2", 460, 10);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(600, 200, 290, 90);
+        this.dc.drawImage("Images/Keys/2.png", 400, 275);
+        this.dc.setPaint(new Color(126, 217, 87,255-trans)); //green
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press 'I' To Join!", 600, 35);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 2", 460, 10);
         
       } else { //joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(600, 200, 290, 90);
-        dc.fillRect(600, 105, 90, 90);
-        dc.drawImage("Images/Keys/6.png", 400, 275);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(600, 200, 290, 90);
+        this.dc.fillRect(600, 105, 90, 90);
+        this.dc.drawImage("Images/Keys/6.png", 400, 275);
         
-        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press 'K' To Leave!", 600, 35);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 2", 460, 10);
+        this.dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press 'K' To Leave!", 600, 35);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 2", 460, 10);
         
-        dc.drawImage("Images/Character-Icons/haloHelmetGreen.png", 475, 90);
+        this.dc.drawImage("Images/Character-Icons/haloHelmetGreen.png", 475, 90);
       }
 
       if (!(tempPlayers[2])) { //not joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(200, 445, 290, 90); 
-        dc.drawImage("Images/Keys/3.png", 400, 275);
-        dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press 'T' To Join!", 200, 280);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 65, 260);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(200, 445, 290, 90); 
+        this.dc.drawImage("Images/Keys/3.png", 400, 275);
+        this.dc.setPaint(new Color(126, 217, 87,255-trans)); //green
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press 'T' To Join!", 200, 280);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 3", 65, 260);
         
       } else { //joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(200, 350, 90, 90);
-        dc.fillRect(200, 445, 290, 90);
-        dc.drawImage("Images/Keys/7.png", 400, 275);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(200, 350, 90, 90);
+        this.dc.fillRect(200, 445, 290, 90);
+        this.dc.drawImage("Images/Keys/7.png", 400, 275);
         
-        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press 'G' To Leave!", 200, 280);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 3", 65, 260);
+        this.dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press 'G' To Leave!", 200, 280);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 3", 65, 260);
         
-        dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
+        this.dc.drawImage("Images/Character-Icons/haloHelmetPurple.png", 78, 325);
       }
 
       if (!(tempPlayers[3])) { //not joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(600, 445, 290, 90);
-        dc.drawImage("Images/Keys/4.png", 400, 275);
-        dc.setPaint(new Color(126, 217, 87,255-trans)); //green
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press '↑' To Join!", 600, 280);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 4", 460, 260);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(600, 445, 290, 90);
+        this.dc.drawImage("Images/Keys/4.png", 400, 275);
+        this.dc.setPaint(new Color(126, 217, 87,255-trans)); //green
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press '↑' To Join!", 600, 280);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 4", 460, 260);
         
       } else { //joined
-        dc.setPaint(new Color(255,255,255)); //white
-        dc.fillRect(600, 350, 90, 90);
-        dc.fillRect(600, 445, 290, 90);
-        dc.drawImage("Images/Keys/8.png", 400, 275);
+        this.dc.setPaint(new Color(255,255,255)); //white
+        this.dc.fillRect(600, 350, 90, 90);
+        this.dc.fillRect(600, 445, 290, 90);
+        this.dc.drawImage("Images/Keys/8.png", 400, 275);
         
-        dc.setPaint(new Color(225, 0, 0,255-trans)); //red
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
-        dc.drawString("Press '↓' To Leave!", 600, 280);
-        dc.setPaint(new Color(0,0,0)); //black
-        dc.setFont(customFontPlayers);
-        dc.drawString("Player 4", 460, 260);
+        this.dc.setPaint(new Color(225, 0, 0,255-trans)); //red
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 22));
+        this.dc.drawString("Press '↓' To Leave!", 600, 280);
+        this.dc.setPaint(new Color(0,0,0)); //black
+        this.dc.setFont(customFontPlayers);
+        this.dc.drawString("Player 4", 460, 260);
         
-        dc.drawImage("Images/Character-Icons/haloHelmetRed.png", 477, 335);
+        this.dc.drawImage("Images/Character-Icons/haloHelmetRed.png", 477, 335);
       }
       
       LocalTime end = LocalTime.now(); //end timer
@@ -249,31 +249,31 @@ public class GameScreen {
         if (value < 5000) { //5000 miliseconds is 5 seconds and time for next screen if no more buttons are pressed
 
           //plusing circle effect
-          if (width == 51) {
+          if(width == 51) {
             width = 0;
             c = 2;
           } else if (width == 0) {
             c = -2;
           }
           width++;
-          dc.setPaint(new Color(126, 217, 87)); //green
-          dc.fillEllipse(400, 275, 150, 150);
+          this.dc.setPaint(new Color(126, 217, 87)); //green
+          this.dc.fillEllipse(400, 275, 150, 150);
           if (c > 0) {
-            dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
-            dc.fillEllipse(400, 275, 150+width, 150+width);
+            this.dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
+            this.dc.fillEllipse(400, 275, 150+width, 150+width);
           }
 
           //number countdown
-          dc.setPaint(new Color(255, 255, 255)); //white
-          dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
-          dc.drawString(3-(int)((value-2000)/1000), 400, 260);
+          this.dc.setPaint(new Color(255, 255, 255)); //white
+          this.dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+          this.dc.drawString(3-(int)((value-2000)/1000), 400, 260);
           
         } else {
           joined = true; //break loop and move to next method in main
         }
       }
-      dc.redraw();
-      dc.pause(20); //should be 20 milisecond pause (then make it that way)
+      this.dc.redraw();
+      this.dc.pause(20); //should be 20 milisecond pause (then make it that way)
     }
 
     
@@ -282,8 +282,8 @@ public class GameScreen {
   //Setting username screen
   public void nicknames() {
     background();
-    dc.setOrigin(DConsole.ORIGIN_CENTER);
-    WordInput in = new WordInput(dc);
+    this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+    WordInput in = new WordInput(this.dc);
     
     String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"};
     int xvals[] = {50, 101, 102, 101};
@@ -292,47 +292,47 @@ public class GameScreen {
     String names[] = {"", "", "", ""};
 
     for (int i = 0; i < 4; i++) {
-      playerList.get(i).setUsername("");
+      this.playerList.get(i).setUsername("");
       boolean select = false;
       if(this.activePlayers[i] != null) { // if the player has joined the game
         while(!select) {
-          dc.setPaint(playerList.get(i).getColor()); //color array
-          dc.fillRect(400, 275, 800, 550); //background color
-          dc.setPaint(new Color(255, 255, 255));
-          dc.setFont(new Font("Comic Sans", Font.BOLD, 35));
-          dc.drawString("Create a Username", 400, 35);
+          this.dc.setPaint(this.playerList.get(i).getColor()); //color array
+          this.dc.fillRect(400, 275, 800, 550); //background color
+          this.dc.setPaint(new Color(255, 255, 255));
+          this.dc.setFont(new Font("Comic Sans", Font.BOLD, 35));
+          this.dc.drawString("Create a Username", 400, 35);
           in.refreshKeys();
 
-          dc.drawImage(avatar[i], xvals[i], yvals[i]);
+          this.dc.drawImage(avatar[i], xvals[i], yvals[i]);
 
-          dc.drawImage("Images/textbox.png", 400, 225);
+          this.dc.drawImage("Images/textbox.png", 400, 225);
 
           String name = in.getCurrentWord(); //to show as typed
           if (name.length() <= 10) { 
             names[i] = name;
           }
 
-          dc.setPaint(new Color(0, 0, 0)); //black
-          dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
-          dc.drawString(names[i], 400, 164); //display names typing
+          this.dc.setPaint(new Color(0, 0, 0)); //black
+          this.dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+          this.dc.drawString(names[i], 400, 164); //display names typing
 
           String nfinal = in.getFinalWord(); //pressed enter
            
           if (nfinal != "" && nfinal.length() <= 10) { 
             boolean inn = false;
-            for (int iz = 0; iz < playerList.size(); iz++) { //check if other player already has that name
-              if (nfinal.equals( playerList.get(iz).getUsername())) {
+            for (int iz = 0; iz < this.playerList.size(); iz++) { //check if other player already has that name
+              if (nfinal.equals(this.playerList.get(iz).getUsername())) {
                 inn = true;
               }
             }
             if (!inn) { //if no other player has that username
               names[i] = nfinal; 
-              playerList.get(i).setUsername(nfinal); //set player username
+              this.playerList.get(i).setUsername(nfinal); //set player username
               select = true; //move to next part of loop
             }
           }
-           dc.redraw();
-          dc.pause(20);
+          this.dc.redraw();
+          this.dc.pause(20);
         }
       }
     }
@@ -368,43 +368,43 @@ public class GameScreen {
 
       totalVotes = 0;
       
-      background(); //draw background
-      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      this.background(); //draw background
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
 
       //color changing effect
       if (color == 150 || color == 0) {
         change *= -1;
       }
       color += change;
-      dc.setPaint(new Color(250-color,75+color,200));
+      this.dc.setPaint(new Color(250-color,75+color,200));
       
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 80));
-      dc.drawString("Choose A Game", 400, 50); //head line
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 80));
+      this.dc.drawString("Choose A Game", 400, 50); //head line
 
       //game display boxes
-      dc.fillRect(300, 225, 160, 160);
-      dc.fillRect(500, 225, 160, 160);
-      dc.fillRect(300, 425, 160, 160);
-      dc.fillRect(500, 425, 160, 160);
+      this.dc.fillRect(300, 225, 160, 160);
+      this.dc.fillRect(500, 225, 160, 160);
+      this.dc.fillRect(300, 425, 160, 160);
+      this.dc.fillRect(500, 425, 160, 160);
 
       // eventually draw game images
-      dc.setPaint(Color.BLACK);
-      dc.setFont(new Font("Comic Sans", Font.PLAIN, 18));
-      dc.drawString(subMinigameList.get(0).getName(), 300, 225);
-      dc.drawString(subMinigameList.get(1).getName(), 500, 225);
-      dc.drawString(subMinigameList.get(2).getName(), 300, 425);
-      dc.drawString(subMinigameList.get(3).getName(), 500, 425);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("Comic Sans", Font.PLAIN, 18));
+      this.dc.drawString(subMinigameList.get(0).getName(), 300, 225);
+      this.dc.drawString(subMinigameList.get(1).getName(), 500, 225);
+      this.dc.drawString(subMinigameList.get(2).getName(), 300, 425);
+      this.dc.drawString(subMinigameList.get(3).getName(), 500, 425);
 
       // coordinates for icons/text
       int[] xCoords = {300, 500, 300, 500};
       int[] yCoords = {225, 225, 425, 425};
 
-      dc.setPaint(Color.BLACK);
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 20));
       // gets the possible games based on which page you are on
       // ex. if you are on page 1, the games shown would be slots 0-4
       for(int i = (screenNum - 1) * gameScreenNum; i < (screenNum - 1) * gameTotal; i++) {
-        dc.drawString("Game " + (i + 1), xCoords[i], yCoords[i]); // temporary game image placeholder
+        this.dc.drawString("Game " + (i + 1), xCoords[i], yCoords[i]); // temporary game image placeholder
       }
 
       // gets each player's keys pressed and assigns it to a vote (voting is a scam, long live the Queen!) - Carter Tedesco
@@ -450,11 +450,11 @@ public class GameScreen {
       for(int i = 0; i < playerGameVoted.length; i++) {
         for(int j = 0; j < gameScreenNum; j++) {
           if(this.activePlayers[i] != null && playerGameVoted[i] == j) {
-            dc.setPaint(this.playerList.get(i).getColor());
-            dc.fillEllipse(xCoords[j] - 70 + (i * 35), yCoords[j] + 100, 25, 25);
+            this.dc.setPaint(this.playerList.get(i).getColor());
+            this.dc.fillEllipse(xCoords[j] - 70 + (i * 35), yCoords[j] + 100, 25, 25);
           } else if(this.activePlayers[i] != null && playerGameVoted[i] == -1) {
-            dc.setPaint(this.playerList.get(i).getColor());
-            dc.fillEllipse(347.5 + (i * 35), 125, 25, 25);
+            this.dc.setPaint(this.playerList.get(i).getColor());
+            this.dc.fillEllipse(347.5 + (i * 35), 125, 25, 25);
           }
         }
       }
@@ -473,17 +473,17 @@ public class GameScreen {
             c = -2;
           }
           width++;
-          dc.setPaint(new Color(126, 217, 87)); //green
-          dc.fillEllipse(400, 275, 150, 150);
+          this.dc.setPaint(new Color(126, 217, 87)); //green
+          this.dc.fillEllipse(400, 275, 150, 150);
           if (c > 0) {
-            dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
-            dc.fillEllipse(400, 275, 150+width, 150+width);
+            this.dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
+            this.dc.fillEllipse(400, 275, 150+width, 150+width);
           }
 
           //number countdown
-          dc.setPaint(new Color(255, 255, 255)); //white
-          dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
-          dc.drawString(3-(int)((value-2000)/1000), 400, 260);
+          this.dc.setPaint(new Color(255, 255, 255)); //white
+          this.dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+          this.dc.drawString(3-(int)((value-2000)/1000), 400, 260);
 
         // if the timer reaches 5 seconds
         } else {
@@ -505,8 +505,8 @@ public class GameScreen {
         }
       }
       
-      dc.redraw();
-      dc.pause(20); //should be 20 miliseconds pause
+      this.dc.redraw();
+      this.dc.pause(20); //should be 20 miliseconds pause
     }
     
   }
@@ -543,13 +543,13 @@ public class GameScreen {
 
     while (!play) {
       background(); //draw background
-      dc.setOrigin(DConsole.ORIGIN_CENTER);
-      dc.setPaint(tempPlayerList[0].getColor());
-      dc.fillRect(400, 275, 800, 550);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+      this.dc.setPaint(tempPlayerList[0].getColor());
+      this.dc.fillRect(400, 275, 800, 550);
 
-      dc.setPaint(new Color(255, 255, 255)); 
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
-      dc.drawString(tempPlayerList[0].getUsername() + " Wins", 400, 150);
+      this.dc.setPaint(new Color(255, 255, 255)); 
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 50));
+      this.dc.drawString(tempPlayerList[0].getUsername() + " Wins", 400, 150);
 
       
       //one second has passed
@@ -563,8 +563,8 @@ public class GameScreen {
         play = true;
       }
       
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   }
 
@@ -579,17 +579,17 @@ public class GameScreen {
 
     while (!play) {
       background(); //draw background
-      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
       in.refreshKeys();
 
-      sortingByScore();; //sort array list by score
+      this.sortingByScore(); //sort array list by score
 
-      for (int i = 0; i < playerList.size(); i++) {
-        dc.setPaint(playerList.get(i).getColor()); //color array
-        int tempScore = playerList.get(i).getScore();
-        dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 17));
-        dc.drawString(playerList.get(i).getUsername(), xs[i], 535 - (int)(((tempScore*up) / 25)/2));
+      for (int i = 0; i < this.playerList.size(); i++) {
+        this.dc.setPaint(this.playerList.get(i).getColor()); //color array
+        int tempScore = this.playerList.get(i).getScore();
+        this.dc.fillRect(xs[i], 550, 100, (int)((tempScore*up) / 25)); //grow to size over time
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 17));
+        this.dc.drawString(this.playerList.get(i).getUsername(), xs[i], 535 - (int)(((tempScore*up) / 25)/2));
       }
       
       if (up < 150) {
@@ -600,20 +600,20 @@ public class GameScreen {
       }
       trans += change;
 
-        dc.setPaint(new Color(0, 0, 0,255-trans)); 
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
-        dc.drawString("Press Space To Play Again", 400, 100);
-        if (dc.isKeyPressed(' ')) {
+        this.dc.setPaint(new Color(0, 0, 0,255-trans)); 
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 30));
+        this.dc.drawString("Press Space To Play Again", 400, 100);
+        if (this.dc.isKeyPressed(' ')) {
           play = true;
         }
       }
       
       
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
-    playerList.clear();
-    dc.pause(20);
+    this.playerList.clear();
+    this.dc.pause(20);
   }
 
   public void gameSwap(ArrayList<Player> cp) {
@@ -630,7 +630,7 @@ public class GameScreen {
     String avatar[] = {"Images/Character-Icons/haloHelmetBlue.png", "Images/Character-Icons/haloHelmetGreen.png", "Images/Character-Icons/haloHelmetPurple.png", "Images/Character-Icons/haloHelmetRed.png"}; */ //Images sizes need to be changed
 
     while (!play) {
-      dc.setOrigin(DConsole.ORIGIN_CENTER);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
 
       //changing color
       if (col >= 150 || col <= 0) {
@@ -639,24 +639,24 @@ public class GameScreen {
       col += change;
 
       //Make first player's box
-      dc.setPaint(cp.get(0).getColor()); 
-      dc.fillRect(200, 275, 400, 550);
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
-      dc.setPaint(cp.get(1).getColor()); //get the other players color (cool contrast)
-      dc.drawString(cp.get(0).getUsername(), 225, 275);
+      this.dc.setPaint(cp.get(0).getColor()); 
+      this.dc.fillRect(200, 275, 400, 550);
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
+      this.dc.setPaint(cp.get(1).getColor()); //get the other players color (cool contrast)
+      this.dc.drawString(cp.get(0).getUsername(), 225, 275);
 
       //2nd player's box
-      dc.setPaint(cp.get(1).getColor());
-      dc.fillRect(600, 275, 400, 550);
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
-      dc.setPaint(cp.get(0).getColor()); 
-      dc.drawString(cp.get(1).getUsername(), 575, 275);
+      this.dc.setPaint(cp.get(1).getColor());
+      this.dc.fillRect(600, 275, 400, 550);
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 40));
+      this.dc.setPaint(cp.get(0).getColor()); 
+      this.dc.drawString(cp.get(1).getUsername(), 575, 275);
 
-      dc.drawImage("Images/fire.png", 400, 275);
+      this.dc.drawImage("Images/fire.png", 400, 275);
 
-      dc.setPaint(new Color(255-col, 50+col, col)); 
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
-      dc.drawString("VS", 400, 275);
+      this.dc.setPaint(new Color(255-col, 50+col, col)); 
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+      this.dc.drawString("VS", 400, 275);
 
       /*for (int i = 0; i < cp.size(); i++) {
         if (cp.get(i).getID() == 1) {
@@ -686,41 +686,41 @@ public class GameScreen {
           c = -2;
         }
         width++;
-        dc.setPaint(new Color(126, 217, 87)); //green
-        dc.fillEllipse(400, 275, 150, 150);
+        this.dc.setPaint(new Color(126, 217, 87)); //green
+        this.dc.fillEllipse(400, 275, 150, 150);
         if (c > 0) {
-          dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
-          dc.fillEllipse(400, 275, 150+width, 150+width);
+          this.dc.setPaint(new Color(126, 217, 87,255-width*5)); //transparent green
+          this.dc.fillEllipse(400, 275, 150+width, 150+width);
         }
 
         //number countdown
-        dc.setPaint(new Color(255, 255, 255)); //white
-        dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
-        dc.drawString(6-(int)(value/1000), 400, 260);
+        this.dc.setPaint(new Color(255, 255, 255)); //white
+        this.dc.setFont(new Font("Comic Sans", Font.BOLD, 60));
+        this.dc.drawString(6-(int)(value/1000), 400, 260);
       }
       
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   }
 
   //draw the default background which is currently halo skybox
   public void background() {
-    dc.setOrigin(DConsole.ORIGIN_CENTER);
-    dc.drawImage("Images/background.png", 400, 275);
+    this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+    this.dc.drawImage("Images/background.png", 400, 275);
   }
 
   //sort arraylist by score
   public void sortingByScore() {
-    for (int i = 0; i < playerList.size(); i++) {
+    for (int i = 0; i < this.playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
-            if (playerList.get(i).getScore() < playerList.get(j).getScore()) {
+            if (this.playerList.get(i).getScore() < this.playerList.get(j).getScore()) {
               
                 // Swapping
-                temp = playerList.get(i);
-                playerList.set(i, playerList.get(j));
-                playerList.set(j, temp);
+                temp = this.playerList.get(i);
+                this.playerList.set(i, this.playerList.get(j));
+                this.playerList.set(j, temp);
             }
         }
     }
@@ -728,15 +728,15 @@ public class GameScreen {
 
   //sort arraylist by ID
   public void sortingByID() {
-    for (int i = 0; i < playerList.size(); i++) {
-        for (int j = i + 1; j < playerList.size(); j++) {
+    for (int i = 0; i < this.playerList.size(); i++) {
+        for (int j = i + 1; j < this.playerList.size(); j++) {
             Player temp;
-            if (playerList.get(i).getID() > playerList.get(j).getID()) {
+            if (this.playerList.get(i).getID() > this.playerList.get(j).getID()) {
               
                 // Swapping
-                temp = playerList.get(i);
-                playerList.set(i, playerList.get(j));
-                playerList.set(j, temp);
+                temp = this.playerList.get(i);
+                this.playerList.set(i, this.playerList.get(j));
+                this.playerList.set(j, temp);
             }
         }
     }
@@ -744,7 +744,7 @@ public class GameScreen {
 
   //return the number of players playing
   public int playerCount(){
-    return playerList.size();
+    return this.playerList.size();
   }
 
   //Return the game being played

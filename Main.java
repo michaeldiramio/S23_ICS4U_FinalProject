@@ -14,15 +14,15 @@ public class Main {
 
   // initializes DConsole
   public void DInit(int width, int height) {
-    dc = new DConsole(width, height);
-    dc.setOrigin(dc.ORIGIN_CENTER);
+    this.dc = new DConsole(width, height);
+    this.dc.setOrigin(dc.ORIGIN_CENTER);
   }
 
   // runs methods from other classes
   public void run() {
 
-    minigameList.add(twoPlayerMinigameList); //two player
-    minigameList.add(fourPlayerMinigameList); //four player
+    this.minigameList.add(this.twoPlayerMinigameList); //two player
+    this.minigameList.add(this.fourPlayerMinigameList); //four player
     
     //making players for all games
     this.playerList.add(new Player(1, new Color (0, 0, 200), 200, 200, this.dc));
@@ -45,17 +45,16 @@ public class Main {
     Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
 
     //add minigames to lists here
-   
-    twoPlayerMinigameList.add(firstToTheTop);
-    twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(mazeRun);
-    fourPlayerMinigameList.add(pressTheButton);
-    fourPlayerMinigameList.add(jump);
-    twoPlayerMinigameList.add(collectCoins);
-    fourPlayerMinigameList.add(findColor);
-    twoPlayerMinigameList.add(spamPress);
-    fourPlayerMinigameList.add(kahoot);
-    twoPlayerMinigameList.add(rps);
+    this.twoPlayerMinigameList.add(firstToTheTop);
+    this.twoPlayerMinigameList.add(pong);
+    this.twoPlayerMinigameList.add(mazeRun);
+    this.fourPlayerMinigameList.add(pressTheButton);
+    this.fourPlayerMinigameList.add(jump);
+    this.twoPlayerMinigameList.add(collectCoins);
+    this.fourPlayerMinigameList.add(findColor);
+    this.twoPlayerMinigameList.add(spamPress);
+    this.fourPlayerMinigameList.add(kahoot);
+    this.twoPlayerMinigameList.add(rps);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens
@@ -71,8 +70,8 @@ public class Main {
 
     // gets the max amount of minigames that would exist in tempSubMinigameList by counting how many minigames exist in total
     int maxMinigameAmount = 0;
-    for(int i = 0; i < minigameList.size(); i++) {
-      for(int j = 0; j < minigameList.get(i).size(); j++) {
+    for(int i = 0; i < this.minigameList.size(); i++) {
+      for(int j = 0; j < this.minigameList.get(i).size(); j++) {
         maxMinigameAmount++;
       }
     }
@@ -103,40 +102,40 @@ public class Main {
       n.select(tempSubMinigameList); 
 
       //The selected minigame is a 2 player type
-      if (findMinigame(tempSubMinigameList.get(n.getCurrentGame()).getID()) == twoPlayerMinigameList) {
+      if (this.findMinigame(tempSubMinigameList.get(n.getCurrentGame()).getID()) == this.twoPlayerMinigameList) {
         //Loop twice for 2 1v1s
         for (int j = 0; j <= 3; j+=2) { 
-          cp.clear();
-          cp.add(playerList.get(j)); //get the first player
-          cp.add(playerList.get(j + 1)); //2nd player
+          this.cp.clear();
+          this.cp.add(this.playerList.get(j)); //get the first player
+          this.cp.add(this.playerList.get(j + 1)); //2nd player
           n.gameSwap(cp); //show which players are playing
-          tempSubMinigameList.get(n.getCurrentGame()).setPlayers(cp); //only play with 2 players
+          tempSubMinigameList.get(n.getCurrentGame()).setPlayers(this.cp); //only play with 2 players
           tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game 
-          n.miniWin(cp);
+          n.miniWin(this.cp);
         }
       } else { //The minigame is a 4 player type
-        tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList); //play with everyone
+        tempSubMinigameList.get(n.getCurrentGame()).setPlayers(this.playerList); //play with everyone
         tempSubMinigameList.get(n.getCurrentGame()).play(); //play the game
-        n.miniWin(playerList);
+        n.miniWin(this.playerList);
       }
       
       //use all 4 players to end the game
-      tempSubMinigameList.get(n.getCurrentGame()).setPlayers(playerList);
+      tempSubMinigameList.get(n.getCurrentGame()).setPlayers(this.playerList);
       tempSubMinigameList.get(n.getCurrentGame()).endGame();
       
     }
 
     //Display the leaderboard
     n.winScreen();
-    playerList.clear(); //clears players
+    this.playerList.clear(); //clears players
     
   } //end of run
 
   //Player linear search
   public Player findByID(int id) {
-    for (int i = 0; i < playerList.size(); i++) {
-      if (id == playerList.get(i).getID()) {
-        return playerList.get(i);
+    for (int i = 0; i < this.playerList.size(); i++) {
+      if (id == this.playerList.get(i).getID()) {
+        return this.playerList.get(i);
       }
     }
     return null;
@@ -144,10 +143,10 @@ public class Main {
 
   //Get minigame folder
   public ArrayList<Minigame> findMinigame(int id) {
-    for (int i = 0; i < minigameList.size(); i++) { //go through the 2player list and 4player list
-      for (int j = 0; j < minigameList.get(i).size(); j++) { //go through each index in those lists
-        if (id == minigameList.get(i).get(j).getID()) { //get id from the arraylist inside the arraylist
-          return minigameList.get(i); //return the arraylist its in
+    for (int i = 0; i < this.minigameList.size(); i++) { //go through the 2player list and 4player list
+      for (int j = 0; j < this.minigameList.get(i).size(); j++) { //go through each index in those lists
+        if (id == this.minigameList.get(i).get(j).getID()) { //get id from the arraylist inside the arraylist
+          return this.minigameList.get(i); //return the arraylist its in
         }
       }
     }

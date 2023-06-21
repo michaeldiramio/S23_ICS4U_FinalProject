@@ -23,28 +23,28 @@ public class FindColor extends Minigame {
 
   //Spawn Players
   private void spawnPlayers() {
-    playerList.get(0).setPOS(300, 180);
-    playerList.get(1).setPOS(500, 180);
-    playerList.get(2).setPOS(300, 360);
-    playerList.get(3).setPOS(500, 360);
+    this.playerList.get(0).setPOS(300, 180);
+    this.playerList.get(1).setPOS(500, 180);
+    this.playerList.get(2).setPOS(300, 360);
+    this.playerList.get(3).setPOS(500, 360);
 
     //get each players color
-    for (int i = 0; i < playerList.size(); i++) {
-      colors.add(playerList.get(i).getColor()); 
+    for (int i = 0; i < this.playerList.size(); i++) {
+      this.colors.add(this.playerList.get(i).getColor()); 
     }
     
     //set players to alive
-    for(int i = 0; i < alivePlayers.length; i++) { 
-      alivePlayers[i] = true;
+    for(int i = 0; i < this.alivePlayers.length; i++) { 
+      this.alivePlayers[i] = true;
     }
   }
 
   //Entities
   private void addEntities(){
-    super.entityList.add(new Entity(0, 50, 50, 100, 100, colors.get(0), this.dc)); //top left
-    super.entityList.add(new Entity(1, 750, 50, 100, 100, colors.get(1), this.dc)); //top right
-    super.entityList.add(new Entity(2, 50, 500, 100, 100, colors.get(2), this.dc)); //bottom left
-    super.entityList.add(new Entity(3, 750, 500, 100, 100, colors.get(3), this.dc)); //bottom right
+    super.entityList.add(new Entity(0, 50, 50, 100, 100, this.colors.get(0), this.dc)); //top left
+    super.entityList.add(new Entity(1, 750, 50, 100, 100, this.colors.get(1), this.dc)); //top right
+    super.entityList.add(new Entity(2, 50, 500, 100, 100, this.colors.get(2), this.dc)); //bottom left
+    super.entityList.add(new Entity(3, 750, 500, 100, 100, this.colors.get(3), this.dc)); //bottom right
 
     //barriers
     super.entityList.add(new Entity(4, "left barrier", -5.0, 225.0, 10.0, 600.0, true, Color.BLACK, this.dc));
@@ -56,41 +56,41 @@ public class FindColor extends Minigame {
   //Play the game
   @Override
   public void play() {
-    spawnPlayers(); //spawn players
+    this.spawnPlayers(); //spawn players
     Collections.shuffle(colors); //shuffle colors
-    addEntities(); //load entities
+    this.addEntities(); //load entities
     
     //Variables
-    cycles = 0;
-    seconds = 10;
-    game = true;
+    this.cycles = 0;
+    this.seconds = 10;
+    this.game = true;
     
     //Game Loop
-    while (game) {
-      dc.clear();
+    while (this.game) {
+      this.dc.clear();
 
       //Move characters and refresh screen
       this.moveCharacters();
       super.refreshScreen();
-      dc.setFont(new Font("Comic Sans", Font.BOLD, 36));
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 36));
       super.printTime(seconds, 400, 50);
 
       cycles++;
        //one second has passed
-      if (cycles >= 50) {
-        seconds--;
-        cycles = 0;
+      if (this.cycles >= 50) {
+        this.seconds--;
+        this.cycles = 0;
       }
 
       //time is up or all players win, game ends
-      if (seconds == 0 || (!alivePlayers[0] && !alivePlayers[1] && !alivePlayers[2] && !alivePlayers[3])) { 
-        game = false;
+      if (this.seconds == 0 || (this.alivePlayers[0] && !this.alivePlayers[1] && !this.alivePlayers[2] && !this.alivePlayers[3])) { 
+        this.game = false;
         this.colors.clear(); //refresh colorlist
         this.entityList.clear(); //refresh colorlist
       }
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
     
   }
@@ -124,30 +124,18 @@ public class FindColor extends Minigame {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-5);
+          this.playerList.get(i).moveY(-5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          playerList.get(i).moveX(-5);
+          this.playerList.get(i).moveX(-5);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          playerList.get(i).moveY(5);
+          this.playerList.get(i).moveY(5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          playerList.get(i).moveX(5);
+          this.playerList.get(i).moveX(5);
         }
       }
     }
   }
-
-  
-
-
-
-
-
-
-
-
-
-  
 }

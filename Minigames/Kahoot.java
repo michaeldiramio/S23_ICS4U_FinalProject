@@ -49,41 +49,41 @@ public Kahoot(int id, DConsole dc, ArrayList<Player> players) {
   //Play the game
   @Override
   public void play() {
-    spawnPlayers();
-    addEntites();
+    this.spawnPlayers();
+    this.addEntites();
 
-    rightAnswer = colors.get(r.nextInt(colors.size()));
+    this.rightAnswer = this.colors.get(r.nextInt(this.colors.size()));
 
    
     
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
-    cycles = 0;
-    seconds = 10;
-    game = true;
+    this.cycles = 0;
+    this.seconds = 10;
+    this.game = true;
 
-    while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
-      dc.clear();
+    while (this.game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
+      this.dc.clear();
       
       this.moveCharacters();
       super.refreshScreen();
-      super.printTime(seconds, 300, 40);
+      super.printTime(this.seconds, 300, 40);
 
-      dc.setPaint(rightAnswer);
-      dc.fillRect(400, 275, 50, 50);
+      this.dc.setPaint(rightAnswer);
+      this.dc.fillRect(400, 275, 50, 50);
       
-      cycles++;
-      if (cycles >= 50) { //one second has passed
-        seconds--;
-        cycles = 0;
+      this.cycles++;
+      if (this.cycles >= 50) { //one second has passed
+        this.seconds--;
+        this.cycles = 0;
       }
 
-      if (seconds == 0) { //15 second are up, game ends
-        game = false;
+      if (this.seconds == 0) { //15 second are up, game ends
+        this.game = false;
       }
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   
   }
@@ -98,7 +98,7 @@ public Kahoot(int id, DConsole dc, ArrayList<Player> players) {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
-        for(int j = 0; j < entityList.size(); j++) {
+        for(int j = 0; j < this.entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds (if a player has touched an entity)
   
           for(int k = 0; k < tempEntityBounds.length; k++) {
@@ -116,16 +116,16 @@ public Kahoot(int id, DConsole dc, ArrayList<Player> players) {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-5);
+          this.playerList.get(i).moveY(-5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          playerList.get(i).moveX(-5);
+          this.playerList.get(i).moveX(-5);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          playerList.get(i).moveY(5);
+          this.playerList.get(i).moveY(5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          playerList.get(i).moveX(5);
+          this.playerList.get(i).moveX(5);
         }
       }
     }

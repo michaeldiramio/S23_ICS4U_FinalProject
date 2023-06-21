@@ -51,7 +51,7 @@ public class Main {
     Minigame Lazer = new Lazer(15, this.dc, this.playerList);
     
     //add minigames to lists here
-    /*this.twoPlayerMinigameList.add(firstToTheTop);
+    this.twoPlayerMinigameList.add(firstToTheTop);
     this.twoPlayerMinigameList.add(pong);
     this.twoPlayerMinigameList.add(mazeRun);
     this.fourPlayerMinigameList.add(pressTheButton);
@@ -62,7 +62,7 @@ public class Main {
     this.fourPlayerMinigameList.add(kahoot);
     this.twoPlayerMinigameList.add(rps);
     this.fourPlayerMinigameList.add(race1);
-    this.twoPlayerMinigameList.add(ghostChase);*/
+    this.twoPlayerMinigameList.add(ghostChase);
     this.fourPlayerMinigameList.add(race2);
     this.fourPlayerMinigameList.add(race3);
     this.fourPlayerMinigameList.add(race4);

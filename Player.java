@@ -42,7 +42,7 @@ public class Player {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
     this.dc.fillRect(this.xPOS, this.yPOS, this.xSize, this.ySize);
     this.dc.setPaint(new Color(0,0,0));
-    dc.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+    this.dc.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
     this.dc.drawString(this.username, xPOS, yPOS - 30);
   }
 
@@ -109,12 +109,12 @@ public class Player {
 
   //Get size x
   public double getSizeX() {
-    return xSize;
+    return this.xSize;
   }
 
   //Get size y
   public double getSizeY() {
-    return ySize; 
+    return this.ySize; 
   }
 
   //getMinigame points

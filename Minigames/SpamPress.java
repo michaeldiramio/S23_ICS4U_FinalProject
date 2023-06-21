@@ -8,7 +8,7 @@ public class SpamPress extends Minigame {
    
   //Constructor
   public SpamPress(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
+    super(0, dc, playerList, "Tug of War");
     this.dc = dc;
   }
 
@@ -23,18 +23,17 @@ public class SpamPress extends Minigame {
     dc.fillRect(0, 275, ((1600/100)*LPerc), 550);//left screen
     dc.setPaint(this.playerList.get(1).getColor());
     dc.fillRect(800, 275, ((1600/100)*RPerc), 550);//right screen
-
-    
   }
 
   private void LPress(){
-    LPerc += 1;
-    RPerc-=1;
+    this.LPerc += 1;
+    this.RPerc-=1;
   }
 
   private void RPress(){
-    RPerc+=1;
-    LPerc-=1;
+    this.RPerc+=1;
+    this.LPerc-=1;
+
   }
 
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second
@@ -44,8 +43,9 @@ public class SpamPress extends Minigame {
   //Play the game
   @Override
   public void play() {
-    LPerc = 50;
-    RPerc = 50;
+    this.LPerc = 50;
+    this.RPerc = 50;
+
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
     boolean game = true;
@@ -54,16 +54,18 @@ public class SpamPress extends Minigame {
 
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
+
       
       this.moveCharacters();
       this.sidesDraw();
       
-      if(LPerc <= 0){
+
+      if(this.LPerc <= 0){
         game = false;
         this.playerList.get(0).addToPoints(5);
       }
       
-      if(RPerc <= 0){
+       if(this.RPerc <= 0){
         game = false;
         this.playerList.get(1).addToPoints(5);
       }
@@ -75,21 +77,20 @@ public class SpamPress extends Minigame {
         cycles = 0;
       }
 
-      
-
       if (seconds == 0) { //15 second are up, game ends
         game = false;
-        p1p = false;
-        p2p = false;
+        this.p1p = false;
+        this.p2p = false;
       }
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
+
     }
   
     }
 
-    @Override
+  @Override
   public void moveCharacters() {
 
     for(int i = 0; i < this.playerList.size(); i++) {
@@ -100,28 +101,32 @@ public class SpamPress extends Minigame {
 
         if(i == 0){
           if(!tempControl[0]){
-            p1p = false;
+
+            this.p1p = false;
           }
         }
 
         if(i == 1){
           if(!tempControl[0]){
-            p2p = false;
+
+            this.p2p = false;
+
           }
         }
 
         if(tempControl[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
           if(i == 0){
-            if(p1p == false){
-              p1p = true;
-              LPress();
+            if(this.p1p == false){
+              this.p1p = true;
+              this.LPress();
+
             }
           }
           
           if(i == 1){
-            if(p2p == false){
-              p2p = true;
-              RPress();
+            if(this.p2p == false){
+              this.p2p = true;
+              this.RPress();
             }
           }
         }

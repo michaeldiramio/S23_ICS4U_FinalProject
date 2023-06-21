@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class Jump extends Minigame {
+public class FirstToTop extends Minigame {
 
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second
   //That being said, we can track time with these multiples of 50, 750 cycles is 15 seconds, and 3000 cycles is a minute
@@ -16,80 +16,75 @@ public class Jump extends Minigame {
   private int seconds; 
   //Keep track of alive players
   private boolean[] alivePlayers = {true, true, true, true};
-  //Speed of entity
-  private int xChange;
    
   //Constructor
-  public Jump(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList, "Jump");
+  public FirstToTop(int id, DConsole dc, ArrayList<Player> playerList) {
+    super(id, dc, playerList, "Race 4");
     this.dc = dc;
   }
 
   //Entities
   private void addEntities(){
-    super.entityList.add(new Entity(0, 400, 550, 800, 70, Color.BLACK, this.dc)); //floor
-    super.entityList.add(new Entity(1, 400, 100, 800, 400, Color.BLACK, this.dc)); //cieling
-    super.entityList.add(new Entity(2, 750, 500, 10, 10, Color.RED, this.dc)); //red block
+    super.entityList.add(new Entity(0, "finish line", 400.0, 20.0, 850.0, 40.0, true, Color.GREEN, this.dc));
   }
 
   //Set player spawn and size
   private void spawnPlayers() {
-    this.playerList.get(0).setPOS(150, 480);
-    this.playerList.get(1).setPOS(300, 480);
-    this.playerList.get(2).setPOS(450, 480);
-    this.playerList.get(3).setPOS(600, 480);
-    for(int i = 0; i < this.alivePlayers.length; i++) { //set players to alive
-      this.alivePlayers[i] = true;
+    playerList.get(0).setPOS(160, 520);
+    playerList.get(1).setPOS(320, 520);
+    playerList.get(2).setPOS(480, 520);
+    playerList.get(3).setPOS(640, 520);
+    for(int i = 0; i < alivePlayers.length; i++) { //set players to alive
+      alivePlayers[i] = true;
     }
   }
 
   //Play the game
   @Override
   public void play() {
-    this.addEntities(); //load entities
-    this.spawnPlayers(); //spawn players
+    addEntities(); //load entities
+    spawnPlayers(); //spawn players
 
     //Variables
-    this.cycles = 0;
-    this.seconds = 25;
-    this.xChange = -5;
-    this.game = true;
+    cycles = 0;
+    seconds = 8;
+    game = true;
     
     //Game Loop
     while (game) {
-      this.dc.clear();
+      dc.clear();
 
       //Move characters and refresh screen
-      this.moveBlock();
+      this.dc.setPaint(new Color(0,0,0));
       this.moveCharacters();
       super.refreshScreen();
+      this.dc.setFont(new Font("Comic Sans", Font.PLAIN, 18));
+      super.printTime(seconds, 40, 540);
 
       //Print Jump
-      this.dc.setPaint(new Color(255,255,255));
       this.dc.setFont(new Font("Comic Sans", Font.BOLD, 200));
-      this.dc.drawString("JUMP!", 400, 100);
-      this.dc.setPaint(new Color(0,0,0));
-
+      this.dc.drawString("↑", 400, 225);
+        
       cycles++;
        //one second has passed
-      if (this.cycles >= 50) {
-        this.seconds--;
-        this.cycles = 0;
+      if (cycles >= 50) {
+        seconds--;
+        cycles = 0;
       }
 
-      //time is up or all players die, game ends
-      if (this.seconds == 0 || (!this.alivePlayers[0] && !this.alivePlayers[1] && !this.alivePlayers[2] && !this.alivePlayers[3])) { 
-        this.game = false;
+      //time is up or all players win, game ends
+      if (seconds == 0 || (!alivePlayers[0] && !alivePlayers[1] && !alivePlayers[2] && !alivePlayers[3])) { 
+        game = false;
         this.entityList.clear(); //clear entities so they spawn in their original position if replayed
       }
 
-      this.dc.redraw();
-      this.dc.pause(20);
+      dc.redraw();
+      dc.pause(20);
     }
     
   }
 
-  //Move Characters (only up and down)
+  //Move Characters (only to the right)
   @Override
   public void moveCharacters() {
     for(int i = 0; i < this.playerList.size(); i++) {
@@ -98,18 +93,15 @@ public class Jump extends Minigame {
       if(this.playerList.get(i) != null) { //get current pressed keys
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); 
         
-        for(int j = 0; j < this.entityList.size(); j++) {  // gets entity bounds
+        for(int j = 0; j < entityList.size(); j++) {  // gets entity bounds
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i));
           
           //player touches an entity
           for(int k = 0; k < tempEntityBounds.length; k++) {
             //if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
             //ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
-            if(tempEntityBounds[k]) {
-              movementAllowance[k] = false;
-            } 
-            if (j == 2 && tempEntityBounds[k]) { //a player hits the red block
-              this.playerList.get(i).addToPoints(25 - seconds); //their points depend on how long they lived
+            if (j == 0 && tempEntityBounds[k]) { //a player hits the red block
+              this.playerList.get(i).addToPoints(seconds); //their points depend on how long they lived
               this.playerList.get(i).setPOS(playerList.get(i).getX(), 700); //move them off the board
               this.alivePlayers[i] = false; 
             }
@@ -117,30 +109,14 @@ public class Jump extends Minigame {
         }
 
         // movement based on key input and if movement is allowed (from entity bounds)
-        if(tempControl[0] && movementAllowance[0] && !movementAllowance[2]) { //Up
-          this.playerList.get(i).moveY(-75);
-        }
-        if(movementAllowance[2]) { //down
-          this.playerList.get(i).moveY(2);
+        if(tempControl[0] && movementAllowance[0]) { //Down
+          this.playerList.get(i).moveY(-5);
         }
       }
     }
   }
   
-  //Move the block entity
-  public void moveBlock() {
-
-    //check bounds
-    if (this.entityList.get(2).getX() >= 800) { //right bound
-      this.xChange*=-1;
-    } else if (this.entityList.get(2).getX() <= 0) { //left bound
-      this.xChange*=-1;
-    }
-
-    //move 
-    this.entityList.get(2).move(this.xChange, 0);
-    
-  }
+ 
 
 
 

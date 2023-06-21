@@ -394,6 +394,11 @@ public class GameScreen {
       dc.drawString(subMinigameList.get(1).getName(), 500, 225);
       dc.drawString(subMinigameList.get(2).getName(), 300, 425);
       dc.drawString(subMinigameList.get(3).getName(), 500, 425);
+      dc.setFont(new Font("Comic Sans", Font.PLAIN, 36));
+      dc.drawString("↑", 230, 155);
+      dc.drawString("←", 440, 145);
+      dc.drawString("↓", 230, 355);
+      dc.drawString("→", 440, 345);
 
       // coordinates for icons/text
       int[] xCoords = {300, 500, 300, 500};

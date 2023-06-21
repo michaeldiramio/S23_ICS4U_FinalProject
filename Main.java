@@ -21,8 +21,8 @@ public class Main {
   // runs methods from other classes
   public void run() {
 
-    minigameList.add(twoPlayerMinigameList); //two player
-    minigameList.add(fourPlayerMinigameList); //four player
+    this.minigameList.add(twoPlayerMinigameList); //two player
+    this.minigameList.add(fourPlayerMinigameList); //four player
     
     //making players for all games
     this.playerList.add(new Player(1, new Color (0, 0, 200), 200, 200, this.dc));
@@ -43,19 +43,20 @@ public class Main {
     Minigame spamPress = new SpamPress(8, this.dc, this.cp);
     Minigame kahoot = new Kahoot(9, this.dc, this.cp);
     Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
+    Minigame race = new FirstToRight(11, this.dc, this.playerList);
 
-    //add minigames to lists here
-   
-    twoPlayerMinigameList.add(firstToTheTop);
-    twoPlayerMinigameList.add(pong);
-    twoPlayerMinigameList.add(mazeRun);
-    fourPlayerMinigameList.add(pressTheButton);
-    fourPlayerMinigameList.add(jump);
-    twoPlayerMinigameList.add(collectCoins);
-    fourPlayerMinigameList.add(findColor);
-    twoPlayerMinigameList.add(spamPress);
-    fourPlayerMinigameList.add(kahoot);
-    twoPlayerMinigameList.add(rps);
+    //add minigames to lists here   
+    this.twoPlayerMinigameList.add(firstToTheTop);
+    this.twoPlayerMinigameList.add(pong);
+    this.twoPlayerMinigameList.add(mazeRun);
+    this.fourPlayerMinigameList.add(pressTheButton);
+    this.fourPlayerMinigameList.add(jump);
+    this.twoPlayerMinigameList.add(collectCoins);
+    this.fourPlayerMinigameList.add(findColor);
+    this.twoPlayerMinigameList.add(spamPress);
+    this.fourPlayerMinigameList.add(kahoot);
+    this.twoPlayerMinigameList.add(rps);
+    this.fourPlayerMinigameList.add(race);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

@@ -50,13 +50,12 @@ public class Main {
     Minigame race4 = new FirstToTop(15, this.dc, this.playerList);
     Minigame mashingRace = new MashingRace(16, this.dc, this.cp);
     Minigame Lazer = new Lazer(17, this.dc, this.playerList);
-
     
     //add minigames to lists here
     this.twoPlayerMinigameList.add(firstToTheTop);
     this.twoPlayerMinigameList.add(pong);
     this.twoPlayerMinigameList.add(mazeRun);
-    this.fourPlayerMinigameList.add(pressTheButton);
+    this.fourPlayerMinigameList.add(pressTheButton);/*
     this.fourPlayerMinigameList.add(jump);
     this.twoPlayerMinigameList.add(collectCoins);
     this.fourPlayerMinigameList.add(findColor);

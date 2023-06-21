@@ -43,9 +43,8 @@ public class FirstToTheTop extends Minigame {
 
   @Override
   public void moveCharacters() {
-    boolean[] movementAllowance = {true, true, true, true};
-    
     for(int i = 0; i < this.playerList.size(); i++) {
+      boolean[] movementAllowance = {true, true, true, true};
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
@@ -75,19 +74,21 @@ public class FirstToTheTop extends Minigame {
             }
           }
         }
-  
-        // movement based on key input and if movement is allowed (from entity bounds)
-        if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          this.playerList.get(i).moveY(-1.5);
-        }
-        if(tempControl[1] && movementAllowance[1]) { //left
-          this.playerList.get(i).moveX(-2);
-        }
-        if(tempControl[2] && movementAllowance[2]) { //down
-          this.playerList.get(i).moveY(1.5);
-        }
-        if(tempControl[3] && movementAllowance[3]) { //right
-          this.playerList.get(i).moveX(2);
+
+        if(!reachedEnd[i]) {
+          // movement based on key input and if movement is allowed (from entity bounds)
+          if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
+            this.playerList.get(i).moveY(-1.5);
+          }
+          if(tempControl[1] && movementAllowance[1]) { //left
+            this.playerList.get(i).moveX(-2);
+          }
+          if(tempControl[2] && movementAllowance[2]) { //down
+            this.playerList.get(i).moveY(1.5);
+          }
+          if(tempControl[3] && movementAllowance[3]) { //right
+            this.playerList.get(i).moveX(2);
+          }
         }
       }
     }
@@ -155,6 +156,12 @@ public class FirstToTheTop extends Minigame {
         }
       }
     }
+
+    this.entityList.clear();
+    this.firstPlayer = -1;
+    this.reachedEnd[0] = false;
+    this.reachedEnd[1] = false;
+    
   
   }
 

@@ -5,11 +5,17 @@ import java.util.*;
 public class FirstToTheTop extends Minigame {
 
   private int gifCounter;
+  private boolean[] reachedEnd;
+  private boolean game;
+  private int firstPlayer;
 
   //Constructor
   public FirstToTheTop(int id, DConsole dc, ArrayList<Player> playerList) {
     super(1, dc, playerList, "Maze 1");
     this.gifCounter = 0;
+    this.reachedEnd = new boolean[2];
+    this.game = false;
+    this.firstPlayer = -1;
   }
 
   public void addEntities() {
@@ -21,10 +27,14 @@ public class FirstToTheTop extends Minigame {
     super.entityList.add(new Entity(6, "maze block 2", 675.0, 500.0, 310.0, 125.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(7, "maze block 3", 500.0, 450.0, 700.0, 25.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(8, "maze block 4", 100.0, 455.0, 125.0, 35.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(9, "maze block 5", 400.0, 400.0, 200.0, 75.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(9, "maze block 5", 400.0, 405.0, 200.0, 70.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(10, "maze block 6", 120.0, 365.0, 265.0, 75.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(11, "maze block 7", 500.0, 332.5, 600.0, 10.0, true, Color.BLACK, this.dc));
-    super.entityList.add(new Entity(12, "", 500.0, 332.5, 600.0, 10.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(12, "maze block 8", 500.0, 332.5, 600.0, 10.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(13, "maze block 9", 665.0, 355.0, 150.0, 50.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(14, "maze block 10", 510.0, 415.0, 65.0, 65.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(15, "maze block 11", 775.0, 390.0, 70.0, 105.0, true, Color.BLACK, this.dc));
+    super.entityList.add(new Entity(16, "maze end", 700.0, 410.0, 30.0, 30.0, true, Color.YELLOW, this.dc));
   }
 
 
@@ -42,16 +52,23 @@ public class FirstToTheTop extends Minigame {
         for(int j = 0; j < this.entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds (if a player has touched an entity)
           
-          for(int k = 0; k < tempEntityBounds.length; k++) {
+          for(int k = 0; k < tempEntityBounds.length && !reachedEnd[i]; k++) {
             
             // if they hit the end of the maze
-           /* if(tempEntityBounds[20]) {}
+            if(j == 15 && tempEntityBounds[k]) {
+              reachedEnd[i] = true;
+
+              // checks if you are the first player to beat the maze
+              if(this.firstPlayer == -1) {
+                this.firstPlayer = i;
+              } 
+              
               
               
               // if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
             // ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
             // also if a player hits an entity put them back to their spawnpoint
-            } else */if(tempEntityBounds[k]) {
+            } else if(tempEntityBounds[k]) {
               movementAllowance[k] = false;
               this.playerList.get(i).setX(spawnCoordX);
               this.playerList.get(i).setY(spawnCoordY);
@@ -61,16 +78,16 @@ public class FirstToTheTop extends Minigame {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          this.playerList.get(i).moveY(-2.5);
+          this.playerList.get(i).moveY(-1.5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          this.playerList.get(i).moveX(-2.5);
+          this.playerList.get(i).moveX(-2);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          this.playerList.get(i).moveY(2.5);
+          this.playerList.get(i).moveY(1.5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          this.playerList.get(i).moveX(2.5);
+          this.playerList.get(i).moveX(2);
         }
       }
     }
@@ -83,9 +100,9 @@ public class FirstToTheTop extends Minigame {
 
     this.addEntities();
 
-    boolean game = true;
+    this.game = true;
     int cycles = 0;
-    int seconds = 30;
+    int seconds = 35;
 
     // set every player to their original spawnpoint
     for(int i = 0; i < this.playerList.size(); i++) {
@@ -96,7 +113,7 @@ public class FirstToTheTop extends Minigame {
     }
 
     
-    while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
+    while(this.game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
 
       int mouseX = this.dc.getMouseXPosition();
@@ -110,13 +127,14 @@ public class FirstToTheTop extends Minigame {
       }
 
       cycles++;
-      if (cycles >= 50) { //one second has passed
+      if (cycles >= 50) {
         seconds--;
         cycles = 0;
       }
 
-      if (seconds == 0) { //15 second are up, game ends
-        game = false;
+      // if the time limit is reached or both players reached the end
+      if(seconds == 0 || Collections.frequency(Arrays.asList(this.reachedEnd), true) == 2) { 
+        this.game = false;
       }
       
       this.moveCharacters();
@@ -125,6 +143,17 @@ public class FirstToTheTop extends Minigame {
 
       this.dc.redraw();
       this.dc.pause(20);
+    }
+
+    // if you are the first to reach the end you get two points, if you are second you get one, and if you don't reach the end you don't get any
+    for(int i = 0; i < this.reachedEnd.length; i++) {
+      if(this.reachedEnd[i] == true) {
+        if(this.firstPlayer == i) {
+          this.playerList.get(i).addToPoints(2);
+        } else {
+          this.playerList.get(i).addToPoints(1);
+        }
+      }
     }
   
   }

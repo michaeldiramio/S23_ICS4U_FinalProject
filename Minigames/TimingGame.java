@@ -4,8 +4,11 @@ import java.util.*;
 
 public class TimingGame extends Minigame {
   DConsole dc;
+  int time;
+
+  private ArrayList<Double> pScores = new ArrayList<Double>();
+  double Gtime = 5.5;
   
-   
   //Constructor
   public TimingGame(int id, DConsole dc, ArrayList<Player> playerList) {
     super(0, dc, playerList);
@@ -23,13 +26,28 @@ public class TimingGame extends Minigame {
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
     boolean game = true;
+    int CounterCycle = 0;
     int cycles = 0;
-    int seconds = 8;
+    int seconds = 11;
+
+    this.pScores.add(0.0);
+    this.pScores.add(0.0);
+    this.pScores.add(0.0);
+    this.pScores.add(0.0);
 
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
       dc.clear();
       
       this.moveCharacters();
+
+      this.dc.setPaint(new Color(255,255,255));
+      this.dc.setFont(new Font("Comic Sans", Font.BOLD, 200));
+      this.dc.drawString(Gtime, 400, 500); // Counter
+      this.dc.drawString(pScores.get(0), 100, 250); //p1
+      this.dc.drawString(pScores.get(1), 300/3, 250); //p2
+      this.dc.drawString(pScores.get(2), 500/2, 250); //p3
+      this.dc.drawString(pScores.get(3), 700, 250); //p4
+      this.dc.setPaint(new Color(0,0,0));
      
   
       cycles++;
@@ -38,9 +56,20 @@ public class TimingGame extends Minigame {
         cycles = 0;
       }
 
+      if(CounterCycle >= 20){//one ms has passed
+        Gtime += 0.1;
+        CounterCycle = 0;
+      }
+
+      if(pScores.get(0) != 0 && pScores.get(1) != 0 && pScores.get(2) != 0 && pScores.get(3) != 0 ){
+        
+        game = false;
+      }
+
       
 
       if (seconds == 0) { //15 second are up, game ends
+        
         game = false;
       }
 
@@ -61,13 +90,13 @@ public class TimingGame extends Minigame {
         
         if(tempControl[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
           if(i == 0){
-  
+            pScores.set(0, Gtime);
           }if(i == 1){
-          
+            pScores.set(1, Gtime);
           }if(i==2){
-            
+            pScores.set(2, Gtime);
           }if(i == 3){
-            
+            pScores.set(3, Gtime);
           }
         }
       }

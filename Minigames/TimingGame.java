@@ -11,7 +11,7 @@ public class TimingGame extends Minigame {
   
   //Constructor
   public TimingGame(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(0, dc, playerList);
+    super(0, dc, playerList, "Timing");
     this.dc = dc;
   }
 
@@ -42,14 +42,14 @@ public class TimingGame extends Minigame {
 
       this.dc.setPaint(new Color(255,255,255));
       this.dc.setFont(new Font("Comic Sans", Font.BOLD, 200));
-      this.dc.drawString(Gtime, 400, 500); // Counter
-      this.dc.drawString(pScores.get(0), 100, 250); //p1
-      this.dc.drawString(pScores.get(1), 300/3, 250); //p2
-      this.dc.drawString(pScores.get(2), 500/2, 250); //p3
-      this.dc.drawString(pScores.get(3), 700, 250); //p4
-      this.dc.setPaint(new Color(0,0,0));
+      this.dc.drawRect(50, 50, 50, 50);
+      this.dc.drawString("Time: " + Gtime, 400, 500); // Counter
+      //this.dc.drawString(pScores.get(0), 100, 250); //p1
+      //this.dc.drawString(pScores.get(1), 300/3, 250); //p2
+      //this.dc.drawString(pScores.get(2), 500/2, 250); //p3
+     // this.dc.drawString(pScores.get(3), 700, 250); //p4
+      //this.dc.setPaint(new Color(0,0,0));
      
-  
       cycles++;
       if (cycles >= 50) { //one second has passed
         seconds--;

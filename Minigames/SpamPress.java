@@ -62,12 +62,12 @@ public class SpamPress extends Minigame {
 
       if(this.LPerc <= 0){
         game = false;
-        this.playerList.get(0).addToPoints(5);
+        this.playerList.get(1).addToPoints(5);
       }
       
        if(this.RPerc <= 0){
         game = false;
-        this.playerList.get(1).addToPoints(5);
+        this.playerList.get(0).addToPoints(5);
       }
     
   
@@ -79,6 +79,15 @@ public class SpamPress extends Minigame {
 
       if (seconds == 0) { //15 second are up, game ends
         game = false;
+        if(LPerc > RPerc){
+    this.playerList.get(0).addToPoints(5);
+        }else if(RPerc > LPerc){
+          this.playerList.get(1).addToPoints(5);
+        }else{
+          this.playerList.get(0).addToPoints(1);
+          this.playerList.get(0).addToPoints(1);
+        }
+        
         this.p1p = false;
         this.p2p = false;
       }

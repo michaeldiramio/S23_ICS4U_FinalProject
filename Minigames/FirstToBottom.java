@@ -90,7 +90,7 @@ public class FirstToBottom extends Minigame {
     for(int i = 0; i < this.playerList.size(); i++) {
       boolean[] movementAllowance = {true, true, true, true};
       
-      if(this.playerList.get(i) != null) { //get current pressed keys
+      if(this.playerList.get(i) != null && this.alivePlayers[i]) { //get current pressed keys
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); 
         
         for(int j = 0; j < entityList.size(); j++) {  // gets entity bounds

@@ -11,7 +11,7 @@ public class GhostChase extends Minigame {
 
   //Constructor
   public GhostChase (int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList);
+    super(id, dc, playerList, "Ghost Chase");
     ghost = new ArrayList<>();
   }
   

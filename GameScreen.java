@@ -15,6 +15,18 @@ public class GameScreen {
   private int playerAmount;
   private Player[] activePlayers;
   private int currentGame;
+  private int laserX1 = 1550;
+  private int laserX2 = 1700;
+  private int laserX3 = 1600;
+  private int laserX4 = -1000;
+  private int laserX5 = -360;
+  private int laserX6 = -500;
+  private int laserX7 = 1550;
+  private int laserX8 = 1700;
+  private int laserX9 = 1600;
+  private int laserX10 = -1000;
+  private int laserX11 = -360;
+  private int laserX12 = -500;
 
   //Constructor
   public GameScreen(DConsole dc, ArrayList<Player> playerList) {
@@ -63,10 +75,38 @@ public class GameScreen {
       this.dc.setPaint(new Color(0,25,255));
       this.dc.setFont(customFont);
   		this.dc.drawString("Totally Not A",400,75);
-      this.dc.drawString("Mario Party Rip off",400,150);
+      this.dc.drawString("WarioWare Ripoff",400,150);
       this.dc.setPaint(new Color(255, 25, 0, trans)); //
       this.dc.setFont(new Font("Comic sans", Font.PLAIN, 18));
       this.dc.drawString("Press Space to Play", 400, 480);
+
+      //cool lasers
+      dc.setPaint(new Color(255,0,0));//red 
+      dc.fillRect(laserX1, 70, 200, 4);
+      dc.fillRect(laserX2, 60, 200, 4);
+      dc.fillRect(laserX3, 55, 200, 4);
+      dc.fillRect(laserX4, 290, 200, 4);
+      dc.fillRect(laserX5, 255, 200, 4);
+      dc.fillRect(laserX6, 266, 200, 4);
+      dc.fillRect(laserX7, 470, 200, 4);
+      dc.fillRect(laserX8, 360, 200, 4);
+      dc.fillRect(laserX9, 455, 200, 4);
+      dc.fillRect(laserX10, 190, 200, 4);
+      dc.fillRect(laserX11, 155, 200, 4);
+      dc.fillRect(laserX12, 166, 200, 4);
+      
+      laserX1-= 25;
+      laserX2-= 25;
+      laserX3-= 25;
+      laserX4+= 25;
+      laserX5+= 25;
+      laserX6+= 25;
+      laserX7-= 25;
+      laserX8-= 25;
+      laserX9-= 25;
+      laserX10+= 25;
+      laserX11+= 25;
+      laserX12+= 25;
       
       this.dc.redraw();
       this.dc.pause(20);

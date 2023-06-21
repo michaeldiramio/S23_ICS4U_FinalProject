@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.*;
 import java.util.*;
 
-public class FirstToRight extends Minigame {
+public class FirstToLeft extends Minigame {
 
   //USEFUL INFORMATION: The ideal DConsole pause is 20ms, thus 50 pauses make a second, therefore, 50 cycles is one second
   //That being said, we can track time with these multiples of 50, 750 cycles is 15 seconds, and 3000 cycles is a minute
@@ -18,22 +18,22 @@ public class FirstToRight extends Minigame {
   private boolean[] alivePlayers = {true, true, true, true};
    
   //Constructor
-  public FirstToRight(int id, DConsole dc, ArrayList<Player> playerList) {
-    super(id, dc, playerList, "Race 1");
+  public FirstToLeft(int id, DConsole dc, ArrayList<Player> playerList) {
+    super(id, dc, playerList, "Race 2");
     this.dc = dc;
   }
 
   //Entities
   private void addEntities(){
-    super.entityList.add(new Entity(0, "finish line", 780.0, 225.0, 40.0, 800.0, true, Color.GREEN, this.dc));
+    super.entityList.add(new Entity(0, "finish line", 20.0, 225.0, 40.0, 800.0, true, Color.GREEN, this.dc));
   }
 
   //Set player spawn and size
   private void spawnPlayers() {
-    playerList.get(0).setPOS(30, 150);
-    playerList.get(1).setPOS(30, 200);
-    playerList.get(2).setPOS(30, 250);
-    playerList.get(3).setPOS(30, 300);
+    playerList.get(0).setPOS(770, 150);
+    playerList.get(1).setPOS(770, 200);
+    playerList.get(2).setPOS(770, 250);
+    playerList.get(3).setPOS(770, 300);
     for(int i = 0; i < alivePlayers.length; i++) { //set players to alive
       alivePlayers[i] = true;
     }
@@ -59,11 +59,11 @@ public class FirstToRight extends Minigame {
       this.moveCharacters();
       super.refreshScreen();
       this.dc.setFont(new Font("Comic Sans", Font.PLAIN, 18));
-      super.printTime(seconds, 40, 10);
+      super.printTime(seconds, 760, 10);
 
       //Print Jump
       this.dc.setFont(new Font("Comic Sans", Font.BOLD, 200));
-      this.dc.drawString("→", 400, 10);
+      this.dc.drawString("←", 400, 10);
         
       cycles++;
        //one second has passed
@@ -109,8 +109,8 @@ public class FirstToRight extends Minigame {
         }
 
         // movement based on key input and if movement is allowed (from entity bounds)
-        if(tempControl[3] && movementAllowance[3]) { //Right
-          this.playerList.get(i).moveX(5);
+        if(tempControl[1] && movementAllowance[1]) { //Left
+          this.playerList.get(i).moveX(-5);
         }
       }
     }

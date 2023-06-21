@@ -43,9 +43,12 @@ public class Main {
     Minigame spamPress = new SpamPress(8, this.dc, this.cp);
     Minigame kahoot = new Kahoot(9, this.dc, this.cp);
     Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
-    Minigame race = new FirstToRight(11, this.dc, this.playerList);
+    Minigame race1 = new FirstToRight(11, this.dc, this.playerList);
     Minigame ghostChase = new GhostChase(12, this.dc, this.cp);
-
+    Minigame race2 = new FirstToLeft(13, this.dc, this.playerList);
+    Minigame race3 = new FirstToBottom(14, this.dc, this.playerList);
+    Minigame race4 = new FirstToTop(15, this.dc, this.playerList);
+    
     //add minigames to lists here
     this.twoPlayerMinigameList.add(firstToTheTop);
     this.twoPlayerMinigameList.add(pong);
@@ -57,8 +60,11 @@ public class Main {
     this.twoPlayerMinigameList.add(spamPress);
     this.fourPlayerMinigameList.add(kahoot);
     this.twoPlayerMinigameList.add(rps);
-    this.fourPlayerMinigameList.add(race);
+    this.fourPlayerMinigameList.add(race1);
     this.twoPlayerMinigameList.add(ghostChase);
+    this.fourPlayerMinigameList.add(race2);
+    this.fourPlayerMinigameList.add(race3);
+    this.fourPlayerMinigameList.add(race4);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

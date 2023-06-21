@@ -34,7 +34,7 @@ public class MazeRun extends Minigame {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
         for(int j = 0; j < this.entityList.size(); j++) {
-          boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds 
+          boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds
                                                                                    // (if a player has touched an entity)
   
           for(int k = 0; k < tempEntityBounds.length; k++) {

@@ -26,6 +26,7 @@ public class FirstToTop extends Minigame {
   //Entities
   private void addEntities(){
     super.entityList.add(new Entity(0, "finish line", 400.0, 20.0, 850.0, 40.0, true, Color.GREEN, this.dc));
+    super.entityList.add(new Entity(1, "bottom barrier", 400.0, 555.0, 850.0, 10.0, true, Color.BLACK, this.dc));
   }
 
   //Set player spawn and size
@@ -90,7 +91,7 @@ public class FirstToTop extends Minigame {
     for(int i = 0; i < this.playerList.size(); i++) {
       boolean[] movementAllowance = {true, true, true, true};
       
-      if(this.playerList.get(i) != null) { //get current pressed keys
+      if(this.playerList.get(i) != null && this.alivePlayers[i]) { //get current pressed keys
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); 
         
         for(int j = 0; j < entityList.size(); j++) {  // gets entity bounds
@@ -102,7 +103,7 @@ public class FirstToTop extends Minigame {
             //ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
             if (j == 0 && tempEntityBounds[k]) { //a player hits the red block
               this.playerList.get(i).addToPoints(seconds); //their points depend on how long they lived
-              this.playerList.get(i).setPOS(playerList.get(i).getX(), 700); //move them off the board
+              this.playerList.get(i).setPOS(playerList.get(i).getX(), 800); //move them off the board
               this.alivePlayers[i] = false; 
             }
           }

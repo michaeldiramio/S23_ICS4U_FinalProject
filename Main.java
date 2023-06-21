@@ -48,7 +48,8 @@ public class Main {
     Minigame race2 = new FirstToLeft(13, this.dc, this.playerList);
     Minigame race3 = new FirstToBottom(14, this.dc, this.playerList);
     Minigame race4 = new FirstToTop(15, this.dc, this.playerList);
-    Minigame keyMasher = new KeyMasher(16, this.dc, this.playerList);
+    Minigame mashingRace = new MashingRace(16, this.dc, this.cp);
+    Minigame Lazer = new Lazer(17, this.dc, this.playerList);
     
     //add minigames to lists here
     this.twoPlayerMinigameList.add(firstToTheTop);
@@ -66,7 +67,8 @@ public class Main {
     this.fourPlayerMinigameList.add(race2);
     this.fourPlayerMinigameList.add(race3);
     this.fourPlayerMinigameList.add(race4);
-    this.fourPlayerMinigameList.add(keyMasher);*/
+    this.twoPlayerMinigameList.add(mashingRace);
+    this.twoPlayerMinigameList.add(Lazer);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

@@ -55,7 +55,7 @@ public class Main {
     this.twoPlayerMinigameList.add(firstToTheTop);
     this.twoPlayerMinigameList.add(pong);
     this.twoPlayerMinigameList.add(mazeRun);
-    this.fourPlayerMinigameList.add(pressTheButton);/*
+    this.fourPlayerMinigameList.add(pressTheButton);
     this.fourPlayerMinigameList.add(jump);
     this.twoPlayerMinigameList.add(collectCoins);
     this.fourPlayerMinigameList.add(findColor);

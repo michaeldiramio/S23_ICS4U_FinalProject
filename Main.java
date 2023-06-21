@@ -20,7 +20,7 @@ public class Main {
 
   // runs methods from other classes
   public void run() {
-
+    
     this.minigameList.add(this.twoPlayerMinigameList); //two player
     this.minigameList.add(this.fourPlayerMinigameList); //four player
     
@@ -43,6 +43,7 @@ public class Main {
     Minigame spamPress = new SpamPress(8, this.dc, this.cp);
     Minigame kahoot = new Kahoot(9, this.dc, this.cp);
     Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
+    Minigame race = new FirstToRight(11, this.dc, this.playerList);
 
     //add minigames to lists here
     this.twoPlayerMinigameList.add(firstToTheTop);
@@ -55,6 +56,7 @@ public class Main {
     this.twoPlayerMinigameList.add(spamPress);
     this.fourPlayerMinigameList.add(kahoot);
     this.twoPlayerMinigameList.add(rps);
+    this.fourPlayerMinigameList.add(race);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

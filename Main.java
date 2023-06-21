@@ -38,12 +38,14 @@ public class Main {
     Minigame mazeRun = new MazeRun(3, this.dc, this.cp);
     Minigame pressTheButton = new PressTheButton(4, this.dc, this.playerList); //This game uses 4 players
     Minigame jump = new Jump(5, this.dc, this.cp);
+    Minigame CollectCoins = new CollectCoins(6, this.dc, this.cp);
     Minigame collectCoins = new CollectCoins(6, this.dc, this.cp);
     Minigame findColor = new FindColor(7, this.dc, this.playerList);
     Minigame spamPress = new SpamPress(8, this.dc, this.cp);
     Minigame kahoot = new Kahoot(9, this.dc, this.cp);
     Minigame rps = new RockPaperScissors(10, this.dc, this.cp);
     Minigame race = new FirstToRight(11, this.dc, this.playerList);
+    Minigame GhostChase = new GhostChase(12, this.dc, this.cp);
 
     //add minigames to lists here
     this.twoPlayerMinigameList.add(firstToTheTop);
@@ -57,6 +59,7 @@ public class Main {
     this.fourPlayerMinigameList.add(kahoot);
     this.twoPlayerMinigameList.add(rps);
     this.fourPlayerMinigameList.add(race);
+    this.twoPlayerMinigameList.add(GhostChase);
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     //Game screens

@@ -80,6 +80,11 @@ public class Jump extends Minigame {
       //time is up or all players die, game ends
       if (this.seconds == 0 || (!this.alivePlayers[0] && !this.alivePlayers[1] && !this.alivePlayers[2] && !this.alivePlayers[3])) { 
         this.game = false;
+        for (int i = 0; i < alivePlayers.length; i++) {
+          if (alivePlayers[i]) { //all alive players get points
+            playerList.get(i).addToPoints(50);
+          }
+        }
         this.entityList.clear(); //clear entities so they spawn in their original position if replayed
       }
 

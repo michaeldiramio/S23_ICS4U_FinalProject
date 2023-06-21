@@ -526,7 +526,7 @@ public class GameScreen {
     for (int i = 0; i < playerList.size(); i++) {
         for (int j = i + 1; j < playerList.size(); j++) {
             Player temp;
-            if (tempPlayerList[i].getPoints() > tempPlayerList[j].getPoints()) {
+            if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
              
                 // Swapping
                 temp = tempPlayerList[i];

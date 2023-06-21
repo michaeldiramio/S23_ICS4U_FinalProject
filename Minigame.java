@@ -48,7 +48,7 @@ public abstract class Minigame {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
-        for(int j = 0; j < entityList.size(); j++) {
+        for(int j = 0; j < this.entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds (if a player has touched an entity)
   
           for(int k = 0; k < tempEntityBounds.length; k++) {
@@ -62,16 +62,16 @@ public abstract class Minigame {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-5);
+          this.playerList.get(i).moveY(-5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          playerList.get(i).moveX(-5);
+          this.playerList.get(i).moveX(-5);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          playerList.get(i).moveY(5);
+          this.playerList.get(i).moveY(5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          playerList.get(i).moveX(5);
+          this.playerList.get(i).moveX(5);
         }
       }
     }
@@ -104,12 +104,12 @@ public abstract class Minigame {
     for(int i = 0; i < playerList.size(); i++){
       try {
         tempPlayerList[i] = playerList.get(i);
-      }catch (Exception e) {}
+      } catch(Exception e) {}
     }
 
     //bubble sorts players in tempPlayerArray by points
-    for (int i = 0; i < playerList.size(); i++) {
-        for (int j = i + 1; j < playerList.size(); j++) {
+    for (int i = 0; i < this.playerList.size(); i++) {
+        for (int j = i + 1; j < this.playerList.size(); j++) {
             Player temp;
             if (tempPlayerList[i].getPoints() < tempPlayerList[j].getPoints()) {
              
@@ -128,19 +128,19 @@ public abstract class Minigame {
 
         //codes for ties
         if(i == 0){
-          playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
-        }else if(i == 1){
+          this.playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        } else if(i == 1){
           if(tempPlayerList[0].getPoints() != tempPlayerList[1].getPoints()){
-            playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
-          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
-        }else if(i == 2){
+            this.playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+          } else this.playerList.get(tempPlayerList[i].getID()-1).addToScore(15);
+        } else if(i == 2){
           if(tempPlayerList[1].getPoints() != tempPlayerList[2].getPoints()){
-            playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
-          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
-        }else if(i == 3){
+            this.playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
+          } else this.playerList.get(tempPlayerList[i].getID()-1).addToScore(12);
+        } else if(i == 3){
           if(tempPlayerList[2].getPoints() != tempPlayerList[3].getPoints()){
-            playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
-          }else playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
+            this.playerList.get(tempPlayerList[i].getID()-1).addToScore(4);
+          } else this.playerList.get(tempPlayerList[i].getID()-1).addToScore(8);
         }
         
 
@@ -162,7 +162,7 @@ public abstract class Minigame {
 
     //reset all player points for next game
     for (int i = 0; i < tempPlayerList.length; i++) {
-      playerList.get(i).resetPoints();
+      this.playerList.get(i).resetPoints();
     }
     
   }
@@ -173,15 +173,15 @@ public abstract class Minigame {
 
   //Reset player points
   public void resetPlayerPoints() {
-    for (int i = 0; i < playerList.size(); i++) {
-      playerList.get(i).resetPoints();
+    for (int i = 0; i < this.playerList.size(); i++) {
+      this.playerList.get(i).resetPoints();
     }
   }
 
 
   //Print time
   public void printTime(int s, int x, int y) {
-    dc.drawString("Time: " + s, x, y);
+    this.dc.drawString("Time: " + s, x, y);
   }
 
   //Set players

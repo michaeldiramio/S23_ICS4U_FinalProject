@@ -25,18 +25,18 @@ public class Pong extends Minigame {
       bxc*=-1;
     }
 
-    playerList.get(0).setSize(20, 100);
-    playerList.get(1).setSize(20, 100);
+    this.playerList.get(0).setSize(20, 100);
+    this.playerList.get(1).setSize(20, 100);
 
-    playerList.get(0).setX(50);
-    playerList.get(1).setX(750);
-    playerList.get(0).setY(275);
-    playerList.get(1).setY(275);
+    this.playerList.get(0).setX(50);
+    this.playerList.get(1).setX(750);
+    this.playerList.get(0).setY(275);
+    this.playerList.get(1).setY(275);
 
     while (game) { //these will be the loops that go on until game ends (refer to useful information for time limits)
-      dc.clear();
+      this.dc.clear();
 
-      moveCharacters();
+      this.moveCharacters();
       super.refreshScreen();
 
       //collision of ball with up/down edges
@@ -55,24 +55,24 @@ public class Pong extends Minigame {
       if(bx < 0 || bx > 800) {
         
         if(bx < 0) { //player 2 wins
-          playerList.get(1).addToPoints(1000);
+          this.playerList.get(1).addToPoints(1000);
         } else if (bx > 800) { //player 1 wins
-          playerList.get(0).addToPoints(1000);
+          this.playerList.get(0).addToPoints(1000);
         }
         
         game = false;
         //resize characters back to normal
-        playerList.get(0).setSize(20, 20);
-        playerList.get(1).setSize(20, 20);
+        this.playerList.get(0).setSize(20, 20);
+        this.playerList.get(1).setSize(20, 20);
       }
 
       //move ball 
       bx+=bxc;
       by+=byc;
-      dc.fillEllipse(bx, by, 20, 20); //ball
+      this.dc.fillEllipse(bx, by, 20, 20); //ball
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   
   }
@@ -86,10 +86,10 @@ public class Pong extends Minigame {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
         if(tempControl[0] && movementAllowance[0] && playerList.get(i).getY() > 55) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-5);
+          this.playerList.get(i).moveY(-5);
         }
         if(tempControl[2] && movementAllowance[2] && playerList.get(i).getY() < 495) { //down
-          playerList.get(i).moveY(5);
+          this.playerList.get(i).moveY(5);
         }
       }
     }

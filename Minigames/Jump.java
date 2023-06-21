@@ -34,30 +34,30 @@ public class Jump extends Minigame {
 
   //Set player spawn and size
   private void spawnPlayers() {
-    playerList.get(0).setPOS(150, 480);
-    playerList.get(1).setPOS(300, 480);
-    playerList.get(2).setPOS(450, 480);
-    playerList.get(3).setPOS(600, 480);
-    for(int i = 0; i < alivePlayers.length; i++) { //set players to alive
-      alivePlayers[i] = true;
+    this.playerList.get(0).setPOS(150, 480);
+    this.playerList.get(1).setPOS(300, 480);
+    this.playerList.get(2).setPOS(450, 480);
+    this.playerList.get(3).setPOS(600, 480);
+    for(int i = 0; i < this.alivePlayers.length; i++) { //set players to alive
+      this.alivePlayers[i] = true;
     }
   }
 
   //Play the game
   @Override
   public void play() {
-    addEntities(); //load entities
-    spawnPlayers(); //spawn players
+    this.addEntities(); //load entities
+    this.spawnPlayers(); //spawn players
 
     //Variables
-    cycles = 0;
-    seconds = 25;
-    xChange = -5;
-    game = true;
+    this.cycles = 0;
+    this.seconds = 25;
+    this.xChange = -5;
+    this.game = true;
     
     //Game Loop
     while (game) {
-      dc.clear();
+      this.dc.clear();
 
       //Move characters and refresh screen
       this.moveBlock();
@@ -72,19 +72,19 @@ public class Jump extends Minigame {
 
       cycles++;
        //one second has passed
-      if (cycles >= 50) {
-        seconds--;
-        cycles = 0;
+      if (this.cycles >= 50) {
+        this.seconds--;
+        this.cycles = 0;
       }
 
       //time is up or all players die, game ends
-      if (seconds == 0 || (!alivePlayers[0] && !alivePlayers[1] && !alivePlayers[2] && !alivePlayers[3])) { 
-        game = false;
+      if (this.seconds == 0 || (!this.alivePlayers[0] && !this.alivePlayers[1] && !this.alivePlayers[2] && !this.alivePlayers[3])) { 
+        this.game = false;
         this.entityList.clear(); //clear entities so they spawn in their original position if replayed
       }
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
     
   }
@@ -98,7 +98,7 @@ public class Jump extends Minigame {
       if(this.playerList.get(i) != null) { //get current pressed keys
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); 
         
-        for(int j = 0; j < entityList.size(); j++) {  // gets entity bounds
+        for(int j = 0; j < this.entityList.size(); j++) {  // gets entity bounds
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i));
           
           //player touches an entity
@@ -118,10 +118,10 @@ public class Jump extends Minigame {
 
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0] && !movementAllowance[2]) { //Up
-          playerList.get(i).moveY(-75);
+          this.playerList.get(i).moveY(-75);
         }
         if(movementAllowance[2]) { //down
-          playerList.get(i).moveY(2);
+          this.playerList.get(i).moveY(2);
         }
       }
     }
@@ -132,13 +132,13 @@ public class Jump extends Minigame {
 
     //check bounds
     if (this.entityList.get(2).getX() >= 800) { //right bound
-      xChange*=-1;
+      this.xChange*=-1;
     } else if (this.entityList.get(2).getX() <= 0) { //left bound
-      xChange*=-1;
+      this.xChange*=-1;
     }
 
     //move 
-    this.entityList.get(2).move(xChange, 0);
+    this.entityList.get(2).move(this.xChange, 0);
     
   }
 

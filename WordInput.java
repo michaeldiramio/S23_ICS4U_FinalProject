@@ -38,7 +38,7 @@ public class WordInput {
 
     // fills illegalKeycodes (ArrayList) with tempIllegalKeycodes values
     for(int i = 0; i < this.tempIllegalKeycodes.length; i++) {
-      this.illegalKeycodes.add(tempIllegalKeycodes[i]);
+      this.illegalKeycodes.add(this.tempIllegalKeycodes[i]);
     }
   }
 
@@ -69,7 +69,7 @@ public class WordInput {
 
     // converts keycodes (int) to its lowercase char value. does not convert a value if it is an illegal keypress
     for(int i = 0; i < tempKeycodes.length; i++) {
-      if(!illegalKeycodes.contains(tempKeycodes[i])) {
+      if(!this.illegalKeycodes.contains(tempKeycodes[i])) {
         tempKeys[i] = Character.toLowerCase((char)tempKeycodes[i]);
       }
     }

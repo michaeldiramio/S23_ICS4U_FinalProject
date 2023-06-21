@@ -21,29 +21,29 @@ public class RockPaperScissors extends Minigame {
 
   //Spawn Players
   private void spawnPlayers() {
-    playerList.get(0).setPOS(300, 275);
-    playerList.get(1).setPOS(500, 275);
+    this.playerList.get(0).setPOS(300, 275);
+    this.playerList.get(1).setPOS(500, 275);
   }
 
   //Play the game
   @Override
   public void play() {
-    spawnPlayers(); 
+    this.spawnPlayers(); 
     
     //Variables
-    game = true;
-    for (int i = 0; i < choice.length; i++) {
-      chosen[i] = false;
-      choice[i] = -1;
-      draw = false;
+    this.game = true;
+    for (int i = 0; i < this.choice.length; i++) {
+      this.chosen[i] = false;
+      this.choice[i] = -1;
+      this.draw = false;
     }
 
     int cycles = 0;
     int seconds = 1;
     
     //Game Loop
-    while (game) {
-      dc.clear();
+    while (this.game) {
+      this.dc.clear();
 
       //Move characters and refresh screen
       this.moveCharacters();
@@ -62,23 +62,23 @@ public class RockPaperScissors extends Minigame {
       this.dc.drawString("Reset", 400, 175);
 
       //Outcome processing, 0 = rock, 1 = paper, 2 scissors
-      if ((choice[0] == 0 && choice[1] == 2) || (choice[0] == 1 && choice[1] == 0) || (choice[0] == 2 && choice[1] == 1)) { //player 1 wins
-        playerList.get(0).addToPoints(25);
-        game = false;
-      } else if ((choice[0] == 0 && choice[1] == 1) || (choice[0] == 1 && choice[1] == 2) || (choice[0] == 2 && choice[1] == 0)) { //player 2 wins
-        playerList.get(1).addToPoints(25);
-        game = false;
-      } else if ((choice[0] != -1 && choice[1] != -1) && choice[0] == choice[1]) { //tie
-        for (int i = 0; i < choice.length; i++) { //reset game for another round
-          chosen[i] = false;
-          choice[i] = -1;
-          draw = true;
+      if ((this.choice[0] == 0 && this.choice[1] == 2) || (this.choice[0] == 1 && this.choice[1] == 0) || (this.choice[0] == 2 && this.choice[1] == 1)) { //player 1 wins
+        this.playerList.get(0).addToPoints(25);
+        this.game = false;
+      } else if ((this.choice[0] == 0 && this.choice[1] == 1) || (this.choice[0] == 1 && this.choice[1] == 2) || (this.choice[0] == 2 && this.choice[1] == 0)) { //player 2 wins
+        this.playerList.get(1).addToPoints(25);
+        this.game = false;
+      } else if ((this.choice[0] != -1 && this.choice[1] != -1) && this.choice[0] == this.choice[1]) { //tie
+        for (int i = 0; i < this.choice.length; i++) { //reset game for another round
+          this.chosen[i] = false;
+          this.choice[i] = -1;
+          this.draw = true;
           seconds = 1;
         }
       } 
 
       //players drew, wait 2 seconds (to refresh keys) and play again (play until someone wins)
-      if (draw) {
+      if (this.draw) {
         this.dc.drawString("Draw! Pick Again", 400, 400);
         cycles++;
         if (cycles >= 25) { //half second pause
@@ -86,20 +86,20 @@ public class RockPaperScissors extends Minigame {
           seconds--;
         }
         if (seconds == 0) {
-          draw = false;
+          this.draw = false;
         }
       }
 
       //display chosen symbol
-      if (chosen[0]) {
+      if (this.chosen[0]) {
         this.dc.drawImage("Images/RPS/check.jpg", 300, 215);
       }
-      if (chosen[1]) {
+      if (this.chosen[1]) {
         this.dc.drawImage("Images/RPS/check.jpg", 500, 215);
       }
       
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
     
   }
@@ -133,16 +133,4 @@ public class RockPaperScissors extends Minigame {
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-  
 }

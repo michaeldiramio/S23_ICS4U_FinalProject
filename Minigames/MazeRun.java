@@ -33,7 +33,7 @@ public class MazeRun extends Minigame {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
-        for(int j = 0; j < entityList.size(); j++) {
+        for(int j = 0; j < this.entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds 
                                                                                    // (if a player has touched an entity)
   
@@ -41,8 +41,8 @@ public class MazeRun extends Minigame {
             // if a player touches and entity from a certain direction, the player will not be allowed to continue to move in said direction
             // ex. if a player moves right and hits the left side of an object, the player will not be allowed to move right anymore
             if(j == 0 && tempEntityBounds[k]) {
-              playerList.get(i).addToPoints(1);
-              game = false;
+              this.playerList.get(i).addToPoints(1);
+              this.game = false;
               
             } else if(tempEntityBounds[k]) {
               movementAllowance[k] = false;
@@ -53,16 +53,16 @@ public class MazeRun extends Minigame {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-5);
+          this.playerList.get(i).moveY(-5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          playerList.get(i).moveX(-5);
+          this.playerList.get(i).moveX(-5);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          playerList.get(i).moveY(5);
+          this.playerList.get(i).moveY(5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          playerList.get(i).moveX(5);
+          this.playerList.get(i).moveX(5);
         }
       }
     }
@@ -73,12 +73,12 @@ public class MazeRun extends Minigame {
   //Play the game
   @Override
   public void play() {
-    addEntites();
-    game = true;
-    playerList.get(0).setX(50);
-    playerList.get(0).setY(50);
-    playerList.get(1).setX(50);
-    playerList.get(1).setY(50);
+    this.addEntites();
+    this.game = true;
+    this.playerList.get(0).setX(50);
+    this.playerList.get(0).setY(50);
+    this.playerList.get(1).setX(50);
+    this.playerList.get(1).setY(50);
     
     //this is how you add points to a player
     //this.playerList.get(0).addToPoints(4);
@@ -102,10 +102,8 @@ public class MazeRun extends Minigame {
         game = false;
       }
 
-      
-
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   
   }

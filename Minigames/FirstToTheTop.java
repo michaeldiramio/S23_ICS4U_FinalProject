@@ -25,7 +25,7 @@ public class FirstToTheTop extends Minigame {
     super.entityList.add(new Entity(10, "maze block 6", 120.0, 365.0, 265.0, 75.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(11, "maze block 7", 500.0, 332.5, 600.0, 10.0, true, Color.BLACK, this.dc));
     super.entityList.add(new Entity(12, "", 500.0, 332.5, 600.0, 10.0, true, Color.BLACK, this.dc));
-  } // ADD ANIMATION FOR TOP OF SCREEN
+  }
 
 
   double spawnCoordX = 400.0;
@@ -39,7 +39,7 @@ public class FirstToTheTop extends Minigame {
       if(this.playerList.get(i) != null) {
         boolean[] tempControl = this.playerList.get(i).getControl().getPlayerKeysPressed(); // gets the player's currently pressed keys
   
-        for(int j = 0; j < entityList.size(); j++) {
+        for(int j = 0; j < this.entityList.size(); j++) {
           boolean[] tempEntityBounds = this.entityList.get(j).getEntityBounds(this.playerList.get(i)); // gets entity bounds (if a player has touched an entity)
           
           for(int k = 0; k < tempEntityBounds.length; k++) {
@@ -61,16 +61,16 @@ public class FirstToTheTop extends Minigame {
   
         // movement based on key input and if movement is allowed (from entity bounds)
         if(tempControl[0] && movementAllowance[0]) { //if that player's up key is pressed (w for player 1, t for player 2, etc.)
-          playerList.get(i).moveY(-2.5);
+          this.playerList.get(i).moveY(-2.5);
         }
         if(tempControl[1] && movementAllowance[1]) { //left
-          playerList.get(i).moveX(-2.5);
+          this.playerList.get(i).moveX(-2.5);
         }
         if(tempControl[2] && movementAllowance[2]) { //down
-          playerList.get(i).moveY(2.5);
+          this.playerList.get(i).moveY(2.5);
         }
         if(tempControl[3] && movementAllowance[3]) { //right
-          playerList.get(i).moveX(2.5);
+          this.playerList.get(i).moveX(2.5);
         }
       }
     }
@@ -81,7 +81,7 @@ public class FirstToTheTop extends Minigame {
   @Override
   public void play() {
 
-    addEntities();
+    this.addEntities();
 
     boolean game = true;
     int cycles = 0;
@@ -118,34 +118,23 @@ public class FirstToTheTop extends Minigame {
       if (seconds == 0) { //15 second are up, game ends
         game = false;
       }
-
-
-
-
-
-
-
-
-
-
-
       
       this.moveCharacters();
-       this.refreshScreen();
+      this.refreshScreen();
       super.printTime(seconds, 400, 15);
 
-      dc.redraw();
-      dc.pause(20);
+      this.dc.redraw();
+      this.dc.pause(20);
     }
   
   }
 
   @Override
   public void refreshScreen() {
-    for(int i = 0; i < entityList.size(); i++) {
+    for(int i = 0; i < this.entityList.size(); i++) {
       this.entityList.get(i).draw();
     }
-    for(int i = 0; i < playerList.size(); i++) {
+    for(int i = 0; i < this.playerList.size(); i++) {
       this.playerList.get(i).draw();
     }
 
@@ -165,7 +154,4 @@ public class FirstToTheTop extends Minigame {
       this.gifCounter = 0;
     }
   }
-  
-
-
 }
